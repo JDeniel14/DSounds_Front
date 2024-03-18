@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { IEventsRoot } from '../../../Models/EventsModels/IEventsRoot';
 import { RestNodeService } from '../../../Services/rest-node.service';
 import { EventCardComponent } from '../event-card/event-card.component';
-import {NzSpinModule } from 'ng-zorro-antd/spin'
+import {NzSkeletonModule } from 'ng-zorro-antd/skeleton'
 @Component({
   selector: 'app-events-dsounds',
   standalone: true,
   imports: [
     EventCardComponent,
-    NzSpinModule
+    NzSkeletonModule
   ],
   templateUrl: './events-dsounds.component.html',
   styleUrl: './events-dsounds.component.css'
@@ -16,6 +16,7 @@ import {NzSpinModule } from 'ng-zorro-antd/spin'
 export class EventsDsoundsComponent implements OnInit {
 
   public EventosSpain ?:IEventsRoot ;
+  public arrLoading:Array<number> = [1,2,3,4]
 
   /**
    *

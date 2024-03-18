@@ -15,8 +15,10 @@
         <app-event-card [evento]="item"></app-event-card>
       }
   }@else {
-    <nz-spin nzSimple [nzSize]="'large'" class=""></nz-spin>
-    <span class="flex flex-col text-center text-white">Cargando eventos...</span>
+
+    @for (item of this.arrLoading; track $index) {
+      <nz-skeleton [nzActive]="true"></nz-skeleton>
+    }
   }
   </ul>
 </div>
