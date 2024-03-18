@@ -1,0 +1,10 @@
+<a href="/evento/{{this.eventInfo?.id}}"
+  class="event-item flex relative p-2 overflow-hidden items-center gap-4 rounded-md hover:bg-pink-900">
+  <picture class="h-15 w-12 flex-none">
+    <img src="{{this.eventInfo!.images[1].url}}" alt="Imagen del evento {{this.eventInfo?.name}}" class="">
+  </picture>
+  <div class="flex flex-auto flex-col ">
+    <h4 class="text-white ">{{this.eventInfo?.name}}</h4>
+    <span class="text-gray-400 text-xs">{{this.eventInfo?._embedded!.venues[0].name}}-{{this.eventInfo?._embedded!.venues[0].city.name}}</span>
+  </div>
+</a>

@@ -4,5 +4,67 @@
 @tailwind utilities;
 
 html{
+  font-family: "CircularSpotifyText", "MerriweatherSans", sans-serif;
+}
+
+body{
   background-color: #000000;
+}
+
+@font-face {
+  font-family: "CircularSpotifyText";
+  src: url('assets/fonts/CircularSpotifyText-Black.otf') format("otf");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularSpotifyText";
+  src: url('assets/fonts/CircularSpotifyText-Bold.otf') format("otf");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: "CircularSpotifyText";
+  src: url('assets/fonts/CircularSpotifyText-Book.otf') format("otf");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: "CircularSpotifyText";
+  src: url('assets/fonts/CircularSpotifyText-Light.otf') format("otf");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularSpotifyText";
+  src: url('assets/fonts/CircularSpotifyText-Medium.otf') format("otf");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MerriweatherSans";
+  src: url('assets/fonts/MerriweatherSans-Italic-VariableFont_wght.ttf') format("ttf");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MerriweatherSans";
+  src: url('assets/fonts/MerriweatherSans-VariableFont_wght.ttf') format("ttf");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }

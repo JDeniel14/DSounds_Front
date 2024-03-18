@@ -1,5 +1,11 @@
 .divEvents{
   background-color: #4d0836;
   border-radius: 10px;
-  
+
+}
+nz-spin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }

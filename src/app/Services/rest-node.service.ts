@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IRestMessage } from '../Models/irest-message';
 import { lastValueFrom } from 'rxjs';
@@ -16,10 +16,9 @@ export class RestNodeService {
 
     return lastValueFrom(
       this._httpClient.post<IRestMessage>(
-        'http:localhost/3003/api/DsoundsInfo/GetAllEventsSpain',
-        {
-          headers: new Headers({'Content-Type':'application/json'})
-        }
+        'http://localhost:3003/api/DsoundsInfo/GetAllEventsSpain',
+        null,
+        { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
       )
       );
 

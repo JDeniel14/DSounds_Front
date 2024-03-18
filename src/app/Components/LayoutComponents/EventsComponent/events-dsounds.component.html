@@ -8,9 +8,15 @@
         <img src="../../../../assets/images/icons/icons8-ticket-24.png" alt="Ticket">
           <p class="border-b-2">Próximos Eventos</p>
       </span>
-      
     </li>
+
+    @if (this.EventosSpain != null) {
+      @for (item of this.EventosSpain._embedded.events; track $index) {
+        <app-event-card [evento]="item"></app-event-card>
+      }
+  }@else {
+    <nz-spin nzSimple [nzSize]="'large'" class=""></nz-spin>
+    <span class="flex flex-col text-center text-white">Cargando eventos...</span>
+  }
   </ul>
-
-
 </div>
