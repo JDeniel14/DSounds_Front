@@ -1,0 +1,21 @@
+
+#app{
+    display:grid;
+    grid-template-areas:
+    "aside main main";
+    /* "player player player"; */
+    grid-template-columns: 350px  1fr;
+    grid-template-rows: 1fr auto;
+
+}
+
+main{
+  background-color: #DCDCDC;
+}
+
+aside{
+  background-color: #5D0B41;
+
+  border-radius: 10px;
+
+}
