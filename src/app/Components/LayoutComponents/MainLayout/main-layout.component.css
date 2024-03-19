@@ -17,10 +17,22 @@ aside{
   background-color: #5D0B41;
 
   border-radius: 10px;
+  overflow-y: auto;
 
 
 }
 
+aside::-webkit-scrollbar{
+  width: 10px;
+  border-radius: 5px;
+  scrollbar-track-color: transparent;
+}
 
-
-
+aside::-webkit-scrollbar-thumb{
+  background-color: rgba(0, 0, 0, 0.638);
+  border-radius: 5px;
+  height: 5px;
+}
+aside:not(:hover)::-webkit-scrollbar{
+  display: none;
+}

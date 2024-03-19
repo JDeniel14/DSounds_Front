@@ -8,10 +8,18 @@ import { registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { features } from 'node:process';
 
 registerLocaleData(es);
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideNzI18n(es_ES), importProvidersFrom(FormsModule), provideAnimationsAsync(), provideHttpClient()]
+  providers: [
+            provideRouter(routes),
+            provideClientHydration(),
+            provideNzI18n(es_ES),
+            importProvidersFrom(FormsModule),
+            provideAnimationsAsync(),
+            provideHttpClient(withFetch())
+          ]
 };
