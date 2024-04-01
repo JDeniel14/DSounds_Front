@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="flex justify-center">
+    <img src="../../../../assets/images/DSOUNDS-removebg-preview.png" class="w-32" />
+  </div>
+
+  <div class="flex justify-center carrusel w-24">
+
+    <div id="default-carousel" class="relative w-5/6" data-carousel="slide">
+
+      <div class="relative h-56 overflow-hidden rounded-lg md:h-96 ">
+
+        @for (item of this.arrImgs; track $index) {
+        <div class="hidden duration-700 ease-in-out " data-carousel-item>
+          <img [src]="item" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            alt="..." />
+        </div>
+        }
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <div class="container ">
+    <div class="flex justify-between p-2  rounded-md bannerDisc">
+      <p class="text-start border-b-2 border-white text-md font-medium">
+        Discos
+      </p>
+      <a href="/Discos" class="text-end text-lg font-medium hover:text-purple-400 ">Ver todos...</a>
+    </div>
+
+    <div class="mt-6 relative transition-all duration-1000 " id="Disc-container">
+      <div class="relative z-10 px-4">
+
+        <div class="flex flex-wrap mt-6 gap-20">
+          @for (disco of this.Discos; track $index) {
+            <!-- CARD DISCO-->
+
+            <app-disco [Disco]="disco"></app-disco>
+
+          }
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

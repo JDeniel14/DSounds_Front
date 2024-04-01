@@ -1,0 +1,21 @@
+<a class="transition-all duration-700 flex relative p-3 overflow-hidden items-center gap-5
+          rounded-md shadow-lg hover:shadow-xl w-52 flex-col  hover:bg-pink-600 border-2 "
+            href="/Disco/{{this.disco?._id}}">
+            <picture class="aspect-square w-full h-auto  flex-none">
+              <img [src]="disco?.ImagenBASE64" alt="Imagen de {{this.disco?.Nombre}}"
+                class="object-cover w-full h-full rounded-md">
+            </picture>
+
+            <div class="flex flex-auto flex-col text-wrap text-center">
+              <h4 class="text-md  text-white">{{this.disco?.Nombre}}-{{this.disco?.Artista}}</h4>
+            </div>
+            <button id="Disco_{{this.disco?._id}}"
+              class=" relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg
+              group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500
+              hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+              <span
+                class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Comprar
+              </span>
+            </button>
+          </a>

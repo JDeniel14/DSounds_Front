@@ -1,0 +1,41 @@
+.carrusel{
+  width: auto;
+  height: auto;
+  padding: 5px;
+
+   img{
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+
+}
+
+#Disc-container{
+  margin-left: 100px;
+}
+
+.bannerDisc{
+  background: #5d0b41;
+}
+
+@media (min-width: 1002px){
+  .carrusel{
+    max-width: 1150px;
+    max-height: 300px;
+    height: auto;
+    padding: 5px;
+      margin-bottom: 60px;
+     img{
+      width: 1150px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+  }
+  #Disc-container{
+   margin: auto;
+  }
+}
