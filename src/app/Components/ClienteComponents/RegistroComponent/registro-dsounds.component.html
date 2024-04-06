@@ -1,1 +1,228 @@
-<p>registro-dsounds works!</p>
+<div class="container flex flex-col justify-center items-center   ">
+
+
+  <div class="m-3 w-3/6  justify-center flex flex-col  ">
+
+    <div class="formLogin ">
+      <div class="min-h-screen  flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-[#ffffff1a] rounded-3xl ">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+          <div class="flex justify-center"> <!-- Agregamos estas clases -->
+            <a [routerLink]="['/Home']" routerLinkActive="router-link-active">
+              <img src="../../../../assets/images/DSOUNDS-removebg-preview.png" class="w-44" />
+            </a>
+          </div>
+          <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-white ">
+            Regístrate en DSounds
+          </h2>
+        </div>
+
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div class="  py-8 px-4 sm:px-10">
+            <form class="space-y-6" [formGroup]="formRegistro" (ngSubmit)="this.registroCliente()">
+
+              <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="text" name="floating_first_name" id="floating_first_name"
+                    class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+                    placeholder=" " formControlName="nombre" />
+                  <label for="floating_first_name"
+                    class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Nombre</label>
+                </div>
+
+
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="text" name="floating_last_name" id="floating_last_name"
+                    class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+                    placeholder=" " formControlName="apellidos" />
+                  <label for="floating_last_name"
+                    class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Apellido</label>
+                </div>
+
+                @if (formRegistro.controls['nombre'].errors?.['required'] &&
+                formRegistro.controls['nombre'].touched) {
+
+                <span class="text-red-600">* Nombre Obligatorio</span>
+                }
+                @if (formRegistro.controls['nombre'].errors?.['minlength'] &&
+                formRegistro.controls['nombre'].touched) {
+
+                <span class="text-red-600">* Mínimo 3 caracteres</span>
+                }
+                @if (formRegistro.controls['nombre'].errors?.['maxlength'] &&
+                formRegistro.controls['nombre'].touched) {
+
+                <span class="text-red-600">* Máximo 50 caracteres</span>
+                }
+
+
+                @if (formRegistro.controls['apellidos'].errors?.['required'] &&
+                formRegistro.controls['apellidos'].touched) {
+
+                <span class="text-red-600">* Apellidos Obligatorio</span>
+                }
+                @if (formRegistro.controls['apellidos'].errors?.['minlength'] &&
+                formRegistro.controls['apellidos'].touched) {
+
+                <span class="text-red-600">* Mínimo 3 caracteres</span>
+                }
+                @if (formRegistro.controls['apellidos'].errors?.['maxlength'] &&
+                formRegistro.controls['apellidos'].touched) {
+
+                <span class="text-red-600">* Máximo 200 caracteres</span>
+                }
+              </div>
+
+
+              <div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="text" name="floating_login" id="floating_login"
+                    class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+                    placeholder=" " formControlName="login" />
+                  <label for="floating_login"
+                    class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Login</label>
+                  @if (formRegistro.controls['login'].errors?.['required'] &&
+                  formRegistro.controls['login'].touched) {
+
+                  <span class="text-red-600">* Login Obligatorio</span>
+                  }
+                  @if (formRegistro.controls['login'].errors?.['minlength'] &&
+                  formRegistro.controls['login'].touched) {
+
+                  <span class="text-red-600">* Mínimo 5 caracteres</span>
+                  }
+                  @if (formRegistro.controls['login'].errors?.['maxlength'] &&
+                  formRegistro.controls['login'].touched) {
+
+                  <span class="text-red-600">* Máximo 25 caracteres</span>
+                  }
+                </div>
+
+              </div>
+
+              <div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="email" name="floating_email" id="floating_email"
+                    class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+                    placeholder=" " formControlName="email" />
+                  <label for="floating_email"
+                    class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Correo electrónico</label>
+                  @if (formRegistro.controls['email'].errors?.['required'] && formRegistro.controls['email'].touched) {
+
+                  <span class="text-red-600">* Email Obligatorio</span>
+                  }
+                  @if (formRegistro.controls['email'].errors?.['email'] && formRegistro.controls['email'].touched) {
+
+                  <span class="text-red-600">* Formato de Email inválido</span>
+                  }
+                </div>
+              </div>
+
+              <div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="email" name="floating_repemail" id="floating_repemail"
+                    class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+                    placeholder=" " formControlName="repemail" />
+                  <label for="floating_repemail"
+                    class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Repetir Correo electrónico</label>
+                  @if (formRegistro.controls['repemail'].errors?.['required'] &&
+                  formRegistro.controls['repemail'].touched) {
+
+                  <span class="text-red-600">* Email Obligatorio</span>
+                  }
+                  @if (formRegistro.controls['repemail'].errors?.['email'] && formRegistro.controls['repemail'].touched)
+                  {
+
+                  <span class="text-red-600">* Formato de Email inválido</span>
+                  }
+                </div>
+              </div>
+
+              <div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="password" name="floating_password" id="floating_password"
+                    class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+                    placeholder=" " formControlName="password" />
+                  <label for="floating_password"
+                    class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Contraseña</label>
+                  @if (formRegistro.controls['password'].errors?.['required'] &&
+                  formRegistro.controls['password'].touched) {
+
+                  <span class="text-red-600">* Contraseña Obligatoria</span>
+                  }
+                  @if (formRegistro.controls['password'].errors?.['minlength'] &&
+                  formRegistro.controls['password'].touched) {
+
+                  <span class="text-red-600">* Mínimo 5 caracteres</span>
+                  }
+                  @if (formRegistro.controls['password'].errors?.['pattern'] &&
+                  formRegistro.controls['password'].touched) {
+
+                  <span class="text-red-600">* La contraseña debe tener 1 mayus, 1 num. y un caracter
+                    alfanumérico</span>
+                  }
+                </div>
+
+              </div>
+
+              <div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="password" name="floating_repassword" id="floating_repassword"
+                    class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+                    placeholder=" " formControlName="repassword" />
+                  <label for="floating_repassword"
+                    class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Repetir Contraseña</label>
+                  @if (formRegistro.controls['repassword'].errors?.['required'] &&
+                  formRegistro.controls['repassword'].touched) {
+
+                  <span class="text-red-600">* Contraseña Obligatoria</span>
+                  }
+                  @if (formRegistro.controls['repassword'].errors?.['minlength'] &&
+                  formRegistro.controls['repassword'].touched) {
+
+                  <span class="text-red-600">* Mínimo 5 caracteres</span>
+                  }
+                  @if (formRegistro.controls['repassword'].errors?.['pattern'] &&
+                  formRegistro.controls['repassword'].touched) {
+
+                  <span class="text-red-600">* La contraseña debe tener 1 mayus, 1 num. y un caracter
+                    alfanumérico</span>
+                  }
+                </div>
+
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <span>¿Ya tienes cuenta? <a class="text-[#c66aa7] hover:text-[#e57dc2]" [routerLink]="['/Login']"
+                      routerLinkActive="router-link-active">Loguearme</a></span>
+                </div>
+
+
+              </div>
+
+              <div>
+                <span class="block w-full rounded-md shadow-sm">
+                  <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-[#5d0b41]  focus:outline-none  focus:shadow-outline-indigo  transition duration-150 ease-in-out transform hover:scale-105">
+                    Registrarme
+                  </button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+</div>

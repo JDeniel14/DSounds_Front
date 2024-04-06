@@ -1,1 +1,101 @@
-<p>login-dsounds works!</p>
+<div class="container flex flex-col justify-center items-center   ">
+
+
+  <div class="m-3 w-3/6  justify-center flex flex-col  ">
+
+    <div class="formLogin ">
+      <div class="min-h-screen  flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-[#ffffff1a] rounded-3xl ">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+          <div class="flex justify-center"> <!-- Agregamos estas clases -->
+            <a [routerLink]="['/Home']" routerLinkActive="router-link-active">
+              <img src="../../../../assets/images/DSOUNDS-removebg-preview.png" class="w-44" />
+            </a>
+          </div>
+          <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-white ">
+            Inicia sesión en DSounds
+          </h2>
+        </div>
+
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div class="  py-8 px-4 sm:px-10">
+            <form class="space-y-6" [formGroup]="formLogin" (ngSubmit)="this.loguearCliente()">
+              <div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="email" name="floating_email" id="floating_email"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+                    placeholder=" " formControlName="email" />
+                  <label for="floating_email"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Correo electrónico</label>
+                  @if (formLogin.controls['email'].errors?.['required'] && formLogin.controls['email'].touched) {
+
+                  <span class="text-red-600">* Email Obligatorio</span>
+                  }
+                  @if (formLogin.controls['email'].errors?.['email'] && formLogin.controls['email'].touched) {
+
+                  <span class="text-red-600">* Formato de Email inválido</span>
+                  }
+                </div>
+              </div>
+
+              <div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input type="password" name="floating_password" id="floating_password"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+                    placeholder=" " formControlName="password" />
+                  <label for="floating_password"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Contraseña</label>
+                  @if (formLogin.controls['password'].errors?.['required'] &&
+                  formLogin.controls['password'].touched) {
+
+                  <span class="text-red-600">* Contraseña Obligatoria</span>
+                  }
+                  @if (formLogin.controls['password'].errors?.['minlength'] &&
+                  formLogin.controls['password'].touched) {
+
+                  <span class="text-red-600">* Mínimo 5 caracteres</span>
+                  }
+                  @if (formLogin.controls['password'].errors?.['pattern'] &&
+                  formLogin.controls['password'].touched) {
+
+                  <span class="text-red-600">* La contraseña debe tener 1 mayus, 1 num. y un caracter
+                    alfanumérico</span>
+                  }
+                </div>
+
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <span>¿Sin cuenta? <a class="text-[#c66aa7] hover:text-[#e57dc2]" [routerLink]="['/Registro']"
+                      routerLinkActive="router-link-active">Registrarme</a></span>
+                </div>
+
+                <div class="text-sm leading-5">
+                  <a href="#"
+                    class="font-medium text-[#c66aa7] hover:text-[#e57dc2] focus:outline-none focus:underline transition ease-in-out duration-150">
+                    ¿Olvidaste tu contraseña?
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <span class="block w-full rounded-md shadow-sm">
+                  <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-[#5d0b41]  focus:outline-none  focus:shadow-outline-indigo  transition duration-150 ease-in-out transform hover:scale-105">
+                    Iniciar sesión
+                  </button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+</div>

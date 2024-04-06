@@ -1,1 +1,18 @@
-<router-outlet/>
+
+<div id="app" class="relative h-screen p-2 gap-2 ">
+
+  <aside class="[grid-area:aside] flex-col flex overflow-y-auto">
+    <div class="asScroll">
+      <app-aside-dsounds></app-aside-dsounds>
+    </div>
+  </aside>
+
+
+
+  <main class="[grid-area:main] rounded-lg overflow-y-auto">
+
+    <router-outlet/>
+  </main>
+
+
+</div>

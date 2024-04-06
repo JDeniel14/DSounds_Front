@@ -3,11 +3,12 @@ import {NzCarouselModule } from 'ng-zorro-antd/carousel'
 import IDisco from '../../../../Models/Disco';
 
 import {DiscoComponent} from '../../../TiendaComponents/DiscoComponent/disco/disco.component'
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-main',
   standalone: true,
-  imports: [NzCarouselModule, DiscoComponent ],
+  imports: [NzCarouselModule, DiscoComponent, RouterLink ],
   templateUrl: './home-main.component.html',
   styleUrl: './home-main.component.css'
 })

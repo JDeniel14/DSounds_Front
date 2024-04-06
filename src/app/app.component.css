@@ -6,3 +6,71 @@
 body{
   color: white;
 }
+
+
+
+#app {
+  display: grid;
+  grid-template-areas:
+    "aside aside aside"
+    "main main main";
+  /* "player player player"; */
+  grid-template-columns: 350px 1fr;
+  grid-template-rows: 1fr auto;
+
+}
+
+
+
+
+main {
+  background-color: #131313;
+  color: white;
+}
+
+aside {
+  background-color: #5d0b41;
+
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+aside::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 5px;
+  scrollbar-track-color: transparent;
+}
+
+aside::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.638);
+  border-radius: 5px;
+  height: 5px;
+}
+aside:not(:hover)::-webkit-scrollbar {
+  display: none;
+}
+
+
+main::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 5px;
+  scrollbar-track-color: transparent;
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: #5d0b41;
+  border-radius: 5px;
+  height: 5px;
+}
+
+
+@media (min-width: 1002px) {
+  #app {
+    display: grid;
+    grid-template-areas: "aside main main";
+    /* "player player player"; */
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+}

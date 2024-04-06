@@ -1,6 +1,8 @@
 <div class="container">
   <div class="flex justify-center">
-    <img src="../../../../assets/images/DSOUNDS-removebg-preview.png" class="w-32" />
+    <a [routerLink]="['/Home']" routerLinkActive="router-link-active" >
+      <img src="../../../../assets/images/DSOUNDS-removebg-preview.png" class="w-32" />
+    </a>
   </div>
 
   <div class="flex justify-center carrusel w-24">
@@ -27,7 +29,7 @@
       <p class="text-start border-b-2 border-white text-md font-medium">
         Discos
       </p>
-      <a href="/Discos" class="text-end text-lg font-medium hover:text-purple-400 ">Ver todos...</a>
+      <a [routerLink]="['/Discos']" routerLinkActive="router-link-active" class="text-end text-lg font-medium hover:text-purple-400 ">Ver todos...</a>
     </div>
 
     <div class="mt-6 relative transition-all duration-1000 " id="Disc-container">
