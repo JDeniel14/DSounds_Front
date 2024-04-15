@@ -6,5 +6,6 @@ export default interface IDisco{
   Fecha_Lanzamiento:string;
   Resumen:string;
   Canciones:string[];
-  ImagenBASE64:string;
+  UrlImagen:string;
+  Precio:Number
 }

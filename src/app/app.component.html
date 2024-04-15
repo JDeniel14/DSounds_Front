@@ -1,9 +1,21 @@
-
 <div id="app" class="relative h-screen p-2 gap-2 ">
 
   <aside class="[grid-area:aside] flex-col flex overflow-y-auto">
-    <div class="asScroll">
-      <app-aside-dsounds></app-aside-dsounds>
+
+    <button data-collapse-toggle="navbar-hamburger" type="button" id="menu-button" (click)="this.ResizeMenu($event)" (resize)="this.ResizeMenu($event)"
+      class="inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg menu-hamburger"
+      aria-controls="navbar-hamburger" aria-expanded="true">
+      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15" />
+      </svg>
+    </button>
+    <div class="" id="navbar-hamburger">
+
+      <div class="asScroll">
+        <app-aside-dsounds></app-aside-dsounds>
+      </div>
+
     </div>
   </aside>
 
@@ -11,7 +23,7 @@
 
   <main class="[grid-area:main] rounded-lg overflow-y-auto">
 
-    <router-outlet/>
+    <router-outlet />
   </main>
 
 

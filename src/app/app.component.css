@@ -15,11 +15,9 @@ body{
     "aside aside aside"
     "main main main";
   /* "player player player"; */
-  grid-template-columns: 350px 1fr;
-  grid-template-rows: 1fr auto;
+
 
 }
-
 
 
 
@@ -69,8 +67,9 @@ main::-webkit-scrollbar-thumb {
     display: grid;
     grid-template-areas: "aside main main";
     /* "player player player"; */
-    grid-template-columns: 350px 1fr;
+    grid-template-columns: 320px 1fr;
     grid-template-rows: 1fr auto;
   }
+
 
 }
