@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, RouterLink ,Router} from '@angular/router';
 import ICliente from '../../../Models/ICliente';
@@ -6,6 +6,8 @@ import { RestNodeService } from '../../../Services/rest-node.service';
 import { Subscription, switchMap, tap } from 'rxjs';
 import { IRestMessage } from '../../../Models/irest-message';
 import Swal from 'sweetalert2';
+import { TOKEN_STORAGE_SERVICE } from '../../../Services/injectionTokenStorageService';
+import { IStorageService } from '../../../Models/IStorageService';
 
 @Component({
   selector: 'app-login-dsounds',
@@ -39,7 +41,8 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
    */
   constructor(private restSvc:RestNodeService,
               private router:Router,
-              private activatedRoute: ActivatedRoute
+              private activatedRoute: ActivatedRoute,
+              @Inject(TOKEN_STORAGE_SERVICE) private storageSvc: IStorageService
   ) {
     this.subParams = new Subscription();
 
@@ -62,11 +65,16 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
                           ).subscribe(
                             (resp:IRestMessage)=>{
                               if(resp.codigo == 0){
-                                this.clienteRedirigidoActivo = resp.datoscliente;
+                                this.clienteRedirigidoActivo = resp.datosCliente as ICliente;
                                 this.jwt = resp.token;
                                 this.mensajeServer = resp.mensaje;
                                 this.errorServer=resp.error;
-                                //TODO: GUARDAR CLIENTE Y TOKEN EN STORAGE, MOSTRAR TOAST CON MENSAJE
+
+
+                                this.storageSvc.AlmacenarDatosCliente(this.clienteRedirigidoActivo)
+                                this.storageSvc.AlmacenarJWT(this.jwt as string)
+
+
                                 let mensajeAlerta = this.errorServer ? this.mensajeServer+', '+this.errorServer : this.mensajeServer;
                                 Swal.fire(
                                   {
@@ -79,7 +87,7 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
                                     animation:true,
                                     allowEnterKey:true,
                                     confirmButtonColor:'#5d0b41',
-                                    timer:10000
+                                    timer:5000
 
                                   }
                                 )
@@ -101,10 +109,15 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
         this.restSvc.LoginCliente(this.formLogin.value).subscribe(
           (resp:IRestMessage)=>{
             if(resp.codigo == 0){
-              this.clienteRedirigidoActivo = resp.datoscliente;
+              
+             let _datosCliente = resp.datosCliente as ICliente;
+
               this.jwt = resp.token;
               this.mensajeServer = resp.mensaje;
               this.errorServer = resp.error;
+
+              this.storageSvc.AlmacenarDatosCliente(_datosCliente);
+              this.storageSvc.AlmacenarJWT(this.jwt as string);
 
               let mensajeAlerta = this.errorServer
                 ? this.mensajeServer + ', ' + this.errorServer
@@ -121,7 +134,6 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
                 confirmButtonColor: '#5d0b41',
                 timer: 10000,
               });
-              //TODO: GUARDAR CLIENTE Y TOKEN EN STORAGE, MOSTRAR TOAST CON MENSAJE
 
               this.router.navigateByUrl('/Home');
             }else{

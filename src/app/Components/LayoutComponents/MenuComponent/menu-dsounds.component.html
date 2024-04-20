@@ -13,12 +13,27 @@
         </a>
       </li>
 
-      <li class="">
-        <a  [routerLink]="['/Login']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
-         <img src="../../../../assets/images/icons/icons8-customer-24.png" alt="Usuario Dsounds">
-          Login
-        </a>
-      </li>
+      @if(this.datosCliente != null){
+        <li class="">
+          <a  [routerLink]="['/MiCuenta']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
+           <img src="../../../../assets/images/icons/icons8-customer-24.png" alt="Usuario Dsounds">
+            Mi Cuenta, {{this.datosCliente.nombre}}
+          </a>
+        </li>
+        <li class="">
+          <a  (click)="CerrarSesionCliente()"  [routerLink]="['/Home']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
+           <img src="../../../../assets/images/icons/icons8-customer-24.png" alt="Usuario Dsounds">
+            Cerrar Sesión
+          </a>
+        </li>
+      }@else{
+        <li class="">
+          <a  [routerLink]="['/Login']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
+           <img src="../../../../assets/images/icons/icons8-customer-24.png" alt="Usuario Dsounds">
+            Login
+          </a>
+        </li>
+      }
 
       <li class="">
         <a  [routerLink]="['/Discos']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">

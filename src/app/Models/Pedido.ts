@@ -7,7 +7,7 @@ export interface IPedido{
   idPedido: string;
   fechaPedido: Date;
   estadoPedido: string;
-  elementosPedido:Array< { discos:    IDisco, cantidadElemento: number } >;
+  elementosPedido:Array< { disco:    IDisco, cantidadElemento: number } >;
   subtotal: number;
   gastosEnvio: number;
   totalPedido: number;

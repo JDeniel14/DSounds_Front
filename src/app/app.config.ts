@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { features } from 'node:process';
+import { TOKEN_STORAGE_SERVICE } from './Services/injectionTokenStorageService';
+import { SubjectStorageService } from './Services/subject-storage.service';
 
 registerLocaleData(es);
 
@@ -21,5 +23,7 @@ export const appConfig: ApplicationConfig = {
             importProvidersFrom(FormsModule),
             provideAnimationsAsync(),
             provideHttpClient(withFetch()),
+            {provide: TOKEN_STORAGE_SERVICE, useClass: SubjectStorageService},
+
           ]
 };
