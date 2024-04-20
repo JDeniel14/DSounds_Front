@@ -61,6 +61,9 @@ main::-webkit-scrollbar-thumb {
   height: 5px;
 }
 
+#menu-button{
+  display: block;
+}
 
 @media (min-width: 1002px) {
   #app {
@@ -71,5 +74,11 @@ main::-webkit-scrollbar-thumb {
     grid-template-rows: 1fr auto;
   }
 
+#menu-button{
+  display: none;
+}
 
+#navbar-hamburger{
+  display: block;
+}
 }

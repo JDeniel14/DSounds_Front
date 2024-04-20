@@ -29,9 +29,7 @@ export class MenuDsoundsComponent implements OnInit, OnDestroy{
                             .subscribe(
                               (datos:ICliente|null)=>{
                                 if(datos){
-                                  console.log(datos)
                                   this.datosCliente = datos
-                                  console.log(this.datosCliente)
                                 }
                               }
                             )

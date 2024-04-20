@@ -85,7 +85,6 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
                                     confirmButtonText:'Aceptar',
                                     focusConfirm:true,
                                     animation:true,
-                                    allowEnterKey:true,
                                     confirmButtonColor:'#5d0b41',
                                     timer:5000
 
@@ -109,7 +108,7 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
         this.restSvc.LoginCliente(this.formLogin.value).subscribe(
           (resp:IRestMessage)=>{
             if(resp.codigo == 0){
-              
+
              let _datosCliente = resp.datosCliente as ICliente;
 
               this.jwt = resp.token;
@@ -130,7 +129,6 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
                 confirmButtonText: 'Aceptar',
                 focusConfirm: true,
                 animation: true,
-                allowEnterKey: true,
                 confirmButtonColor: '#5d0b41',
                 timer: 10000,
               });
