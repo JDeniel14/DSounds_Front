@@ -13,14 +13,14 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [ButtonModule, ToastModule,AccordionModule],
   templateUrl: './info-evento.component.html',
-  styleUrl: './info-evento.component.css'
+  styleUrl: './info-evento.component.css',
 })
-export class InfoEventoComponent implements OnInit {
+export class InfoEventoComponent implements OnInit, OnDestroy{
 
   public evento?:IInfoEvento;
   public idEvento?:string;
   private subIdEvento:Subscription = new Subscription;
-
+  private subParam:Subscription = new Subscription;
   /**
    *
    */
@@ -31,12 +31,21 @@ export class InfoEventoComponent implements OnInit {
   ) {
 
   }
+  ngOnDestroy(): void {
+    this.subIdEvento.unsubscribe()
+    this.subParam.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
-    this.idEvento = this.activatedRoute.snapshot.paramMap.get('idEvento') as string;
 
-    this.ObtenerEventoById();
+    this.subParam= this.activatedRoute.paramMap.subscribe(
+      (param)=>{
+        this.idEvento = param.get('idEvento') as string
+        this.ObtenerEventoById();
+      }
+    )
+
   }
 
   private async ObtenerEventoById(){
@@ -54,6 +63,7 @@ export class InfoEventoComponent implements OnInit {
     }
 
       public RedirectToEvento(){
+
         window.open(`${this.evento?.url}`)
       }
   }

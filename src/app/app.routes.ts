@@ -11,10 +11,10 @@ export const routes: Routes = [
   {path:'Home', component:MainLayoutComponent},
   {path:'Discos', component:ListadoDiscosComponent},
   {path:'InfoDisco/:idDisco', component:InfoDiscoComponent},
-  {path:'InfoEvento/:idEvento',component:InfoEventoComponent},
   {path:'Carrito', component:CarritoDSoundsComponent},
   {path:'Login', component:LoginDsoundsComponent},
   {path:'Registro', component:RegistroDsoundsComponent},
+  {path:'InfoEvento/:idEvento',component:InfoEventoComponent},
   {path:'', redirectTo:'/Home',pathMatch:'full'},
   {path:'**', redirectTo:'/Home'}
 ];

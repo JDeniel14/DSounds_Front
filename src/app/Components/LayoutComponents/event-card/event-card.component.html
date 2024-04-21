@@ -1,4 +1,4 @@
-<a href="/InfoEvento/{{this.eventInfo?.id}}"
+<a [routerLink]="['/InfoEvento/',this.eventInfo?.id]" routerLinkActive="router-link-active"
   class="event-item flex relative p-2 overflow-hidden items-center gap-4 rounded-md hover:bg-pink-900">
   <picture class="h-15 w-12 flex-none">
     <img src="{{this.eventInfo!.images[1].url}}" alt="Imagen del evento {{this.eventInfo?.name}}" class="">
