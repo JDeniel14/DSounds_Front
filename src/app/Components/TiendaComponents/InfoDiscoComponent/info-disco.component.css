@@ -1,0 +1,38 @@
+
+
+.tituloDisco{
+  font-size: 1.8rem;
+}
+
+:host{
+  ::ng-deep .p-accordion-content{
+    background: transparent;
+    color: rgb(193, 193, 193);
+  }
+
+  ::ng-deep .p-accordion-header-link:hover {
+    color: #c02e8f !important;
+  }
+
+  ::ng-deep .p-button{
+    background-color: black;
+    color: white;
+    padding: 13px;
+  }
+
+}
+
+.btnCompra:hover{
+  transform: scale(1.1);
+  transition: all 0.8s;
+}
+
+@media (min-width:1002px) {
+  .resumenDisco{
+    display: block;
+  }
+  .tituloDisco{
+    font-size: 2.5rem;
+  }
+
+}

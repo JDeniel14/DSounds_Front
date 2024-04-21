@@ -8,13 +8,15 @@ import { IRestMessage } from '../../../Models/irest-message';
 import Swal from 'sweetalert2';
 import { TOKEN_STORAGE_SERVICE } from '../../../Services/injectionTokenStorageService';
 import { IStorageService } from '../../../Models/IStorageService';
-
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 @Component({
   selector: 'app-login-dsounds',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, ToastModule],
   templateUrl: './login-dsounds.component.html',
-  styleUrl: './login-dsounds.component.css'
+  styleUrl: './login-dsounds.component.css',
+  providers:[MessageService]
 })
 export class LoginDsoundsComponent implements OnInit, OnDestroy{
 
@@ -42,7 +44,8 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
   constructor(private restSvc:RestNodeService,
               private router:Router,
               private activatedRoute: ActivatedRoute,
-              @Inject(TOKEN_STORAGE_SERVICE) private storageSvc: IStorageService
+              @Inject(TOKEN_STORAGE_SERVICE) private storageSvc: IStorageService,
+              private messageService : MessageService
   ) {
     this.subParams = new Subscription();
 
@@ -76,20 +79,8 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
 
 
                                 let mensajeAlerta = this.errorServer ? this.mensajeServer+', '+this.errorServer : this.mensajeServer;
-                                Swal.fire(
-                                  {
-                                    title:'Login',
-                                    text:mensajeAlerta,
-                                    icon:'info',
-                                    toast:true,
-                                    confirmButtonText:'Aceptar',
-                                    focusConfirm:true,
-                                    animation:true,
-                                    confirmButtonColor:'#5d0b41',
-                                    timer:5000
 
-                                  }
-                                )
+                                this.messageService.add({ severity: 'info', summary: 'Login', detail: `${mensajeAlerta}}` });
                                 this.router.navigateByUrl('/Home');
                               }else{
                                 this.mensajeServer=resp.mensaje;
@@ -121,19 +112,11 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
               let mensajeAlerta = this.errorServer
                 ? this.mensajeServer + ', ' + this.errorServer
                 : this.mensajeServer;
-              Swal.fire({
-                title: 'Login',
-                text: mensajeAlerta,
-                icon: 'info',
-                toast: true,
-                confirmButtonText: 'Aceptar',
-                focusConfirm: true,
-                animation: true,
-                confirmButtonColor: '#5d0b41',
-                timer: 10000,
-              });
 
-              this.router.navigateByUrl('/Home');
+              this.messageService.add({ severity: 'info', summary: 'Login', detail: `${mensajeAlerta}, redirigiendo a inicio` });
+              setTimeout(()=>{
+                this.router.navigateByUrl('/Home');
+              },2000)
             }else{
               this.mensajeServer=resp.mensaje;
             }

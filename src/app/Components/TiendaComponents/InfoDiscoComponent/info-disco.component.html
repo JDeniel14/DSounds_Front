@@ -1,1 +1,86 @@
-<p>info-disco works!</p>
+<div>
+    <div class="flex flex-row  bg-[#5d0b41] rounded-lg p-8 gap-8">
+        <picture class="aspect-square w-52 h-52 flex-none shadow-lg">
+            <img [src]="disco?.UrlImagen" width="200" height="200"
+                class="rounded-lg shadow-lg object-cover w-full h-full"
+                [style.view-transition-name]="'disco-'+disco?._id">
+        </picture>
+
+        <div class="flex flex-col justify-between">
+            <h2 class="flex flex-1 items-end  text-white">
+                Disco
+            </h2>
+            <div>
+                <h1 class="  font-bold block text-white tituloDisco">
+                    {{disco?.Nombre}}
+                    <span class="">{{disco?.Artista}}</span>
+                </h1>
+            </div>
+
+            <div class="flex flex-1 items-end">
+                <div class="text-sm text-gray-300 font-normal mt-4 rounded-lg">
+                    <div>
+                      <p-accordion [activeIndex]="1">
+                        <p-accordionTab header="Resumen" class="ResumenCont">
+                          <span class="resumenDisco">{{disco?.Resumen}}</span>
+                        </p-accordionTab>
+                      </p-accordion>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="flex flex-1 justify-center  mt-5 rounded-lg ">
+                <div class="">
+                  <button type="button" class="text-white bg-[#922394] hover:bg-[#e16cba] focus:ring-4 focus:outline-none focus:ring-fuchsia-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2  shadow-md transition-all btnCompra"
+                  (click)="AddDiscoPedido()">
+                    <svg class="w-3.5 h-3.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+                    <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
+                    </svg>
+                    Comprar - {{disco?.Precio}}€
+                    </button>
+                </div>
+                      
+                <div class="card">
+                  <p-toast></p-toast>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <table class="table-auto text-left min-w-full divide-y-2 divide-gray-500/50 mt-2">
+        <thead class="">
+            <tr class="text-gray-300 text-sm">
+
+              <th class="px-4 py-2">#</th>
+              <th class="px-4 py-2">Título</th>
+              <th class="px-4 py-2">Álbum</th>
+              <th class="px-4 py-2">Artista</th>
+            </tr>
+        </thead>
+
+        <tbody class="">
+            @for (item of disco?.Canciones; track $index) {
+                <tr class="text-gray-300 text-sm hover:bg-[#5d0b41] rounded-md">
+                    <td class="px-4 py-2">{{$index + 1}}</td>
+                    <td class="px-4 py-2 flex gap-3">
+                        <picture class="">
+                            <img [src]="disco?.UrlImagen" class="w-10 h-10 rounded-md" alt="{{item}}">
+                        </picture>
+                        <div class="flex flex-col">
+                            <h3 class=" text-white">{{item}}</h3>
+                        <span class="text-sm text-white">{{disco?.Artista}}</span>
+                        </div>
+                    </td>
+                    <td class="px-4 py-2">{{disco?.Nombre}}</td>
+                    <td class="px-4 py-2">{{disco?.Artista}}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

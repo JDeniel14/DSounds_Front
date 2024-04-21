@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IRestMessage } from '../Models/irest-message';
-import { Observable, lastValueFrom } from 'rxjs';
+import { Observable, last, lastValueFrom } from 'rxjs';
 import ICliente from '../Models/ICliente';
 
 @Injectable({
@@ -13,6 +13,7 @@ export class RestNodeService {
 
    }
 
+   //#region metodos tienda...
    public GetAllEventsSpain():Promise<IRestMessage>{
 
     return lastValueFrom(
@@ -25,6 +26,14 @@ export class RestNodeService {
 
    }
 
+   public ObtenerEventoById(idEvento:string):Observable<IRestMessage>{
+
+    return this._httpClient.get<IRestMessage>(
+      `http://localhost:3003/api/DsoundsInfo/ObtenerEventoById?idEvento=${idEvento}`,
+      { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
+    )
+   }
+
    public ObtenerDiscos():Promise<IRestMessage>{
 
     return lastValueFrom(
@@ -35,6 +44,19 @@ export class RestNodeService {
     )
    }
 
+
+   public ObtenerDiscoById(idDisco:string):Promise<IRestMessage>{
+
+    return lastValueFrom(
+      this._httpClient.get<IRestMessage>(
+        `http://localhost:3003/api/DsoundsShop/ObtenerDiscoById?idDisco=${idDisco}`,
+        {headers:new HttpHeaders({'Content-Type':'application/json'})}
+      )
+    )
+   }
+//#endregion
+
+   //#region metodos Cliente...
    public RegistroCliente(datosCliente:ICliente):Promise<IRestMessage>{
 
     return lastValueFrom(
@@ -62,4 +84,6 @@ export class RestNodeService {
             {headers:new HttpHeaders({'Content-Type':'application/json'})}
     )
    }
+
+   //#endregion
 }

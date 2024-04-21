@@ -27,6 +27,8 @@
     "flowbite": "^2.3.0",
     "ng-zorro-antd": "^17.3.0",
     "ngx-cookie-service": "^17.1.0",
+    "primeicons": "^7.0.0",
+    "primeng": "^17.14.1",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.10.7",
     "tslib": "^2.3.0",

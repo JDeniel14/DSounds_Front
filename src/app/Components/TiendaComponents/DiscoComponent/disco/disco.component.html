@@ -1,9 +1,13 @@
 <a class="transition-all duration-700 flex relative p-3 overflow-hidden items-center gap-5
-          rounded-md shadow-lg hover:shadow-xl w-52 flex-col  hover:bg-pink-600 border-2 "
-            [routerLink]="['/InfoDisco/',this.disco?._id]" routerLinkActive="router-link-active" >
-            <picture class="aspect-square w-full h-auto  flex-none">
+          rounded-md shadow-lg hover:shadow-xl w-52 flex-col  hover:bg-pink-600 border-2
+          "
+            [routerLink]="['/InfoDisco/',this.disco?._id]" routerLinkActive="router-link-active"
+
+            >
+            <picture class="aspect-square w-full h-auto  flex-none ">
               <img [src]="disco?.UrlImagen" alt="Imagen de {{this.disco?.Nombre}}"
-                class="object-cover w-full h-full rounded-md">
+                class="object-cover w-full h-full rounded-md"
+                [style.view-transition-name]="'disco-'+disco?._id">
             </picture>
 
             <div class="flex flex-auto flex-col text-wrap text-center">

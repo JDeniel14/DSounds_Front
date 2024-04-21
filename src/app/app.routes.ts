@@ -6,13 +6,15 @@ import { InfoDiscoComponent } from './Components/TiendaComponents/InfoDiscoCompo
 import { CarritoDSoundsComponent } from './Components/TiendaComponents/CarritoComponent/carrito-dsounds.component';
 import { LoginDsoundsComponent } from './Components/ClienteComponents/LoginComponent/login-dsounds.component';
 import { RegistroDsoundsComponent } from './Components/ClienteComponents/RegistroComponent/registro-dsounds.component';
+import { InfoEventoComponent } from './Components/TiendaComponents/InfoEventoComponent/info-evento/info-evento.component';
 export const routes: Routes = [
   {path:'Home', component:MainLayoutComponent},
   {path:'Discos', component:ListadoDiscosComponent},
   {path:'InfoDisco/:idDisco', component:InfoDiscoComponent},
+  {path:'InfoEvento/:idEvento',component:InfoEventoComponent},
   {path:'Carrito', component:CarritoDSoundsComponent},
   {path:'Login', component:LoginDsoundsComponent},
   {path:'Registro', component:RegistroDsoundsComponent},
   {path:'', redirectTo:'/Home',pathMatch:'full'},
-  {path:'**', redirectTo:''}
+  {path:'**', redirectTo:'/Home'}
 ];

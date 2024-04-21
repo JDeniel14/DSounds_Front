@@ -44,7 +44,7 @@ export class SubjectStorageService implements IStorageService {
     this._clienteSubject$.next(clienteActualizado);
   }
   RecuperarDatosCliente(): Observable<ICliente | null> {
-    
+
     return this._clienteSubject$.asObservable();
   }
   AlmacenarJWT(jwt: string): void {
@@ -59,8 +59,8 @@ export class SubjectStorageService implements IStorageService {
       (item)=> item.disco._id === disco._id
     );
 
-    switch (operacion) {
-      case 'añadir':
+    switch (operacion.toUpperCase()) {
+      case 'AÑADIR':
 
       if(_posItemPedido != -1){
         this._discosPedidoSubject$.value[_posItemPedido].cantidadElemento+=cantidad;
@@ -74,13 +74,13 @@ export class SubjectStorageService implements IStorageService {
       }
         break;
 
-        case 'eliminar':
+        case 'ELIMINAR':
         if(_posItemPedido != -1){
           this._discosPedidoSubject$.value.splice(_posItemPedido,1);
         }
         break;
 
-        case 'modificar':
+        case 'MODIFICAR':
         if(_posItemPedido != -1){
           if(this._discosPedidoSubject$.value[_posItemPedido].cantidadElemento != 0){
             this._discosPedidoSubject$.value[_posItemPedido].cantidadElemento = cantidad

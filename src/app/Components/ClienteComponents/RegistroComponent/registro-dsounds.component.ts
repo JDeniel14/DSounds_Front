@@ -3,15 +3,16 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterLink } from '@angular/router';
 import ICliente from '../../../Models/ICliente';
 import { RestNodeService } from '../../../Services/rest-node.service';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import Swal from 'sweetalert2';
+import { ToastModule } from 'primeng/toast';
 import { compareToValidator } from '../../../Validators/compareTo';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-registro-dsounds',
   standalone: true,
-  imports: [ ReactiveFormsModule, RouterLink, SweetAlert2Module],
+  imports: [ ReactiveFormsModule, RouterLink, ToastModule],
   templateUrl: './registro-dsounds.component.html',
-  styleUrl: './registro-dsounds.component.css'
+  styleUrl: './registro-dsounds.component.css',
+  providers:[MessageService]
 })
 export class RegistroDsoundsComponent {
   private datosCliente?:ICliente;
@@ -60,7 +61,9 @@ export class RegistroDsoundsComponent {
 /**
  *
  */
-constructor(private restSvc:RestNodeService) {
+constructor(private restSvc:RestNodeService,
+            private messageService : MessageService
+) {
 
 }
 
@@ -73,21 +76,7 @@ constructor(private restSvc:RestNodeService) {
 
       if(resp.codigo == 0){
         console.log('registro realizado correctamente..')
-        Swal.fire(
-          {
-            title:'Registro',
-            text:'Se te ha enviado un correo para activar tu cuenta',
-            icon:'info',
-            toast:true,
-            confirmButtonText:'Aceptar',
-            focusConfirm:true,
-            animation:true,
-            allowEnterKey:true,
-            confirmButtonColor:'#5d0b41',
-            timer:10000
-
-          }
-        )
+        this.messageService.add({ severity: 'info', summary: 'Registro', detail: `Se te ha enviado un correo de activación` });
       }
 
     }else{
