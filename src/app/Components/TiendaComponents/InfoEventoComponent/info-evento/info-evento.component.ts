@@ -19,6 +19,8 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
 
   public evento?:IInfoEvento;
   public idEvento?:string;
+  public srcMapsEvento : string = "";
+
   private subIdEvento:Subscription = new Subscription;
   private subParam:Subscription = new Subscription;
   /**
@@ -43,6 +45,7 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
       (param)=>{
         this.idEvento = param.get('idEvento') as string
         this.ObtenerEventoById();
+        this.GetUrlMapsEvento();
       }
     )
 
@@ -65,6 +68,15 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
       public RedirectToEvento(){
 
         window.open(`${this.evento?.url}`)
+      }
+
+      public GetUrlMapsEvento(){
+
+        let latitud = this.evento?._embedded.venues[0].location.latitude;
+        let longitud =this.evento?._embedded.venues[0].location.longitude;
+        this.srcMapsEvento = `https://www.google.com/maps/embed/v1/place?key=apiKEY&q=${latitud},${longitud}`;
+
+
       }
   }
 
