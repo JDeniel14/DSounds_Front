@@ -1,1 +1,35 @@
-<p>listado-discos works!</p>
+<div class="container ">
+  <div class="flex justify-between p-8  rounded-md bannerDisc">
+    <p class=" text-md text-xl font-bold text-center">
+      DSounds, tu web de música
+    </p>
+
+  </div>
+
+  <div class="mt-6 relative transition-all duration-1000 " id="Disc-container">
+    <div class="relative z-10 px-4">
+
+      <div class="flex flex-wrap mt-6 gap-20">
+       @if(this.Discos.length > 0){
+        @for (disco of this.Discos; track $index) {
+          <!-- CARD DISCO-->
+
+
+            <app-disco [Disco]="disco" ></app-disco>
+
+        }
+       }@else {
+        @for( disco of this.Discos; track $index){
+
+          <nz-skeleton class="w-56"></nz-skeleton>
+
+
+
+        }
+       }
+
+      </div>
+
+    </div>
+  </div>
+</div>
