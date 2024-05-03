@@ -4,6 +4,7 @@
   font-size: 1.8rem;
 }
 
+
 :host{
   ::ng-deep .p-accordion-content{
     background: transparent;
@@ -20,12 +21,95 @@
     padding: 13px;
   }
 
+  ::ng-deep .p-card-body{
+    background-color: #5d0b41;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+  }
+
 }
 
 .btnCompra:hover{
   transform: scale(1.1);
   transition: all 0.8s;
 }
+
+.redes{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 10px;
+
+
+
+}
+
+.menuRedes ul{
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+}
+
+.menuRedes ul li {
+  list-style: none;
+  margin: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuRedes ul li a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #4d0836;
+  text-align: center;
+  transition: 0.6s;
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+
+
+.menuRedes ul li a img {
+  max-width: 100%;
+  max-height: 100%;
+  transition: transform 0.3s ease-out;
+}
+
+.menuRedes ul li a:hover img {
+  transform: scale(1.2);
+}
+
+.menuRedes ul li a.x:hover {
+  background-color: #000000;
+}
+
+.menuRedes ul li a.spotify:hover {
+  background-color: #1db954;
+}
+
+.menuRedes ul li a.youtube:hover {
+  background-color: #ff0000;
+}
+
+.menuRedes ul li a.instagram:hover {
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+.menuRedes ul li a.itunes:hover {
+
+  background: linear-gradient(135deg,  #ff6932 20%,#d600fc 50%,#3cf2fc 80%);
+
+}
+
 
 @media (min-width:1002px) {
   .resumenDisco{

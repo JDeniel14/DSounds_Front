@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Sanitizer } from '@angular/core';
 import { IEvent } from '../../../../Models/EventsModels/IEvent';
 import { ActivatedRoute } from '@angular/router';
 import {  PrimeNGConfig } from 'primeng/api';
@@ -8,10 +8,14 @@ import { ToastModule } from 'primeng/toast';
 import { AccordionModule } from 'primeng/accordion';
 import { IInfoEvento } from '../../../../Models/InfoEventModels/InfoEvent';
 import { Subscription } from 'rxjs';
+import {CardModule} from 'primeng/card'
+import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from '../../../../../environments/environment.development';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-info-evento',
   standalone: true,
-  imports: [ButtonModule, ToastModule,AccordionModule],
+  imports: [ButtonModule, ToastModule,AccordionModule, CardModule, DatePipe],
   templateUrl: './info-evento.component.html',
   styleUrl: './info-evento.component.css',
 })
@@ -19,8 +23,12 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
 
   public evento?:IInfoEvento;
   public idEvento?:string;
-  public srcMapsEvento : string = "";
-
+  public srcEventoMap:string ="";
+  public urlTwitter:string="";
+  public urlYT : string= "";
+  public urlItunes:string="";
+  public urlSpotify:string="";
+  public urlInstagram : string ="";
   private subIdEvento:Subscription = new Subscription;
   private subParam:Subscription = new Subscription;
   /**
@@ -29,6 +37,8 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
   constructor(private activatedRoute:ActivatedRoute,
               private primengConfig:PrimeNGConfig,
               private restSvc : RestNodeService,
+              private sanitazer :DomSanitizer
+
 
   ) {
 
@@ -36,6 +46,8 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.subIdEvento.unsubscribe()
     this.subParam.unsubscribe();
+
+
   }
 
   ngOnInit(): void {
@@ -45,7 +57,7 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
       (param)=>{
         this.idEvento = param.get('idEvento') as string
         this.ObtenerEventoById();
-        this.GetUrlMapsEvento();
+        this.ActualizarRedesSociales();
       }
     )
 
@@ -61,7 +73,8 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
         }
       );
 
-     }
+    }
+
 
     }
 
@@ -70,13 +83,38 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
         window.open(`${this.evento?.url}`)
       }
 
-      public GetUrlMapsEvento(){
+      public GetMapEvento(){
+        const API_KEYGOOGLE = environment.googleAPIKEY;
+        let url = `https://www.google.com/maps/embed/v1/place?key=${API_KEYGOOGLE}&q=${this.evento?._embedded.venues[0].location.latitude},${this.evento?._embedded.venues[0].location.longitude}`
+        return this.sanitazer.bypassSecurityTrustResourceUrl(url)
+      }
 
-        let latitud = this.evento?._embedded.venues[0].location.latitude;
-        let longitud =this.evento?._embedded.venues[0].location.longitude;
-        this.srcMapsEvento = `https://www.google.com/maps/embed/v1/place?key=apiKEY&q=${latitud},${longitud}`;
-
-
+      private ActualizarRedesSociales() {
+        this.urlInstagram =
+          this.evento?._embedded!.attractions[0].externalLinks.instagram[0]
+            .url != null
+            ? this.evento?._embedded!.attractions[0].externalLinks.instagram[0].url.toString()
+            : '';
+        this.urlSpotify =
+          this.evento?._embedded!.attractions[0].externalLinks.spotify[0]
+            .url != null
+            ? this.evento?._embedded!.attractions[0].externalLinks.spotify[0].url.toString()
+            : '';
+        this.urlTwitter =
+          this.evento?._embedded!.attractions[0].externalLinks.twitter[0]
+            .url != null
+            ? this.evento?._embedded!.attractions[0].externalLinks.twitter[0].url.toString()
+            : '';
+        this.urlYT =
+          this.evento?._embedded!.attractions[0].externalLinks.youtube[0]
+            .url != null
+            ? this.evento?._embedded!.attractions[0].externalLinks.youtube[0].url.toString()
+            : '';
+        this.urlItunes =
+          this.evento?._embedded!.attractions[0].externalLinks.itunes[0]
+            .url != null
+            ? this.evento?._embedded!.attractions[0].externalLinks.itunes[0].url.toString()
+            : '';
       }
   }
 
