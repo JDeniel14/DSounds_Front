@@ -7,5 +7,5 @@ export default interface IDisco{
   Resumen:string;
   Canciones:string[];
   UrlImagen:string;
-  Precio:Number
+  Precio:number
 }

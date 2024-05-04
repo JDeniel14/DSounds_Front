@@ -1,0 +1,19 @@
+<div class="max-w-sm w-full lg:max-w-full lg:flex">
+  <div class="h-16 lg:h-auto lg:w-24 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('{{this.elementoPedido.disco.UrlImagen}}')" title="Woman holding a mug">
+  </div>
+  <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-2 flex flex-col justify-between leading-normal w-full">
+    <div class="mb-4 h-16 overflow-hidden">
+      <div class="text-gray-900 font-bold text-base mb-1 truncate text-center">{{this.elementoPedido.disco.Nombre}}</div>
+      <p class="text-gray-700 text-sm text-center">Cantidad: {{this.elementoPedido.cantidadElemento}} - {{this.elementoPedido.disco.Precio}}€/u</p>
+      <p class="text-gray-700 text-sm text-center">Total: {{(elementoPedido.disco.Precio * this.elementoPedido.cantidadElemento).toFixed(2)}} €</p>
+    </div>
+    <div class="flex items-center">
+      <div class="flex items-center gap-8">
+        
+        <p-button icon="pi pi-minus" class="text-white bg-black rounded-lg text-lg" (onClick)="OperarElementoPedido('restar')">-</p-button>
+        <p-button icon="pi pi-plus" class="text-white bg-black rounded-lg text-lg" (onClick)="OperarElementoPedido('sumar')">+</p-button>
+        <p-button icon="pi pi-times" class="text-white bg-black rounded-lg text-lg" (onClick)="OperarElementoPedido('borrar')">x</p-button>
+      </div>
+    </div>
+  </div>
+</div>

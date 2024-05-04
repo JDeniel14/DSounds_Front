@@ -1,1 +1,43 @@
-<p>carrito-dsounds works!</p>
+<div class="flex flex-col">
+  
+  <div class="bg-zinc-900 p-4 flex items-center justify-center rounded-lg">
+    <img src="../../../../assets/images/DSOUNDS-removebg-preview.png" alt="Logo" class="w-40">
+  </div>
+
+
+<div class="flex ">
+
+  <div class="w-7/12 mt-5">
+
+    <div class="flex flex-wrap justify-center gap-8">
+      <!-- Card de ejemplo -->
+      @for (item of this.listaItemsPedido$ | async ; track item.disco.Nombre) {
+
+        <app-mini-elemento-carrito [elementoPedido]="item" (operarElementoPedidoEvent)="ModficarItemPedido($event)"></app-mini-elemento-carrito>
+      }
+      @empty {
+        <div class="flex flex-col justify-center ">
+          <img class="w-64" src="../../../../assets/images/DSOUNDS-removebg-preview.png">
+          <p class="text-zinc-300 text-center">Aún no tienes elementos en tu carrito...</p>
+        </div>
+      }
+
+    </div>
+  </div>
+
+
+  <div class="w-5/12 mt-5 px-4 ">
+
+    <div class="bg-[#5d0b41] rounded-lg shadow-md p-4 mb-4 text-center w-full">
+      <h2 class="text-xl text-white font-semibold mb-2">Resumen del Pedido</h2>
+      <div class="mb-4">
+        <p class="text-white text-base">Gastos de envío:</p>
+        <p class=" text-lg font-semibold">{{this.gastosEnvio}}€</p>
+      </div>
+      <div class="mb-4">
+        <p class="text-white text-lg">Total a pagar:</p>
+        <p class=" text-xl font-bold  italic">{{ (this.subtotal$ | async)! + this.gastosEnvio }} €</p>
+      </div>
+      <button class="bg-[#131313] hover:bg-[#722c5b] text-white font-bold py-2 px-4 rounded shadow-lg">Ir a Pagar</button>
+    </div>
+  </div>

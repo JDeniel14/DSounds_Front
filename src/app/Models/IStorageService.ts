@@ -9,6 +9,6 @@ export interface IStorageService{
   AlmacenarJWT(jwt:string):void;
   RecuperarJWT():Observable<string>;
   OperarItemsPedidoCliente(disco:IDisco,cantidad:number, operacion:string):void;
-  RecuperarItemsPedidoCliente():Observable<{disco:IDisco; cantidadElemento:number}[]>;
+  RecuperarItemsPedidoCliente():Observable<{disco:IDisco, cantidadElemento:number}[]>;
   EliminarDatosClienteStorage():void;
 }

@@ -74,7 +74,7 @@ export class SubjectStorageService implements IStorageService {
       }
         break;
 
-        case 'ELIMINAR':
+        case 'BORRAR':
         if(_posItemPedido != -1){
           this._discosPedidoSubject$.value.splice(_posItemPedido,1);
         }
@@ -95,7 +95,7 @@ export class SubjectStorageService implements IStorageService {
     }
 
   }
-  RecuperarItemsPedidoCliente(): Observable<{ disco: IDisco; cantidadElemento: number; }[]> {
+  RecuperarItemsPedidoCliente(): Observable<{ disco: IDisco, cantidadElemento: number; }[]> {
     return this._discosPedidoSubject$.asObservable();
   }
   EliminarDatosClienteStorage(): void {
