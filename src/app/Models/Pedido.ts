@@ -1,6 +1,7 @@
 import IDisco from "./Disco";
 //import { IDatosPago } from "./datospago";
 import { IDireccion } from "./Direccion"
+import { IDatosPago } from "./DatosPago";
 
 
 export interface IPedido{
@@ -11,5 +12,5 @@ export interface IPedido{
   subtotal: number;
   gastosEnvio: number;
   totalPedido: number;
-  //datosPago: IDatosPago;
+  datosPago: IDatosPago;
 }

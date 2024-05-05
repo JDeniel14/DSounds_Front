@@ -1,0 +1,192 @@
+<div class="flex flex-col justify-center">
+  <fieldset >
+    <legend class="text-center">Datos de envío</legend>
+
+    <div class="flex justify-evenly p-3 mb-3">
+          @if (this.direccionprincipal != undefined) {
+           <div>
+              <input class="" type="radio" name="direccionradios" id="direccionprincipal" value="direccionprincipal" checked (change)="this.CheckdirPpalEnvio(true)"/>
+              <label class="" for="direccionprincipal">
+                {{direccionprincipal.calle}}. {{direccionprincipal.municipio.DMUN50}}, {{direccionprincipal.provincia.PRO}} CP: {{direccionprincipal.cp}} {{direccionprincipal.pais}}
+              </label>
+           </div>
+          }
+          <div class="">
+            <input class="" type="radio" name="direccionradios" id="direccionotra" [checked]="!this.checkdirppalenvio" value="otradireccion" (change)="this.CheckdirPpalEnvio(false)" />
+            <label class="" for="direccionotra">
+                Recibir en otra direccion
+            </label>
+        </div>
+    </div>
+
+    @if (this.datosCliente != null) {
+      <div class=" flex justify-center">
+
+        <div class="mb-5">
+          <input class="form-check-input" type="radio" name="personaenvioradios" id="clienteloggedenvio" value="clienteloggedenvio" checked (change)="this.CheckClienteLoggedEnvio(true)"/>
+          <label class="" for="direccionprincipal">
+            Datos del usuario
+            {{this.datosCliente.cuenta.email}} ( {{this.datosCliente.nombre}} )
+          </label>
+       </div>
+
+
+
+
+
+      </div>
+
+      @if (this.checkclienteloggedenvio) {
+        <div class=" flex justify-center md:gap-6 mb-5">
+          <div class="relative z-0  mb-5 group">
+            <input type="text" name="floating_first_name" id="floating_first_name"
+              class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+              placeholder=" "  [value]="this.datosPago.TelefonoEnvio || '' " (input)="this.datosPago.TelefonoEnvio=$any($event.target).value"/>
+            <label for="floating_first_name"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Teléfono</label>
+          </div>
+        </div>
+      }
+    }
+    <div class="mb-5 flex justify-center">
+      <input class="form-check-input" type="radio" name="personaenvioradios" id="otrapersonaenvio" value="otrapersonaenvio" checked (change)="this.CheckClienteLoggedEnvio(false)"/>
+      <label class="" for="direccionprincipal">
+        Usar otros datos
+      </label>
+   </div>
+
+    @if(!checkclienteloggedenvio){
+      <div class="mb-12">
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+
+          <div class="relative z-0 w-full mb-5 group">
+            <input type="text" name="floating_first_name" id="floating_first_name"
+              class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+              placeholder=" " [value]="this.datosPago.NombreEnvio || '' " (input)="this.datosPago.NombreEnvio=$any($event.target).value" />
+            <label for="floating_first_name"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Nombre</label>
+          </div>
+
+          <div class="relative z-0 w-full mb-5 group">
+            <input type="text" name="floating_first_name" id="floating_first_name"
+              class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+              placeholder=" " [value]="this.datosPago.ApellidosEnvio || '' " (input)="this.datosPago.ApellidosEnvio=$any($event.target).value"/>
+            <label for="floating_first_name"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Apellidos</label>
+          </div>
+
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-5 group">
+            <input type="text" name="floating_first_name" id="floating_first_name"
+              class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+              placeholder=" "  [value]="this.datosPago.TelefonoEnvio || '' " (input)="this.datosPago.TelefonoEnvio=$any($event.target).value"/>
+            <label for="floating_first_name"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Teléfono</label>
+          </div>
+
+
+
+          <div class="relative z-0 w-full mb-5 group">
+            <input type="text" name="floating_first_name" id="floating_first_name"
+              class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+              placeholder=" "  [value]="this.datosPago.EmailEnvio || '' " (input)="this.datosPago.EmailEnvio=$any($event.target).value"/>
+            <label for="floating_first_name"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Email</label>
+          </div>
+
+        </div>
+
+
+      </div>
+    }
+
+      @if (! this.checkdirppalenvio) {
+
+
+
+      <div class="grid md:grid-cols-2 md:gap-6">
+
+        <div class="relative z-0 w-full mb-5 group">
+          <input type="text" name="floating_first_name" id="floating_first_name"
+            class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+            placeholder=" " name="pais" [value]="this.datosPago.DireccionEnvio?.pais || '' " (input)="this.datosPago.DireccionEnvio!.pais=$any($event.target).value" />
+          <label for="floating_first_name"
+            class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            País</label>
+        </div>
+
+        <div class="relative z-0 w-full mb-5 group">
+          <input type="text" name="floating_first_name" id="floating_first_name"
+          class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+          placeholder=" " name="calle" [value]="this.datosPago.DireccionEnvio?.calle || '' " (input)="this.datosPago.DireccionEnvio!.calle=$any($event.target).value" />
+        <label for="floating_first_name"
+          class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+          Dirección</label>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 md:gap-6">
+
+        <div class="relative z-0 w-full mb-5 group">
+            <select name="provincia" id="provincia" (change)="CargarMunicipios($any($event.target).value);"
+            class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer">
+              <option value="-1" selected> - Seleccionar Provincia - </option>
+                          @for (unaprov of this.listaProvincias; track unaprov.CPRO)
+                          {
+                              <option [value]="unaprov.CPRO + '-' + unaprov.PRO">{{unaprov.PRO}}</option>
+                          }
+            </select>
+            <label for="provincia"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Provincia</label>
+        </div>
+
+        <div class="relative z-0 w-full mb-5 group">
+          <select name="municipio" id="municipio" (change)="EstableceMunicipio($any($event.target).value);"
+            class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer">
+              @for(unmuni of this.listaMunicipios$ | async; track unmuni.DMUN50)
+              {
+                  <option [value]="unmuni.CMUM + '-' + unmuni.DMUN50">{{unmuni.DMUN50}}</option>
+              }
+              @empty{
+                  <option value="-1" selected> - Selecciona un Municipio -</option>
+              }
+            </select>
+            <label for="provincia"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Provincia</label>
+        </div>
+
+      </div>
+
+      <div class="flex justify-center">
+
+        <div class="relative z-0 mb-5 group">
+          <input type="text" name="floating_first_name" id="floating_first_name"
+            class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+            placeholder=" " name="cp" [value]="this.datosPago.DireccionEnvio?.cp || '' " (input)="this.datosPago.DireccionEnvio!.cp=$any($event.target).value" />
+          <label for="floating_first_name"
+            class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            Código postal</label>
+        </div>
+
+
+      </div>
+      }
+
+      <div class="mt-5 mb-5 flex justify-center">
+        <input class="form-check-input" type="radio" (change)="this.ShowComponenteDatosFactura($event)"/>
+        <label class="" for="direccionprincipal">
+          Deseo Factura
+        </label>
+     </div>
+  </fieldset>
+</div>

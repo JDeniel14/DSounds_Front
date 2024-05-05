@@ -1,0 +1,45 @@
+<div class="datosPago bg-[#5d0b41] shadow-md p-6 rounded-lg ">
+  <div class="flex justify-center gap-6">
+    <h2 class="text-lg font-semibold mb-4 text-center text-white">Detalles de Pago</h2>
+    <img src="../../../../../assets/images/Mastercard-logo.svg.png" width="50px" height="50px">
+    <img src="../../../../../assets/images/png-transparent-credit-card-visa-electron-mastercard-credit-card-text-logo-banner.png" width="50px" height="50px">
+  </div>
+  <div class="mb-4">
+    <label for="cardName" class="block text-sm font-medium ">Nombre en la Tarjeta</label>
+    <input id="cardName" type="text" [value]="this.datosPago.NombreBanco ||''" (input)="this.datosPago.NombreBanco=$any($event.target).value"
+           class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+  </div>
+  <div class="mb-4">
+    <label for="cardNumber" class="block text-sm font-medium ">Número de Tarjeta</label>
+    <input id="cardNumber" type="text"  [value]="this.datosPago.NumeroTarjeta ||''" (input)="this.datosPago.NumeroTarjeta=$any($event.target).value"
+           class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+  </div>
+  <div class="flex justify-between mb-4">
+    <div class="w-1/2 mr-2">
+      <label for="expiryDate" class="block text-sm font-medium ">Fecha de Caducidad</label>
+     <div class="flex gap-5">
+      <select id="expiryDate" type="text" [value]="this.datosPago.MesCaducidad ||''" (input)="this.datosPago.MesCaducidad=$any($event.target).value"
+      class="mt-1 block  py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      @for (mes of this.meses; track $index)
+      {
+          <option value="@mes">{{mes}}</option>
+      }
+
+      </select>
+      <select id="expiryDate" type="text" [value]="this.datosPago.AnioCaducidad ||''" (input)="this.datosPago.AnioCaducidad=$any($event.target).value"
+      class="mt-1 block  py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      @for (anio of this.anios; track $index)
+                            {
+                                <option value="@anio">{{anio}}</option>
+                            }
+
+      </select>
+     </div>
+    </div>
+    <div class="w-1/2 ml-2">
+      <label for="cvv" class="block text-sm font-medium ">CVV</label>
+      <input id="cvv" type="text" [value]="this.datosPago.CVV ||''" (input)="this.datosPago.CVV=$any($event.target).value"
+             class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+    </div>
+  </div>
+</div>

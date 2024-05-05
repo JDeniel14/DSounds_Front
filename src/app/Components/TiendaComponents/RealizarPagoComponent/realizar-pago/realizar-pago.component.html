@@ -1,3 +1,7 @@
+<div class="card">
+  <p-toast></p-toast>
+</div>
+
 <div class="flex flex-col">
 
   <div class="bg-zinc-900 p-4 flex items-center justify-center rounded-lg">
@@ -8,7 +12,17 @@
 <div class="flex ">
 
   <div class="w-7/12 mt-5">
-    
+    <div class="flex flex-col justify-center bg-zinc-900 rounded-lg p-2 m-2 gap-5">
+
+      <app-mini-datos-envio [datosPago]="datosPago" [listaProvincias]="(listaProvincias$ |async)!" (checkDatosFacturacionEvent)="ShowCompDatosFacturacion($event)"></app-mini-datos-envio>
+      @if(mostrarFacturacion){
+        <app-mini-datos-facturacion [datosPago]="datosPago" [listaProvincias]="(listaProvincias$ |async)!"></app-mini-datos-facturacion>
+      }
+      <app-mini-datos-pago [datosPago]="datosPago"></app-mini-datos-pago>
+    </div>
+    <div class="flex justify-center">
+      <button (click)="this.RealizarPedido()" class="bg-fuchsia-500 p-3 rounded-lg">Pagar</button>
+    </div>
   </div>
 
 
@@ -24,6 +38,7 @@
         <p class="text-white text-lg">Total a pagar:</p>
         <p class=" text-xl font-bold  italic">{{ (this.subtotal$ | async)! + this.gastosEnvio }} €</p>
       </div>
-      <button [routerLink]="['/RealizarPago']" routerLinkActive="router-link-active"  class="bg-[#131313] hover:bg-[#722c5b] text-white font-bold py-2 px-4 rounded shadow-lg">Ir a Pagar</button>
+
     </div>
   </div>
+

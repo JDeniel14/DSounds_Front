@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { IRestMessage } from '../Models/irest-message';
 import { Observable, last, lastValueFrom } from 'rxjs';
 import ICliente from '../Models/ICliente';
+import { IProvincia } from '../Models/Provincia';
+import { IMunicipio } from '../Models/Municipio';
+import { IPedido } from '../Models/Pedido';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +57,33 @@ export class RestNodeService {
       )
     )
    }
+
+
+   public RecuperarProvincias():Observable<IProvincia[]>{
+    return this._httpClient.post<IProvincia[]>('http://localhost:3003/api/DsoundsShop/RecuperarProvincias',
+        {
+          headers: new HttpHeaders({'Content-Type' : 'application/json'})
+        }
+    )
+  }
+
+  public RecuperarMunicipios(codpro:string):Observable<IMunicipio[]>{
+
+    return this._httpClient.get<IMunicipio[]>(`http://localhost:3003/api/DsoundsShop/RecuperarMunicipios?codpro=${codpro}`);
+  }
+
+  public RealizarPedido(pedido:IPedido, email:string):Promise<IRestMessage>{
+
+    return lastValueFrom( this._httpClient.post<IRestMessage>(
+      'http://localhost:3003/api/DsoundsShop/RealizarPedido',
+      {pedido,email},
+      {headers: new HttpHeaders({'Content-Type':'application/json'})}
+
+    )
+  );
+  }
+
+
 //#endregion
 
    //#region metodos Cliente...
