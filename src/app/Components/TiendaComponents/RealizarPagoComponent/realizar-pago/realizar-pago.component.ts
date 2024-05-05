@@ -1,13 +1,14 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { Observable, Subscription, map } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import IDisco from '../../../../Models/Disco';
 import { RestNodeService } from '../../../../Services/rest-node.service';
 import { IStorageService } from '../../../../Models/IStorageService';
 import { TOKEN_STORAGE_SERVICE } from '../../../../Services/injectionTokenStorageService';
 import { DropdownModule } from 'primeng/dropdown';
+import ICliente from '../../../../Models/ICliente';
 
 @Component({
   selector: 'app-realizar-pago',
@@ -16,7 +17,10 @@ import { DropdownModule } from 'primeng/dropdown';
   templateUrl: './realizar-pago.component.html',
   styleUrl: './realizar-pago.component.css'
 })
-export class RealizarPagoComponent {
+export class RealizarPagoComponent implements OnInit, OnDestroy {
+
+  public datosCliente : ICliente | null = null;
+  private subCliente : Subscription = new Subscription;
 
   public listaItemsPedido$!:Observable<{disco:IDisco, cantidadElemento:number}[]>
   public gastosEnvio:number = 2.95;
@@ -24,13 +28,27 @@ export class RealizarPagoComponent {
 
 
   constructor(private restSvc: RestNodeService,
-    @Inject(TOKEN_STORAGE_SERVICE) private storageSvc : IStorageService
+    @Inject(TOKEN_STORAGE_SERVICE) private storageSvc : IStorageService,
+    private router : Router
 ) {
 
 this.listaItemsPedido$ = storageSvc.RecuperarItemsPedidoCliente();
 
 this.CalcularTotal()
 
+}
+
+ngOnInit(): void {
+  this.subCliente = (this.storageSvc.RecuperarDatosCliente() as Observable<ICliente|null>)
+                          .subscribe(
+                            (datos:ICliente|null)=>{
+                              if(datos){
+                                this.datosCliente = datos
+                              }
+                            }
+                          )
+
+ 
 }
 
 
@@ -41,4 +59,8 @@ CalcularTotal(){
     )
     );
  }
+
+ ngOnDestroy(): void {
+  this.subCliente.unsubscribe();
+}
 }
