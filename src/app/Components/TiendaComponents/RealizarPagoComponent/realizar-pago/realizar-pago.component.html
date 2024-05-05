@@ -8,24 +8,7 @@
 <div class="flex ">
 
   <div class="w-7/12 mt-5">
-    @if ((listaItemsPedido$ |async)!.length > 0) {
-
-       <h2 class="text-xl text-white font-bold   text-center mb-5 underline italic">Este es tu carrito</h2>
-    }
-    <div class="flex flex-wrap justify-center gap-8">
-
-      @for (item of this.listaItemsPedido$ | async ; track item.disco.Nombre) {
-
-        <app-mini-elemento-carrito [elementoPedido]="item" (operarElementoPedidoEvent)="ModficarItemPedido($event)"></app-mini-elemento-carrito>
-      }
-      @empty {
-        <div class="flex flex-col justify-center ">
-          <img class="w-64" src="../../../../assets/images/DSOUNDS-removebg-preview.png">
-          <p class="text-zinc-300 text-center">Aún no tienes elementos en tu carrito...</p>
-        </div>
-      }
-
-    </div>
+    
   </div>
 
 

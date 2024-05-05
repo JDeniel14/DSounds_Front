@@ -7,6 +7,7 @@ import { CarritoDSoundsComponent } from './Components/TiendaComponents/CarritoCo
 import { LoginDsoundsComponent } from './Components/ClienteComponents/LoginComponent/login-dsounds.component';
 import { RegistroDsoundsComponent } from './Components/ClienteComponents/RegistroComponent/registro-dsounds.component';
 import { InfoEventoComponent } from './Components/TiendaComponents/InfoEventoComponent/info-evento/info-evento.component';
+import { RealizarPagoComponent } from './Components/TiendaComponents/RealizarPagoComponent/realizar-pago/realizar-pago.component';
 export const routes: Routes = [
   {path:'Home', component:MainLayoutComponent},
   {path:'Discos', component:ListadoDiscosComponent},
@@ -15,6 +16,7 @@ export const routes: Routes = [
   {path:'Login', component:LoginDsoundsComponent},
   {path:'Registro', component:RegistroDsoundsComponent},
   {path:'InfoEvento/:idEvento',component:InfoEventoComponent},
+  {path:'RealizarPago', component:RealizarPagoComponent},
   {path:'', redirectTo:'/Home',pathMatch:'full'},
   {path:'**', redirectTo:'/Home'}
 ];

@@ -6,11 +6,12 @@ import { Observable, map } from 'rxjs';
 import IDisco from '../../../Models/Disco';
 import { AsyncPipe } from '@angular/common';
 import { MiniElementoCarritoComponent } from '../MiniElementoCarritoComponent/mini-elemento-carrito/mini-elemento-carrito.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-carrito-dsounds',
   standalone: true,
-  imports: [AsyncPipe, MiniElementoCarritoComponent],
+  imports: [AsyncPipe, MiniElementoCarritoComponent, RouterLink],
   templateUrl: './carrito-dsounds.component.html',
   styleUrl: './carrito-dsounds.component.css'
 })

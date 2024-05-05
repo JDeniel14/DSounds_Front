@@ -15,9 +15,11 @@ export class SubjectStorageService implements IStorageService {
   private _discosPedidoSubject$ : BehaviorSubject<{disco:IDisco, cantidadElemento:number}[]> = new BehaviorSubject<{disco:IDisco, cantidadElemento:number}[]>([]);
 
   constructor( private cookieService:CookieService) {
-    const cookieExists: boolean = this.cookieService.check('cookieDatosCliente');
 
-    if(cookieExists){
+    const cookieClienteExists: boolean = this.cookieService.check('cookieDatosCliente');
+    const cookieJWTExists: boolean = this.cookieService.check('cookieJWT');
+
+    if(cookieClienteExists){
 
       const stringDatosCliente = this.cookieService.get('cookieDatosCliente');
       let datosClienteCookie:ICliente|null = null;
@@ -27,8 +29,23 @@ export class SubjectStorageService implements IStorageService {
       }
 
       this._clienteSubject$.next(datosClienteCookie);
-      console.log(this._clienteSubject$.value)
+
     }
+
+    if(cookieJWTExists){
+      const stringCookieJWT = this.cookieService.get('cookieJWT');
+      let datosCookieJWT :string = '';
+
+      if(stringCookieJWT){
+        datosCookieJWT = JSON.parse(stringCookieJWT);
+      }
+      this._jwtSubject$.next(datosCookieJWT);
+    }
+
+
+
+
+
    }
 
    AlmacenarDatosCliente(datoscliente: ICliente): void {
@@ -47,12 +64,18 @@ export class SubjectStorageService implements IStorageService {
 
     return this._clienteSubject$.asObservable();
   }
+
   AlmacenarJWT(jwt: string): void {
+
+    this.cookieService.set('cookieJWT', JSON.stringify(jwt));
+
     this._jwtSubject$.next(jwt);
   }
+
   RecuperarJWT(): Observable<string> {
     return this._jwtSubject$.asObservable();
   }
+
   OperarItemsPedidoCliente(disco: IDisco, cantidad: number, operacion: string): void {
 
     let _posItemPedido = this._discosPedidoSubject$.value.findIndex(
@@ -93,6 +116,8 @@ export class SubjectStorageService implements IStorageService {
       default:
         break;
     }
+    console.log(this._discosPedidoSubject$.value)
+
 
   }
   RecuperarItemsPedidoCliente(): Observable<{ disco: IDisco, cantidadElemento: number; }[]> {
@@ -100,6 +125,8 @@ export class SubjectStorageService implements IStorageService {
   }
   EliminarDatosClienteStorage(): void {
     this.cookieService.delete('cookieDatosCliente');
+    this.cookieService.delete('cookieJWT');
+
     this._clienteSubject$.next(null);
     this._jwtSubject$.next('');
     this._discosPedidoSubject$.next([]);
