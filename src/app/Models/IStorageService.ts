@@ -11,4 +11,5 @@ export interface IStorageService{
   OperarItemsPedidoCliente(disco:IDisco,cantidad:number, operacion:string):void;
   RecuperarItemsPedidoCliente():Observable<{disco:IDisco, cantidadElemento:number}[]>;
   EliminarDatosClienteStorage():void;
+  LimpiarCarrito():void;
 }

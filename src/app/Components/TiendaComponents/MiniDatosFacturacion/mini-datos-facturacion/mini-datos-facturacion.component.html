@@ -1,1 +1,113 @@
-<p>mini-datos-facturacion works!</p>
+<div class="flex flex-col justify-center">
+  <fieldset >
+    <legend class="text-center">Datos de Facturación</legend>
+
+      <div class="mb-12">
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+
+          <div class="relative z-0 w-full mb-5 group">
+            <input type="text" name="floating_first_name" id="floating_first_name"
+              class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+              placeholder=" " [value]="this.datosPago.NombreFactura || '' " (input)="this.datosPago.NombreFactura=$any($event.target).value" />
+            <label for="floating_first_name"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Nombre Empresa/Particular</label>
+          </div>
+
+          <div class="relative z-0 w-full mb-5 group">
+            <input type="text" name="floating_first_name" id="floating_first_name"
+              class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+              placeholder=" " [value]="this.datosPago.DocFiscalFactura || '' " (input)="this.datosPago.DocFiscalFactura=$any($event.target).value"/>
+            <label for="floating_first_name"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              NIF/CIF</label>
+          </div>
+
+        </div>
+
+
+        <div class="mb-8 mt-8">
+          <input class="" type="checkbox" name="direccionradios" id="direccionotra" checked value="otradireccion" (change)="this.OnChangeDirFacturacion()" />
+          <label class="" for="direccionotra">
+              Dirección de facturación igual a envío
+          </label>
+      </div>
+
+      @if (! this.mismaDirFactura) {
+
+
+
+      <div class="grid md:grid-cols-2 md:gap-6">
+
+        <div class="relative z-0 w-full mb-5 group">
+          <input type="text" name="floating_first_name" id="floating_first_name"
+            class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+            placeholder=" " name="pais" [value]="this.datosPago.DireccionFactura?.pais || '' " (input)="this.datosPago.DireccionFactura!.pais=$any($event.target).value" />
+          <label for="floating_first_name"
+            class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            País</label>
+        </div>
+
+        <div class="relative z-0 w-full mb-5 group">
+          <input type="text" name="floating_first_name" id="floating_first_name"
+          class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+          placeholder=" " name="calle" [value]="this.datosPago.DireccionFactura?.calle || '' " (input)="this.datosPago.DireccionFactura!.calle=$any($event.target).value" />
+        <label for="floating_first_name"
+          class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+          Dirección</label>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 md:gap-6">
+
+        <div class="relative z-0 w-full mb-5 group">
+            <select name="provincia" id="provincia" (change)="CargarMunicipios($any($event.target).value);"
+            class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer">
+              <option value="-1" selected> - Seleccionar Provincia - </option>
+                          @for (unaprov of this.listaProvincias; track unaprov.CPRO)
+                          {
+                              <option [value]="unaprov.CPRO + '-' + unaprov.PRO">{{unaprov.PRO}}</option>
+                          }
+            </select>
+            <label for="provincia"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Provincia</label>
+        </div>
+
+        <div class="relative z-0 w-full mb-5 group">
+          <select name="municipio" id="municipio" (change)="EstableceMunicipio($any($event.target).value);"
+            class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer">
+              @for(unmuni of this.listaMunicipios$ | async; track unmuni.DMUN50)
+              {
+                  <option [value]="unmuni.CMUM + '-' + unmuni.DMUN50">{{unmuni.DMUN50}}</option>
+              }
+              @empty{
+                  <option value="-1" selected> - Selecciona un Municipio -</option>
+              }
+            </select>
+            <label for="provincia"
+              class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Municipio</label>
+        </div>
+
+      </div>
+
+      <div class="flex justify-center">
+
+        <div class="relative z-0 mb-5 group">
+          <input type="text" name="floating_first_name" id="floating_first_name"
+            class="  block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#c66aa7] focus:outline-none focus:ring-0 focus:border-[#c66aa7] peer"
+            placeholder=" " name="cp" [value]="this.datosPago.DireccionFactura?.cp || '' " (input)="this.datosPago.DireccionFactura!.cp=$any($event.target).value" />
+          <label for="floating_first_name"
+            class="peer-focus:font-medium absolute text-sm text-white dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#c66aa7] peer-focus:dark:text-[#c66aa7] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            Código postal</label>
+        </div>
+
+
+      </div>
+      }
+
+      </div>
+  </fieldset>
+</div>

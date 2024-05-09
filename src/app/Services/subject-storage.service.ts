@@ -47,6 +47,9 @@ export class SubjectStorageService implements IStorageService {
 
 
    }
+  LimpiarCarrito(): void {
+    this._discosPedidoSubject$.next([]);
+  }
 
    AlmacenarDatosCliente(datoscliente: ICliente): void {
 

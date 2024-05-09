@@ -17,6 +17,6 @@ export class MiniDatosPagoComponent {
 
 
    meses:number[]=Array.from({length:12}, (el,pos)=> pos+1);
-   
-   anios:number[]=Array.from( { length: new Date(Date.now()).getFullYear() - 2000 }, (el,pos)=> pos + 2001 );
+
+   anios:number[]=Array.from( { length: new Date(Date.now()).getFullYear() - 2013 }, (el,pos)=> pos + 2025 );
 }

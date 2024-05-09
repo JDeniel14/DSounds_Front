@@ -14,7 +14,7 @@ export interface IDatosPago{
   TipoDireccionFactura:string;
   NombreFactura?:string;
   DocFiscalFactura?:string;
-  DireccionFactura?:string;
+  DireccionFactura?:IDireccion;
 
   //Pago
   NumeroTarjeta?:string;

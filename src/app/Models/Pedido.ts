@@ -5,7 +5,7 @@ import { IDatosPago } from "./DatosPago";
 
 
 export interface IPedido{
-  idPedido: string;
+  _id: string;
   fechaPedido: Date;
   estadoPedido: string;
   elementosPedido:Array< { disco:    IDisco, cantidadElemento: number } >;

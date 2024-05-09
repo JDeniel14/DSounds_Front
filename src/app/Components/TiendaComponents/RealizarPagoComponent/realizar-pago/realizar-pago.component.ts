@@ -80,7 +80,7 @@ CalcularTotal(){
  RealizarPedido(){
 
   let _pedidoCliente :IPedido= {
-    idPedido : window.crypto.randomUUID(),
+    _id : "",
     fechaPedido: new Date(Date.now()),
     estadoPedido: 'En preparación',
     gastosEnvio: this.gastosEnvio,
@@ -103,19 +103,29 @@ CalcularTotal(){
       }
     )
   ).subscribe(
+
     async datosClienteLog =>{
       console.log('datos a enviar...', {pedido: _pedidoCliente, email:datosClienteLog.cuenta.email});
 
       //TODO ENVIAR DATOS AL BACK Y REALIZAR PAGO
-      let _resp=await this.restSvc.RealizarPedido( _pedidoCliente, datosClienteLog!.cuenta.email);
+      if(_pedidoCliente.elementosPedido.length > 0){
+        let _resp=await this.restSvc.RealizarPedido( _pedidoCliente, datosClienteLog!.cuenta.email);
 
-      if(_resp.codigo==0){
-        this.messageService.add({ severity: 'info', summary: 'Pedido Realizado', detail: `Pedido realizado correctamente, se te ha enviado un correo con los detalles` });
-        setTimeout(()=>{
-          this.router.navigateByUrl('/MiCuenta/Pedidos');
-        },2000)
+        if(_resp.codigo==0){
+          this.messageService.add({ severity: 'success', summary: 'Pedido Realizado', detail: `Pedido realizado correctamente, se te ha enviado un correo con los detalles` });
+          this.storageSvc.AlmacenarDatosCliente(_resp.datosCliente!);
+          this.storageSvc.AlmacenarJWT(_resp.token!);
+          this.storageSvc.LimpiarCarrito();
+          
+          setTimeout(()=>{
+            this.router.navigateByUrl('/MiCuenta/Pedidos');
+          },2000)
+        }
+      }else{
+        this.messageService.add({ severity: 'warn', summary: 'Pedido', detail: `El carrito no tiene productos` });
       }
     }
+
   );
  }
 

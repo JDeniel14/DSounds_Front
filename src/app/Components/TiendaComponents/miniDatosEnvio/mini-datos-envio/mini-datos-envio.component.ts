@@ -29,7 +29,7 @@ export class MiniDatosEnvioComponent implements OnDestroy, OnChanges {
 
   private datosClienteSubscriptor:Subscription;
   private _dirEnvioIni:IDireccion={
-    idDireccion: window.crypto.randomUUID().toString(),
+    _id:"",
   calle:        '',
   pais:         'España',
   cp:           "",
