@@ -21,7 +21,7 @@
       <app-mini-datos-pago [datosPago]="datosPago"></app-mini-datos-pago>
     </div>
     <div class="flex justify-center">
-      <button (click)="this.RealizarPedido()" class="bg-fuchsia-500 p-3 rounded-lg">Pagar</button>
+      <button (click)="this.RealizarPedido()" [disabled]="pedidoRealizado" class="bg-fuchsia-500 p-3 rounded-lg">Pagar</button>
     </div>
   </div>
 

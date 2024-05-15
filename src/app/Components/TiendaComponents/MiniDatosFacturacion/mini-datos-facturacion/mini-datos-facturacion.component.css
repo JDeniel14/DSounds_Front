@@ -1,0 +1,36 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid transparent;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: none;
+  transition: background-color 5000s ease-in-out 0s;
+  color: white !important;
+
+
+}
+select:focus {
+  --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+  color: white; /* Cambiar el color del texto a blanco */
+}
+input{
+  color: white;
+
+}
+
+input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-radius: 30%;
+}
+
+input[type="checkbox"]:not(:checked) {
+
+  border-radius: 30%;
+}

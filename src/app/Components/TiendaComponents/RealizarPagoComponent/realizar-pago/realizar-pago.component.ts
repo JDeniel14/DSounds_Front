@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { Observable, Subscription, map, mergeMap } from 'rxjs';
+import { Observable, Subscription, map, mergeMap, tap } from 'rxjs';
 import IDisco from '../../../../Models/Disco';
 import { RestNodeService } from '../../../../Services/rest-node.service';
 import { IStorageService } from '../../../../Models/IStorageService';
@@ -36,6 +36,8 @@ export class RealizarPagoComponent implements OnInit, OnDestroy {
   public listaItemsPedido$!:Observable<{disco:IDisco, cantidadElemento:number}[]>
   public gastosEnvio:number = 2.95;
   public subtotal$!:Observable<number>;
+  public subPedido$:Subscription = new Subscription;
+  public pedidoRealizado:boolean = false;
 
   public datosPago : IDatosPago = {TipoDireccionEnvio : "Principal", TipoDireccionFactura:'IgualEnvio'};
 
@@ -57,6 +59,7 @@ ngOnInit(): void {
                             (datos:ICliente|null)=>{
                               if(datos){
                                 this.datosCliente = datos
+
                               }
                             }
                           )
@@ -77,7 +80,13 @@ CalcularTotal(){
   this.mostrarFacturacion=valor;
  }
 
- RealizarPedido(){
+
+
+ async RealizarPedido(){
+  if (this.pedidoRealizado ) {
+    return;
+  }
+
 
   let _pedidoCliente :IPedido= {
     _id : "",
@@ -90,8 +99,8 @@ CalcularTotal(){
     elementosPedido: []
   }
 
-  this.listaItemsPedido$.pipe(
-    mergeMap(
+ this.subPedido$ = this.listaItemsPedido$.pipe(
+    tap(
       (items:{disco:IDisco, cantidadElemento:number}[])=>{
         _pedidoCliente.elementosPedido= items;
 
@@ -99,37 +108,41 @@ CalcularTotal(){
         _pedidoCliente.subtotal = _subtotal;
         _pedidoCliente.totalPedido = _subtotal + this.gastosEnvio;
 
-        return this.storageSvc.RecuperarDatosCliente() as Observable<ICliente>
+
       }
     )
-  ).subscribe(
+  ).subscribe();
 
-    async datosClienteLog =>{
-      console.log('datos a enviar...', {pedido: _pedidoCliente, email:datosClienteLog.cuenta.email});
 
-      //TODO ENVIAR DATOS AL BACK Y REALIZAR PAGO
+      console.log('datos a enviar...', {pedido: _pedidoCliente, email:this.datosCliente!.cuenta.email});
+
+
       if(_pedidoCliente.elementosPedido.length > 0){
-        let _resp=await this.restSvc.RealizarPedido( _pedidoCliente, datosClienteLog!.cuenta.email);
+        let _resp=await this.restSvc.RealizarPedido( _pedidoCliente, this.datosCliente!.cuenta.email);
 
         if(_resp.codigo==0){
+          this.pedidoRealizado = true;
           this.messageService.add({ severity: 'success', summary: 'Pedido Realizado', detail: `Pedido realizado correctamente, se te ha enviado un correo con los detalles` });
           this.storageSvc.AlmacenarDatosCliente(_resp.datosCliente!);
           this.storageSvc.AlmacenarJWT(_resp.token!);
-          this.storageSvc.LimpiarCarrito();
-          
-          setTimeout(()=>{
+
+
+
+            this.storageSvc.LimpiarCarrito();
             this.router.navigateByUrl('/MiCuenta/Pedidos');
-          },2000)
+
+        }else{
+          this.messageService.add({ severity: 'warn', summary: 'Pedido', detail: `${_resp.mensaje}` });
         }
       }else{
         this.messageService.add({ severity: 'warn', summary: 'Pedido', detail: `El carrito no tiene productos` });
       }
-    }
 
-  );
  }
 
  ngOnDestroy(): void {
   this.subCliente.unsubscribe();
+  this.subPedido$.unsubscribe();
+
 }
 }

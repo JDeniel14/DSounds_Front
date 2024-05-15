@@ -3,3 +3,39 @@ select, input {
 
   color: black;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid transparent;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: none;
+  transition: background-color 5000s ease-in-out 0s;
+  color: white !important;
+
+
+}
+select {
+  --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+  color: white;
+  outline: rgb(24 24 27 / var(--tw-bg-opacity));
+  border: rgb(24 24 27 / var(--tw-bg-opacity));
+}
+input{
+  color: white;
+  --tw-bg-opacity: 1;
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+    outline: rgb(24 24 27 / var(--tw-bg-opacity));
+    border: rgb(24 24 27 / var(--tw-bg-opacity));
+}
+
+input[type="radio"]:checked {
+  background-color: #007bff; 
+  border-radius: 50%;
+}

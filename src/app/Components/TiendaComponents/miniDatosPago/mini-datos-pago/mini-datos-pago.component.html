@@ -16,7 +16,7 @@
   </div>
   <div class="flex justify-between mb-4">
     <div class="w-1/2 mr-2">
-      <label for="expiryDate" class="block text-sm font-medium ">Fecha de Caducidad</label>
+      <label for="expiryDate" class="block text-sm font-medium ms-5">Fecha de Expiración</label>
      <div class="flex gap-5">
       <select id="expiryDate" type="text" [value]="this.datosPago.MesCaducidad ||''" (input)="this.datosPago.MesCaducidad=$any($event.target).value"
       class="mt-1 block  py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
@@ -37,7 +37,7 @@
      </div>
     </div>
     <div class="w-1/2 ml-2">
-      <label for="cvv" class="block text-sm font-medium ">CVV</label>
+      <label for="cvv" class="block text-sm font-medium text-center">CVV</label>
       <input id="cvv" type="text" [value]="this.datosPago.CVV ||''" (input)="this.datosPago.CVV=$any($event.target).value"
              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
     </div>

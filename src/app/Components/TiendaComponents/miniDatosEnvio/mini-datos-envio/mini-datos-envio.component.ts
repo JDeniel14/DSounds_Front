@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { IDatosPago } from '../../../../Models/DatosPago';
 import ICliente from '../../../../Models/ICliente';
 import { IDireccion } from '../../../../Models/Direccion';
@@ -18,7 +18,7 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './mini-datos-envio.component.html',
   styleUrl: './mini-datos-envio.component.css'
 })
-export class MiniDatosEnvioComponent implements OnDestroy, OnChanges {
+export class MiniDatosEnvioComponent implements OnDestroy, OnChanges, OnInit {
   @Input()listaProvincias!:IProvincia[];
   @Input()datosPago!:IDatosPago;
   @Output() checkDatosFacturacionEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -56,6 +56,7 @@ this.datosClienteSubscriptor=(this.storageSvc
                               if (this.datosCliente?.direcciones && this.datosCliente.direcciones.length > 0) {
                                 this.direccionprincipal=this.datosCliente.direcciones.filter((d:IDireccion)=>d.esPrincipal==true)[0];
 
+                                console.log(this.datosCliente.direcciones)
                                 this.CheckdirPpalEnvio(true)
                                 console.log('dirppal..', this.direccionprincipal)
                               } else {
@@ -65,6 +66,12 @@ this.datosClienteSubscriptor=(this.storageSvc
 
                             });
 }
+  ngOnInit(): void {
+    if(this.direccionprincipal != null){
+      console.log(this.datosPago.DireccionEnvio)
+      this.datosPago.DireccionEnvio=this.direccionprincipal;
+    }
+  }
 
 ngOnChanges(){
   if(!this.checkdirppalenvio){
