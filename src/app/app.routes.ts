@@ -9,6 +9,7 @@ import { RegistroDsoundsComponent } from './Components/ClienteComponents/Registr
 import { InfoEventoComponent } from './Components/TiendaComponents/InfoEventoComponent/info-evento/info-evento.component';
 import { RealizarPagoComponent } from './Components/TiendaComponents/RealizarPagoComponent/realizar-pago/realizar-pago.component';
 import { AccesoPagoGuard } from './Guards/acceso-pago.guard';
+import { MainPanelClienteComponentComponent } from './Components/ClienteComponents/PanelClienteComponent/MainPanelClienteComponent/main-panel-cliente-component.component';
 export const routes: Routes = [
   {path:'Home', component:MainLayoutComponent},
   {path:'Discos', component:ListadoDiscosComponent},
@@ -18,6 +19,7 @@ export const routes: Routes = [
   {path:'Registro', component:RegistroDsoundsComponent},
   {path:'InfoEvento/:idEvento',component:InfoEventoComponent},
   {path:'RealizarPago', component:RealizarPagoComponent, canActivate:[AccesoPagoGuard]},
+  {path:'MiCuenta',component:MainPanelClienteComponentComponent},
   {path:'', redirectTo:'/Home',pathMatch:'full'},
   {path:'**', redirectTo:'/Home'}
 ];

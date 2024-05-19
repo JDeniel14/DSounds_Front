@@ -30,21 +30,46 @@
         </li>
       }
 
-      <li class="">
-        <a  [routerLink]="['/Discos']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
-         <img src="../../../../assets/images/icons/icons8-cd-24.png" alt="Disco Dsounds">
-          Discos
-        </a>
-      </li>
+
+      @if(this.urlActual.toUpperCase() !== "/MICUENTA"){
+        <li class="">
+          <a  [routerLink]="['/Discos']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
+           <img src="../../../../assets/images/icons/icons8-cd-24.png" alt="Disco Dsounds">
+            Discos
+          </a>
+        </li>
+
+        <!-- <li class="">
+          <a  [routerLink]="['']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
+           <img src="../../../../assets/images/icons/Search.svg" alt="Disco Dsounds">
+            Buscar Producto
+          </a>
+        </li> -->
 
 
+        <li class="">
+          <a  [routerLink]="['/Carrito']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
+           <img src="../../../../assets/images/icons/icons8-basket-24.png" alt="Usuario Dsounds">
+            Carrito
+          </a>
+        </li>
+      }@else {
+        <li class="">
+          <a  [routerLink]="['/MiCuenta/DatosPersonales']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
+           <img src="../../../../assets/images/icons/icons8-id-24.png" alt="Usuario Dsounds">
+            Datos Personales
+          </a>
+        </li>
 
-      <li class="">
-        <a  [routerLink]="['/Carrito']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
-         <img src="../../../../assets/images/icons/icons8-basket-24.png" alt="Usuario Dsounds">
-          Carrito
-        </a>
-      </li>
+
+        <li class="">
+          <a  [routerLink]="['/MiCuenta/Pedidos']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
+           <img src="../../../../assets/images/icons/icons8-box-24.png" alt="Pedido Dsounds">
+            Mis pedidos
+          </a>
+        </li>
+      }
+
 
       @if(this.datosCliente !=null){
         <li class="">
