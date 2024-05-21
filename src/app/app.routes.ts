@@ -10,6 +10,7 @@ import { InfoEventoComponent } from './Components/TiendaComponents/InfoEventoCom
 import { RealizarPagoComponent } from './Components/TiendaComponents/RealizarPagoComponent/realizar-pago/realizar-pago.component';
 import { AccesoPagoGuard } from './Guards/acceso-pago.guard';
 import { MainPanelClienteComponentComponent } from './Components/ClienteComponents/PanelClienteComponent/MainPanelClienteComponent/main-panel-cliente-component.component';
+import { PanelPedidosComponentComponent } from './Components/ClienteComponents/PanelClienteComponent/PanelPedidosComponent/panel-pedidos-component.component';
 export const routes: Routes = [
   {path:'Home', component:MainLayoutComponent},
   {path:'Discos', component:ListadoDiscosComponent},
@@ -20,6 +21,7 @@ export const routes: Routes = [
   {path:'InfoEvento/:idEvento',component:InfoEventoComponent},
   {path:'RealizarPago', component:RealizarPagoComponent, canActivate:[AccesoPagoGuard]},
   {path:'MiCuenta',component:MainPanelClienteComponentComponent},
+  {path:'MiCuenta/Pedidos', component:PanelPedidosComponentComponent},
   {path:'', redirectTo:'/Home',pathMatch:'full'},
   {path:'**', redirectTo:'/Home'}
 ];

@@ -1,0 +1,29 @@
+.card {
+  max-width: 58%;
+  margin: 0 auto;
+
+}
+
+.templateCarousel{
+  background-image: url("../../../../../assets/images/DSOUNDS__textura.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: overlay;
+}
+:host ::ng-deep  .p-button {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+:host ::ng-deep  .p-button:hover {
+  transform: scale(1.1);
+  box-shadow: 4px 0px 20px rgba(209, 38, 152, 0.6);
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+
+}

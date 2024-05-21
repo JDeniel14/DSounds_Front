@@ -115,5 +115,15 @@ export class RestNodeService {
     )
    }
 
+   public CancelarPedido(idPedido:string):Promise<IRestMessage>{
+
+    return lastValueFrom(
+      this._httpClient.get<IRestMessage>(
+        `http://localhost:3003/api/DsoundsClient/CancelarPedido?idPedido=${idPedido}`,
+        {headers:new HttpHeaders({'Content-Type':'application/json'})}
+      )
+    )
+   }
+
    //#endregion
 }

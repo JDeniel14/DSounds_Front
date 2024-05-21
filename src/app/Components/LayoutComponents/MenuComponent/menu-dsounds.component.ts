@@ -16,6 +16,8 @@ export class MenuDsoundsComponent implements OnInit, OnDestroy{
   private subCliente : Subscription = new Subscription;
   private subUrl:Subscription = new Subscription;
   public urlActual : string = "";
+  
+  public  regex: RegExp = new RegExp("/MiCuenta/*");
   /**
    *
    */
@@ -35,7 +37,7 @@ export class MenuDsoundsComponent implements OnInit, OnDestroy{
     (evento)=>{
       if(evento instanceof NavigationEnd){
         this.urlActual = evento.urlAfterRedirects;
-        console.log('subruta actual..',this.urlActual)
+
       }
     }
    )
@@ -54,6 +56,9 @@ export class MenuDsoundsComponent implements OnInit, OnDestroy{
     this.storageSvc.EliminarDatosClienteStorage();
     window.location.reload();
   }
+
+
+
 
   ngOnDestroy(): void {
     this.subCliente.unsubscribe();

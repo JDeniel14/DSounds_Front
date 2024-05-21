@@ -31,7 +31,7 @@
       }
 
 
-      @if(this.urlActual.toUpperCase() !== "/MICUENTA"){
+      @if(!regex.test(urlActual) ){
         <li class="">
           <a  [routerLink]="['/Discos']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
            <img src="../../../../assets/images/icons/icons8-cd-24.png" alt="Disco Dsounds">

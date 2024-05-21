@@ -1,0 +1,54 @@
+
+
+  <div class="text-center  rounded-lg bg-[#460731] w-full flex flex-row justify-center gap-5 items-center">
+    <img src="../../../../../assets/images/DSOUNDS-removebg-preview.png" width="135" height="auto">
+
+  </div>
+  <div class="flex flex-col flex-wrap justify-center">
+    <h1 class="text-2xl underline  text-wrap text-center mt-2 font-bold text-[#783963]">Mis Pedidos</h1>
+    <span class="text-center text-[#8c4073] font-bold text-lg mt-3 italic">Últimos 3 meses</span>
+  </div>
+  <div class="flex flex-row justify-around text-center m-2 flex-wrap gap-20">
+
+    <div class="card  ">
+      @if (pedidosCliente && pedidosCliente.length > 0) {
+        <p-carousel
+          [value]="pedidosCliente"
+          [numVisible]="1"
+          [numScroll]="1"
+
+          [responsiveOptions]="responsiveOptions">
+              <ng-template let-pedido pTemplate="item">
+                  <div class="border border-[#c25ba0] templateCarousel rounded-lg m-2 p-6 bg-[#460731]">
+                      <div class="mb-4 ">
+                          <div class="relative mx-auto">
+                              <img
+                                  src="{{ pedido.elementosPedido[0].disco.UrlImagen }}"
+                                  [alt]="pedido.elementosPedido[0].disco.Nombre"
+                                  class="w-1/2 m-auto rounded-lg shadow-lg" />
+                              <p-tag
+                                  [value]="pedido.estadoPedido"
+                                  class="absolute"
+                                  [severity]="SeveridadTag(pedido.estadoPedido)"
+                                  [ngStyle]="{ 'left.px': 113, 'top.px': 5}" />
+                          </div>
+                      </div>
+                      <div class="mb-3 font-medium text-gray-200 flex flex-col justify-center flex-wrap">
+                          <span>Nº Pedido: {{ pedido._id }}</span>
+                          <span>{{ pedido.fechaPedido |date: 'dd/MM/yyyy' }}</span>
+                      </div>
+                      <div class="flex justify-around align-items-center mt-5">
+                          <div class="">
+                              <span class="font-semibold text-xl ">{{ pedido.totalPedido + '€' }}</span>
+                          </div>
+                          <span>
+                              <p-button  styleClass=" botonBorrar bg-black px-4 py-2 rounded-lg  shadow-xl text-red" (onClick)="CancelarPedido(pedido._id)">Cancelar</p-button>
+                          </span>
+                      </div>
+                  </div>
+              </ng-template>
+      </p-carousel>
+      }
+  </div>
+
+  </div>
