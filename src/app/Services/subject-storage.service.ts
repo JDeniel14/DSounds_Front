@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { IStorageService } from '../Models/IStorageService';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import IDisco from '../Models/Disco';
 import ICliente from '../Models/ICliente';
 import { CookieService } from 'ngx-cookie-service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,13 @@ export class SubjectStorageService implements IStorageService {
   private _jwtSubject$ : BehaviorSubject<string>=new BehaviorSubject<string>('');
   private _discosPedidoSubject$ : BehaviorSubject<{disco:IDisco, cantidadElemento:number}[]> = new BehaviorSubject<{disco:IDisco, cantidadElemento:number}[]>([]);
 
-  constructor( private cookieService:CookieService) {
+
+
+
+
+  constructor( private cookieService:CookieService, private activatedRoute :ActivatedRoute,
+              private router : Router
+    ) {
 
     const cookieClienteExists: boolean = this.cookieService.check('cookieDatosCliente');
     const cookieJWTExists: boolean = this.cookieService.check('cookieJWT');
@@ -46,6 +53,7 @@ export class SubjectStorageService implements IStorageService {
 
 
 
+
    }
   LimpiarCarrito(): void {
     this._discosPedidoSubject$.next([]);
@@ -58,11 +66,15 @@ export class SubjectStorageService implements IStorageService {
     if(cookieDatosClienteString){
       clienteExistente = JSON.parse(cookieDatosClienteString);
     }
+
     const clienteActualizado = {...clienteExistente, ...datoscliente} as ICliente
+
 
     this.cookieService.set('cookieDatosCliente',JSON.stringify(clienteActualizado));
     this._clienteSubject$.next(clienteActualizado);
   }
+
+
   RecuperarDatosCliente(): Observable<ICliente | null> {
 
     return this._clienteSubject$.asObservable();
@@ -133,5 +145,11 @@ export class SubjectStorageService implements IStorageService {
     this._clienteSubject$.next(null);
     this._jwtSubject$.next('');
     this._discosPedidoSubject$.next([]);
+
+    //Reemplazamos en el historial la ruta anterior por la principal para que no recargue la página a la anterior al cerrar sesión
+    history.replaceState(null, '', '/');
+    //navegamos a la ruta raiz
+    this.router.navigate(['/']);
+
   }
 }

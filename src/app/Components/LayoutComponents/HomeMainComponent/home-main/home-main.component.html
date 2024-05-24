@@ -1,4 +1,4 @@
-<div class="container">
+
   <div class="flex justify-center">
     <a [routerLink]="['/Home']" routerLinkActive="router-link-active" >
       <img src="../../../../assets/images/DSOUNDS-removebg-preview.png" class="w-32" />
@@ -24,7 +24,7 @@
 
   </div>
 
-  <div class="container ">
+  
     <div class="flex justify-between p-2  rounded-md bannerDisc">
       <p class="text-start border-b-2 border-white text-md font-medium">
         Discos
@@ -35,7 +35,7 @@
     <div class="mt-6 relative transition-all duration-1000 " id="Disc-container">
       <div class="relative z-10 px-4">
 
-        <div class="flex flex-wrap mt-6 gap-20">
+        <div class="flex flex-wrap mt-6 gap-16 justify-evenly">
          @if(this.Discos.length > 0){
           @for (disco of this.Discos; track $index) {
             <!-- CARD DISCO-->
@@ -58,5 +58,4 @@
 
       </div>
     </div>
-  </div>
-</div>
+

@@ -26,29 +26,7 @@ export class PanelPedidosComponentComponent implements OnInit, OnDestroy {
   constructor(@Inject(TOKEN_STORAGE_SERVICE) private storageSvc:IStorageService,
               private restSvc:RestNodeService
   ){
-    this.subCliente = this.storageSvc.RecuperarDatosCliente().subscribe(
-      (datos)=>{
-        this.datosCliente = datos as ICliente;
-        if(datos?.pedidos != null){
-          this.pedidosCliente = datos.pedidos;
-          this.pedidosCliente.forEach(p => {
-            const fechaHaceTresMeses = new Date();
-            fechaHaceTresMeses.setMonth(fechaHaceTresMeses.getMonth() - 3);
-
-            if(p.fechaPedido >= fechaHaceTresMeses){
-              console.log('es vd no es mayor')
-              return p;
-            }else{
-              return;
-            }
-          })
-          this.pedidosCliente.push(this.pedidosCliente[0])
-          this.pedidosCliente.push(this.pedidosCliente[0])
-          this.pedidosCliente.push(this.pedidosCliente[0])
-        }
-      }
-    );
-
+    this.ObtenerDatosCliente();
   }
   ngOnInit(): void {
 
@@ -97,37 +75,40 @@ export class PanelPedidosComponentComponent implements OnInit, OnDestroy {
   }
 
   public async CancelarPedido(idPedido:string){
-    console.log('pedido...',idPedido)
-    //TODO: PONER EL ESTADO DEL PEDIDO A CANCELADO EN EL BACK
-    let resp =await this.restSvc.CancelarPedido(idPedido);
-    if(resp.codigo ===0){
-      this.storageSvc.AlmacenarDatosCliente(resp.datosCliente as ICliente);
-      //Comprobar si hace falta recuperar de nuevo los datos del cliente
-      /*this.subCliente= this.storageSvc.RecuperarDatosCliente().subscribe(
-        (datos)=>{
-          this.datosCliente = datos as ICliente;
-          if(datos?.pedidos != null){
-            this.pedidosCliente = datos.pedidos;
-            this.pedidosCliente.forEach(p => {
-              const fechaHaceTresMeses = new Date();
-              fechaHaceTresMeses.setMonth(fechaHaceTresMeses.getMonth() - 3);
 
-              if(p.fechaPedido >= fechaHaceTresMeses){
-                console.log('es vd no es mayor')
-                return p;
-              }else{
-                return;
-              }
-            })
-            this.pedidosCliente.push(this.pedidosCliente[0])
-            this.pedidosCliente.push(this.pedidosCliente[0])
-            this.pedidosCliente.push(this.pedidosCliente[0])
-          }
-        }
-      )*/
+
+    let resp =await this.restSvc.CancelarPedido(idPedido);
+    if(resp.codigo == 0){
+
+      this.storageSvc.AlmacenarDatosCliente(resp.datosCliente as ICliente);
+
+      
     }
   }
 
+  ObtenerDatosCliente(){
+    this.subCliente= this.storageSvc.RecuperarDatosCliente().subscribe(
+      (datos)=>{
+        this.datosCliente = datos as ICliente;
+        console.log(this.datosCliente)
+        if(datos?.pedidos != null){
+          this.pedidosCliente = datos.pedidos;
+          this.pedidosCliente.forEach(p => {
+            const fechaHaceTresMeses = new Date();
+            fechaHaceTresMeses.setMonth(fechaHaceTresMeses.getMonth() - 3);
+
+            if(p.fechaPedido >= fechaHaceTresMeses){
+
+              return p;
+            }else{
+              return;
+            }
+          })
+
+        }
+      }
+    )
+  }
 
   ngOnDestroy(): void {
     this.subCliente.unsubscribe();
