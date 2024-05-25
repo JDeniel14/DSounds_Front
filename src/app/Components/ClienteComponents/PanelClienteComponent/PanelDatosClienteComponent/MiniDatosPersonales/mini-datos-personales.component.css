@@ -1,0 +1,67 @@
+input{
+  background: transparent;
+  padding: 8px;
+    color: white;
+    border-radius: 10px;
+}
+
+label{
+  color: white;
+}
+
+:host{
+  ::ng-deep .p-component{
+    background: #320f25;
+    border: 2px solid white;
+    color: white;
+
+  }
+
+  ::ng-deep .p-inputmask{
+    border-radius: 10px;
+  }
+  ::ng-deep .p-toast{
+    border:  none;
+  }
+
+  ::ng-deep .p-datepicker{
+    background-color: black;
+  }
+
+
+  ::ng-deep .p-overlay{
+    border-radius: 10px;
+  }
+
+  ::ng-deep .p-dropdown-item{
+    color: white;
+    font-weight: 500;
+
+  }
+  ::ng-deep .p-dropdown-label{
+    color: white;
+  }
+
+
+  ::ng-deep .p-dropdown-item:hover{
+    background-color:#582546;
+    color: white;
+  }
+  ::ng-deep .p-focus{
+    background-color: #5e1f47;
+  }
+
+  ::ng-deep #btnSubmit > button{
+    border:  2px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #582546;
+    margin-bottom: 10px;
+  }
+
+  ::ng-deep #btnSubmit > button:hover{
+    background-color: #7d255e;
+    transform: scale(1.1);
+    transition: all 0.7s;
+  }
+}

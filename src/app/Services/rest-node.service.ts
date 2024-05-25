@@ -134,5 +134,12 @@ export class RestNodeService {
 
   }
 
+  ActualizarDatosCliente(datosNuevosCliente:ICliente, email:string):Promise<IRestMessage>{
+
+    return lastValueFrom(
+      this._httpClient.post<IRestMessage>('http://localhost:3003/api/DsoundsClient/ActualizarDatosCliente', {datosNuevosCliente,email})
+    )
+  }
+
    //#endregion
 }

@@ -1,0 +1,75 @@
+
+<p-toast></p-toast>
+<div class="flex justify-center items-center mt-8">
+
+
+  <div class="flex flex-col bg-[#320f25] border-2 rounded-lg justify-center">
+    <h1 class="text-center text-white font-light mt-5 mb-3 text-2xl"><span class="pi pi-user me-4 border-2 rounded-3xl p-3"></span>Modificar mis datos</h1>
+    <form [formGroup]="datosForm" class="mt-5 flex flex-col gap-7 md:px-20 sm:px-10 lg:px-60 py-3 justify-center" (submit)="ModificarDatosCliente()">
+      <div class="flex flex-col flex-wrap justify-center text-black">
+
+        <div class="flex flex-wrap justify-center gap-20 m-5">
+          <p-floatLabel class="m-2">
+            <input pInputText formControlName="email" type="email"   icon="pi pi-mail" iconPosition="left"/>
+            <label for="email">Correo electrónico*</label>
+          </p-floatLabel>
+
+          <p-floatLabel class="m-2">
+            <input pInputText formControlName="nombre" type="text"  icon="nameIcon" iconPosition="left"/>
+            <label for="nombre">Nombre*</label>
+          </p-floatLabel>
+
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-20 m-5">
+        <p-floatLabel class="m-2">
+          <input pInputText formControlName="apellidos" type="text"  icon="apellidosIcon" iconPosition="left"/>
+          <label for="apellidos">Apellidos*</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="m-2">
+          <p-inputMask formControlName="telefono" mask="999 999 999" icon="pi pi-phone" iconPosition="left"></p-inputMask>
+
+          <label for="telefono">Teléfono*</label>
+        </p-floatLabel>
+        </div>
+
+
+
+
+
+
+        <div class="flex  flex-wrap justify-center gap-20 m-5">
+
+          <p-floatLabel class=" m-auto ms-6">
+            <p-dropdown
+            formControlName="genero"
+            showClear="true"
+            [options]="generosOptions"
+            optionLabel="label"
+            placeholder="Mi género">
+            <ng-template pTemplate="item" let-option>
+              @if(option.label){
+
+                <div >{{option.label}}</div>
+
+              }
+            </ng-template></p-dropdown>
+            <label for="genero">Género</label>
+          </p-floatLabel>
+
+            <p-floatLabel class="m-2 ">
+              <p-calendar formControlName="fechaNacimiento"  [yearNavigator]="true" yearRange="1920:2024" [showIcon]="true" [dateFormat]="'dd/MM/yy'"  ></p-calendar>
+              <label for="fechaNacimiento">Fecha de nacimiento</label>
+            </p-floatLabel>
+        </div>
+
+
+
+
+        <p-button type="submit" label="Modificar datos" class="mt-5 items-center m-auto custom-btn-submit" id="btnSubmit"></p-button>
+
+      </div>
+    </form>
+  </div>
+</div>
