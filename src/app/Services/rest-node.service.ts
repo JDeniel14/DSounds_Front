@@ -125,5 +125,14 @@ export class RestNodeService {
     )
    }
 
+
+  ActualizarPassword(passwordActual:string, passwordNueva:string, email:string):Promise<IRestMessage>{
+
+    return lastValueFrom(
+      this._httpClient.post<IRestMessage>('http://localhost:3003/api/DsoundsClient/ActualizarPassword',{passwordActual,passwordNueva,email})
+    )
+
+  }
+
    //#endregion
 }

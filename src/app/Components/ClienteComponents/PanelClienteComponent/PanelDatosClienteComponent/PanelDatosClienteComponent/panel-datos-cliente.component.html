@@ -1,0 +1,29 @@
+<div class="text-center rounded-lg bg-[#460731] w-full flex flex-col justify-center gap-5 items-center flex-wrap">
+  <img src="../../../../../assets/images/DSOUNDS-removebg-preview.png" width="135" height="auto">
+
+  <div class="w-full flex flex-row justify-around flex-wrap">
+    <ul class=" flex flex-row justify-around w-full flex-wrap">
+      <li  class="mx-4" [class]="ObtenerClassEstilo('/MICUENTA/DATOSPERSONALES/MISDATOSPERSONALES')">
+        <a [routerLink]="['/MiCuenta/DatosPersonales/MisDatosPersonales']" routerLinkActive="active">
+          Mis datos Personales
+        </a>
+      </li>
+      <li class="mx-4" [class]="ObtenerClassEstilo('/MICUENTA/DATOSPERSONALES/MISDIRECCIONES')">
+        <a [routerLink]="['/MiCuenta/DatosPersonales/MisDirecciones']" routerLinkActive="active">
+          Mis Direcciones
+        </a>
+      </li>
+      <li class="mx-4" [class]="ObtenerClassEstilo('/MICUENTA/DATOSPERSONALES/CAMBIARMIPASSWORD')">
+        <a [routerLink]="['/MiCuenta/DatosPersonales/CambiarMiPassword']" routerLinkActive="active">
+          Cambiar mi contraseña
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div>
+  <router-outlet></router-outlet>
+</div>
