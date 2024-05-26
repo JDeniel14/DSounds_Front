@@ -10,7 +10,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
-//import { PrimeNGConfig } from 'primeng/api';
 import { InputMaskModule } from 'primeng/inputmask';
 import { MessageService } from 'primeng/api';
 import {ToastModule} from 'primeng/toast'
@@ -49,20 +48,10 @@ export class MiniDatosPersonalesComponent implements OnInit, OnDestroy {
     }
   );
 
- /* public es: any = {
-    firstDayOfWeek: 1,
-    dayNames: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
-    dayNamesShort: ["dom","lun","mar","mié","jue","vie","sáb"],
-    dayNamesMin: ["D","L","M","X","J","V","S"],
-    monthNames: [ "enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre" ],
-    monthNamesShort: [ "ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic" ],
-    today: 'Hoy',
-    clear: 'Borrar'
-  };*/
+
 
   constructor(@Inject(TOKEN_STORAGE_SERVICE) private storageSvc:IStorageService,
               private restSvc:RestNodeService,
-              //private config:PrimeNGConfig,
               private messageService:MessageService
 ) {
 
@@ -101,11 +90,11 @@ export class MiniDatosPersonalesComponent implements OnInit, OnDestroy {
       this.copiaCliente .fechaNacimiento= new Date(this.datosForm.get('fechaNacimiento')?.value)
 
       console.log('datos nuevos...', this.copiaCliente)
-      //TODO: MANDAR DATOS AL REST Y QUE EN EL BACK ACTUALICE EL CLIENTE
-      /*let resp = await this.restSvc.ActualizarDatosCliente(this.copiaCliente, this.datosCliente.cuenta.email);
+
+      let resp = await this.restSvc.ActualizarDatosCliente(this.copiaCliente, this.datosCliente.cuenta.email);
 
       if(resp.codigo==0){
-        //TODO: GUARDAR DATOS EN EL STORAGE Y MOSTRAR MENSAJE SERVER
+
 
         this.storageSvc.AlmacenarDatosCliente(resp.datosCliente as ICliente);
         this.storageSvc.AlmacenarJWT(resp.token as string);
@@ -113,7 +102,7 @@ export class MiniDatosPersonalesComponent implements OnInit, OnDestroy {
         this.messageService.add({ severity: 'success', summary: 'Actualización de tus datos', detail: `${resp.mensaje}` });
       }else{
         this.messageService.add({ severity: 'warn', summary: 'Actualización de tus datos', detail: `${resp.mensaje}` });
-      }*/
+      }
 
     }
   }
