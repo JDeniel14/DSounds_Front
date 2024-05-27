@@ -39,7 +39,7 @@ label{
 
   }
   ::ng-deep .p-dropdown-label{
-    color: white;
+    color: #131313;
   }
 
 
@@ -58,6 +58,7 @@ label{
     background-color: #582546;
     margin-bottom: 10px;
   }
+  
 
   ::ng-deep #btnSubmit > button:hover{
     background-color: #7d255e;
@@ -65,3 +66,4 @@ label{
     transition: all 0.7s;
   }
 }
+

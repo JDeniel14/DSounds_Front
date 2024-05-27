@@ -6,6 +6,7 @@ import ICliente from '../Models/ICliente';
 import { IProvincia } from '../Models/Provincia';
 import { IMunicipio } from '../Models/Municipio';
 import { IPedido } from '../Models/Pedido';
+import { IDireccion } from '../Models/Direccion';
 
 @Injectable({
   providedIn: 'root'
@@ -138,6 +139,12 @@ export class RestNodeService {
 
     return lastValueFrom(
       this._httpClient.post<IRestMessage>('http://localhost:3003/api/DsoundsClient/ActualizarDatosCliente', {datosNuevosCliente,email})
+    )
+  }
+
+  OperarDireccionCliente(direccionOperar:IDireccion, operacion:string, email:string):Promise<IRestMessage>{
+    return lastValueFrom(
+      this._httpClient.post<IRestMessage>('http://localhost:3003/api/DsoundsClient/OperarDireccion',{direccionOperar,operacion,email})
     )
   }
 

@@ -1,0 +1,203 @@
+<div class="mt-2 ">
+  <p-toast />
+  @if(dirPrincipal && dirPrincipal){
+  <div class="flex flex-col bg-[#320f25] border-2 rounded-lg justify-center mb-5">
+    <h2 class="text-white text-wrap font-light text-xl text-center m-3">
+      <span class="pi pi-map-marker mx-2 text-[#c94699] text-xl"></span>MIS DIRECCIONES PRINCIPALES</h2>
+
+    <p-card>
+      <div class="flex flex-row flex-wrap justify-center ">
+        @if(dirPrincipal){
+        <div class="w-1/2">
+          <p class="font-medium text-gray-100  text-xl"><span
+              class="pi pi-map-marker mx-2 text-[#c94699]"></span>Dirección de envío</p>
+          <p class=" mx-8 text-[#c94699]">{{this.datosCliente.nombre}} {{this.datosCliente.apellidos }}, {{
+            dirPrincipal.provincia.PRO }}-{{ dirPrincipal.municipio.DMUN50 }}</p>
+          <p class="text-gray-100 mx-8">{{ dirPrincipal.calle }}</p>
+          <p class="text-gray-100 mx-8">{{ dirPrincipal.cp}} {{ dirPrincipal.municipio.DMUN50 }}</p>
+          <p class="text-gray-100 mx-8">{{ dirPrincipal.pais }}</p>
+        </div>
+        }
+
+        @if(dirFacturacion){
+        <div class="w-1/2 border-none lg:border-l sm:border-t    border-gray-200 ">
+          <p class="font-medium text-xl text-gray-100 "><span
+              class="pi pi-map-marker mx-2 text-[#c94699]"></span>Dirección de facturación</p>
+          <p class=" mx-8 text-[#c94699]">{{this.datosCliente.nombre }} {{this.datosCliente.apellidos }}, {{
+            dirFacturacion.provincia.PRO }}-{{ dirFacturacion.municipio.DMUN50 }}</p>
+          <p class="text-gray-100 mx-8">{{dirFacturacion.calle }}</p>
+          <p class="text-gray-100 mx-8">{{ dirFacturacion.cp }} {{dirFacturacion.municipio.DMUN50 }}</p>
+          <p class="text-gray-100 mx-8">{{dirFacturacion.pais }}</p>
+        </div>
+        }
+
+      </div>
+    </p-card>
+  </div>
+  }
+
+
+
+  </div>
+
+  <div class="flex flex-col bg-[#320f25] border-2 rounded-lg justify-center ">
+
+      <div class="flex flex-row flex-wrap gap-3 justify-evenly ">
+        <h2 class="text-white text-wrap font-light text-xl text-center m-3  ">
+          <span class="pi pi-cog  p-3 text-[#c94699] text-xl"></span>CONFIGURAR MIS DIRECCIONES</h2>
+
+          <p-button (onClick)="MostrarDialogoDireccion('crear')"  styleClass=" mt-6 botonBorrar bg-[#460731]  rounded-lg px-5 py-2 shadow-xl text-red" ><span class="pi pi-plus me-2"></span>Nueva dirección</p-button>
+      </div>
+      <p-confirmDialog />
+
+        @if (direccionesCliente && direccionesCliente.length > 0) {
+          <div class="card ">
+          <p-carousel
+            [value]="direccionesCliente"
+            [numVisible]="1"
+            [numScroll]="1"
+            [responsiveOptions]="responsiveOptions">
+                <ng-template let-direccion pTemplate="item">
+                    <div class="border border-[#c25ba0] templateCarousel rounded-lg  p-6 bg-[#460731] gap-4">
+                        <div class=" font-medium text-gray-200 flex lg:flex-col sm:flex-row justify-evenly flex-wrap sm:gap-10">
+                          <div class="flex lg:justify-between justify-around flex-wrap sm:gap-20 ">
+                            @if (direccion.esPrincipal ) {
+                              <p class="text-gray-100 truncate text-center text-lg">Tipo: Principal</p>
+
+                            }
+                            @if(direccion.esFacturacion){
+
+                              <p class="text-gray-100 truncate text-center text-lg">Tipo: Facturación</p>
+                            }
+                          <p class="  text-[#c94699] truncate text-center text-lg">{{this.datosCliente.nombre}} {{this.datosCliente.apellidos }}, {{
+                            direccion.provincia.PRO }}-{{ direccion.municipio.DMUN50 }}</p>
+                          </div>
+                          <div class="flex justify-around flex-wrap lg:justify-between ">
+                            <p class="text-gray-100 truncate text-center text-lg">{{ direccion.calle }}</p>
+                          <p class="text-gray-100 truncate  text-center text-lg">{{ direccion.cp}} {{ direccion.municipio.DMUN50 }}</p>
+                          </div>
+                          <div class="flex justify-center">
+                            <p class="text-gray-100 truncate text-lg">{{ direccion.pais }}</p>
+                          </div>
+                            <div class="flex flex-row flex-wrap gap-3 justify-center">
+                              <span >
+                                <p-button (onClick)="MostrarDialogoDireccion('modificar',direccion._id)" styleClass=" botonBorrar bg-black  rounded-lg px-2 shadow-xl text-red" >Modificar</p-button>
+                            </span>
+                            <span >
+
+
+                              <p-button (onClick)="EliminarDireccion($event, direccion._id)" styleClass=" botonBorrar bg-black  rounded-lg px-2 shadow-xl text-red" >Eliminar</p-button>
+                          </span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+        </p-carousel>
+      </div>
+        }
+
+
+
+
+    <p-dialog
+    header="Header"
+    [(visible)]="dialogoVisible"
+    [modal]="false"
+    (onHide)="LimpiarFormulario()"
+    [style]="{ width: '50rem' }">
+    <ng-template pTemplate="header" class="flex flex-col justify-center flex-wrap">
+      <div class="inline-flex align-items-center justify-content-center gap-2">
+        <span class="font-bold white-space-nowrap">
+          {{ operacion.toUpperCase() }} DIRECCIÓN
+        </span>
+      </div>
+    </ng-template>
+    <form [formGroup]="formDireccion" class="flex flex-col justify-center flex-wrap gap-20">
+      <div class="flex flex-row justify-around gap-10 mt-5">
+        <p-floatLabel>
+          <input pInputText id="calle" type="text" formControlName="calle">
+          <label for="calle">Calle</label>
+
+        </p-floatLabel>
+        @if(formDireccion.controls['calle'].errors?.['required'] && formDireccion.controls['calle'].touched){
+
+          <small class="p-error" >La calle es requerida</small>
+        }
+        <p-floatLabel>
+          <input pInputText id="cp" type="text" formControlName="cp">
+          <label for="cp">Código postal</label>
+
+        </p-floatLabel>
+        @if(formDireccion.controls['cp'].errors?.['required'] && formDireccion.controls['cp'].touched){
+
+          <small class="p-error" >El código postal es requerido</small>
+        }
+        @if(formDireccion.controls['cp'].errors?.['pattern'] && formDireccion.controls['cp'].touched){
+
+          <small class="p-error" >El código postal debe tener 5 dígitos</small>
+        }
+      </div>
+
+      <div class="flex flex-row justify-around gap-10">
+        <p-floatLabel class="mt-6">
+          <input pInputText id="pais" type="text" formControlName="pais" >
+          <label for="pais">Pais</label>
+
+        </p-floatLabel>
+
+
+         <div class="flex flex-col justify-center flex-wrap">
+           <label for="pais">Provincia</label>
+          <select id="inputProvincia" class="bg-[#131313] rounded-lg" formControlName="provincia" (change)="RecuperarMunicipios($any($event.target).value.split('-')[0])">
+            <option value="-1" selected> - Seleccionar Provincia - </option>
+            @for (unaprov of provincias ; track unaprov.CPRO)
+            {
+                <option [value]="unaprov.CPRO + '-' + unaprov.PRO">{{unaprov.PRO}}</option>
+            }
+            </select>
+            @if(formDireccion.controls['provincia'].errors?.['required'] && formDireccion.controls['provincia'].touched){
+
+              <small class="p-error" >La provincia es requerida</small>
+            }
+
+         </div>
+      </div>
+      <div class="flex justify-center items-center">
+        <div class="flex flex-col flex-wrap justify-center  text-center">
+          <label for="municipio">Municipio</label>
+          <select formControlName="municipio" class="bg-[#131313]  rounded-lg">
+            <option value="-1" selected> - Selecciona un Municipio -</option>
+            @for (mun of municipios; track $index) {
+              <option [value]="mun.CMUM + '-' + mun.DMUN50">{{mun.DMUN50}}</option>
+            }
+          </select>
+
+          @if(formDireccion.controls['municipio'].errors?.['required'] && formDireccion.controls['municipio'].touched){
+
+            <small class="p-error" >El municipio es requerido</small>
+          }
+
+        </div>
+
+
+      </div>
+
+    </form>
+    <ng-template pTemplate="footer">
+      <p-button
+        label="Cancelar"
+        [text]="true"
+        severity="secondary"
+        (click)="LimpiarFormulario()"
+      />
+      <p-button
+        label="Guardar"
+        [outlined]="true"
+        severity="secondary"
+        (click)="CrearModificarDireccion()"
+      />
+    </ng-template>
+  </p-dialog>
+
+
+</div>

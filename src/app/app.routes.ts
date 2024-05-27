@@ -21,6 +21,7 @@ import { PanelPedidosComponentComponent } from './Components/ClienteComponents/P
 import { PanelDatosClienteComponent } from './Components/ClienteComponents/PanelClienteComponent/PanelDatosClienteComponent/PanelDatosClienteComponent/panel-datos-cliente.component';
 import { MiniCambiarPasswordClienteComponent } from './Components/ClienteComponents/PanelClienteComponent/PanelDatosClienteComponent/MiniCambiarPasswordCliente/mini-cambiar-password-cliente.component';
 import { MiniDatosPersonalesComponent } from './Components/ClienteComponents/PanelClienteComponent/PanelDatosClienteComponent/MiniDatosPersonales/mini-datos-personales.component';
+import { MiniDireccionesClienteComponent } from './Components/ClienteComponents/PanelClienteComponent/PanelDatosClienteComponent/MiniDireccionesCliente/mini-direcciones-cliente.component';
 
 
 
@@ -39,6 +40,7 @@ export const routes: Routes = [
     children:[
       { path: '', redirectTo: 'MisDatosPersonales', pathMatch: 'full' },
       {path:'MisDatosPersonales', component:MiniDatosPersonalesComponent},
+      {path:'MisDirecciones', component:MiniDireccionesClienteComponent},
       {path:'CambiarMiPassword', component:MiniCambiarPasswordClienteComponent}
     ]
   },

@@ -1,0 +1,66 @@
+:host{
+
+  ::ng-deep .p-card-body{
+    padding: 10px !important;
+}
+
+  ::ng-deep .p-card-content{
+    padding: 3px;
+  }
+  ::ng-deep .p-card{
+    background-color: transparent;
+  }
+
+  ::ng-deep .p-button-label{
+    margin: 20px;
+  }
+  ::ng-deep .p-dialog-header {
+    background-color: #131313;
+    color: white;
+  }
+  ::ng-deep  .p-dialog-content {
+    background-color: #131313;
+    color: white;
+  }
+  ::ng-deep  .p-dialog-footer{
+    background-color: #131313;
+    color: white;
+  }
+
+  ::ng-deep .p-overlay{
+    border-radius: 10px;
+  }
+
+  ::ng-deep .p-dropdown-item{
+    color: white;
+    font-weight: 500;
+
+  }
+  ::ng-deep .p-dropdown-label{
+    color: white;
+  }
+
+
+  ::ng-deep .p-dropdown-item:hover{
+    background-color:#582546;
+    color: white;
+  }
+  ::ng-deep .p-focus{
+    background-color: #5e1f47;
+  }
+}
+
+:host ::ng-deep  .p-button {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+:host ::ng-deep  .p-button:hover {
+  transform: scale(1.1);
+  box-shadow: 4px 0px 20px rgba(209, 38, 152, 0.6);
+}
+
+input{
+  background-color: #131313;
+  color: white;
+  border-radius: 10px;
+}
