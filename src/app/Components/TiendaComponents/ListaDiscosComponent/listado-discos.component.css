@@ -7,6 +7,13 @@
   justify-content: center;
 }
 
+:host{
+  ::ng-deep .p-button{
+    background-color: #5d0b41;
+    padding: 10px 35px;
+  }
+}
+
 @media (min-width: 1002px){
 
   #Disc-container{

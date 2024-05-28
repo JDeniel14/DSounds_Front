@@ -1,17 +1,28 @@
 
-  <div class="flex justify-center p-8  rounded-md bannerDisc">
-    <p class=" text-md text-xl font-bold text-center">
-      DSounds, tu web de música
+  <div class="flex flex-col justify-center gap-16 p-2  rounded-md bannerDisc">
+    <p class=" text-md text-2xl font-bold text-center">
+      DSounds,<BR> tu web de música
     </p>
 
+    <div class="flex flex-row flex-wrap justify-center text-white">
+      <form [formGroup]="formBusqueda">
+
+
+        <p-iconField iconPosition="left">
+          <p-inputIcon styleClass="pi pi-search text-white" />
+          <input class="text-center p-2.5 bg-[#131313] opacity-80" pInputText formControlName="busqueda" placeholder="Buscar" (input)="BuscarDiscos()"/>
+      </p-iconField>
+      </form>
+    </div>
   </div>
+
 
   <div class="mt-6 relative transition-all duration-1000 " id="Disc-container">
     <div class="relative z-10 ">
 
       <div class="flex flex-wrap mt-6 gap-16 justify-evenly">
        @if(this.Discos.length > 0){
-        @for (disco of this.Discos; track $index) {
+        @for (disco of this.discosBusqueda; track $index) {
           <!-- CARD DISCO-->
 
 
@@ -19,7 +30,7 @@
 
         }
        }@else {
-        @for( disco of this.Discos; track $index){
+        @for( disco of this.discosBusqueda; track $index){
 
           <nz-skeleton class="w-56"></nz-skeleton>
 
@@ -29,7 +40,16 @@
        }
 
       </div>
+      <div class="flex flex-row flex-wrap justify-center m-8">
+        <span class="text-zinc-500 text-center text-md"> <b>{{discosBusqueda.length}}</b> de <b>{{Discos.length}}</b> </span>
 
+      </div>
+      @if(discosBusqueda.length < Discos.length  ){
+        <div class="flex flex-row flex-wrap justify-center m-8">
+
+          <p-button label="Mostrar más"  [raised]="true" severity="help" (onClick)="CargarMasDiscos(10)" [disabled]="busqueda" />
+        </div>
+      }
     </div>
   </div>
 
