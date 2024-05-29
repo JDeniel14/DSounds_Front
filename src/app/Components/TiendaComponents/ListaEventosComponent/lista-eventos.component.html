@@ -1,0 +1,37 @@
+
+<div class="flex flex-col justify-center gap-16 p-2  rounded-md bannerDisc">
+  <p class=" text-md text-2xl font-bold text-center">
+    DSounds,<BR> tu web de música
+  </p>
+
+
+</div>
+
+
+<div class="mt-6 relative transition-all duration-1000 " id="Disc-container">
+  <div class="relative z-10 ">
+
+    <div class="flex flex-wrap mt-6 gap-16 justify-evenly">
+     @if(this.eventos != undefined && this.eventos._embedded.events.length > 0){
+      @for (evento of this.eventos._embedded.events; track $index) {
+        <!-- CARD DISCO-->
+
+          <app-mini-evento [Evento]="evento"></app-mini-evento>
+          <!--<app-disco [Disco]="disco" ></app-disco>-->
+
+      }
+     }@else {
+      @for( evento of this.eventos?._embedded?.events; track $index){
+
+        <nz-skeleton class="w-56"></nz-skeleton>
+
+
+
+      }
+     }
+
+    </div>
+
+  </div>
+</div>
+

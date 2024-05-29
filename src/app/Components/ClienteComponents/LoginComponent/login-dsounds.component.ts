@@ -83,7 +83,7 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
                                 this.messageService.add({ severity: 'info', summary: 'Login', detail: `${mensajeAlerta}}` });
                                 this.router.navigateByUrl('/Home');
                               }else{
-                                this.mensajeServer=resp.mensaje;
+                                this.messageService.add({ severity: 'warn', summary: 'Login', detail: `${resp.mensaje}}` });
                               }
                             }
                           )

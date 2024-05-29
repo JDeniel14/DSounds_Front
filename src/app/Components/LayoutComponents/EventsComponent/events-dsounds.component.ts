@@ -3,12 +3,14 @@ import { IEventsRoot } from '../../../Models/EventsModels/IEventsRoot';
 import { RestNodeService } from '../../../Services/rest-node.service';
 import { EventCardComponent } from '../event-card/event-card.component';
 import {NzSkeletonModule } from 'ng-zorro-antd/skeleton'
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-events-dsounds',
   standalone: true,
   imports: [
     EventCardComponent,
-    NzSkeletonModule
+    NzSkeletonModule,
+    RouterLink
   ],
   templateUrl: './events-dsounds.component.html',
   styleUrl: './events-dsounds.component.css'

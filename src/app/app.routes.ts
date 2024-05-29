@@ -28,6 +28,7 @@ import { MiniCambiarPasswordClienteComponent } from './Components/ClienteCompone
 export const routes: Routes = [
   {path:'Home', loadComponent:()=>import('./Components/LayoutComponents/MainLayout/main-layout.component').then(m => m.MainLayoutComponent)},
   {path:'Discos', loadComponent:()=>import('./Components/TiendaComponents/ListaDiscosComponent/listado-discos.component').then(m => m.ListadoDiscosComponent)},
+  {path:'Eventos', loadComponent : () => import('./Components/TiendaComponents/ListaEventosComponent/lista-eventos.component').then(m=>m.ListaEventosComponent)},
   {path:'InfoDisco/:idDisco', loadComponent:()=> import('./Components/TiendaComponents/InfoDiscoComponent/info-disco.component').then(m => m.InfoDiscoComponent)},
   {path:'Carrito', loadComponent:()=> import('./Components/TiendaComponents/CarritoComponent/carrito-dsounds.component').then(m => m.CarritoDSoundsComponent)},
   {path:'Login', loadComponent:()=> import('./Components/ClienteComponents/LoginComponent/login-dsounds.component').then( m => m.LoginDsoundsComponent)},

@@ -39,17 +39,17 @@
           </a>
         </li>
 
-        <!-- <li class="">
-          <a  [routerLink]="['']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
-           <img src="../../../../assets/images/icons/Search.svg" alt="Disco Dsounds">
-            Buscar Producto
+        <li class="">
+          <a  [routerLink]="['/Eventos']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
+           <img src="../../../../assets/images/icons/icons8-ticket-24.png" alt="Ticket Dsounds">
+            Eventos
           </a>
-        </li> -->
+        </li>
 
 
         <li class="">
           <a  [routerLink]="['/Carrito']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
-           <img src="../../../../assets/images/icons/icons8-basket-24.png" alt="Usuario Dsounds">
+           <img src="../../../../assets/images/icons/icons8-basket-24.png" alt="Carrito Dsounds">
             Carrito
           </a>
         </li>
@@ -74,7 +74,7 @@
       @if(this.datosCliente !=null){
         <li class="">
           <a  (click)="CerrarSesionCliente()"  [routerLink]="['/Home']" routerLinkActive="router-link-active"  class="flex items-center gap-4  text-zinc-300 hover:text-pink-500  py-3 px-5 font-medium">
-           <img src="../../../../assets/images/icons/icons8-log-out-24.png" alt="Usuario Dsounds">
+           <img src="../../../../assets/images/icons/icons8-log-out-24.png" alt="Cerrar Sesión Dsounds">
             Cerrar Sesión
           </a>
         </li>

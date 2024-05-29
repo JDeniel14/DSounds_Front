@@ -3,11 +3,13 @@
   <ul>
 
     <li>
-      <span class="flex items-center gap-4 text-zinc-300 hover:text-pink-500 py-3 px-5 font-medium
+      <a [routerLink]="[ '/Eventos' ]" routerLinkActive="active">
+        <span class="flex items-center gap-4 text-zinc-300 hover:text-pink-500 py-3 px-5 font-medium
       transition duration-300">
         <img src="../../../../assets/images/icons/icons8-ticket-24.png" alt="Ticket">
           <p class="border-b-2">Próximos Eventos</p>
       </span>
+    </a>
     </li>
 
     @if (this.EventosSpain != null) {

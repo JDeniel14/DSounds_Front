@@ -1,0 +1,17 @@
+
+
+
+.bannerDisc{
+  background: #5d0b41;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+@media (min-width: 1002px){
+
+  #Disc-container{
+   margin: auto;
+  }
+}

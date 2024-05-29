@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Sanitizer } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, Sanitizer } from '@angular/core';
 import { IEvent } from '../../../../Models/EventsModels/IEvent';
 import { ActivatedRoute } from '@angular/router';
 import {  PrimeNGConfig } from 'primeng/api';
@@ -9,7 +9,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { IInfoEvento } from '../../../../Models/InfoEventModels/InfoEvent';
 import { Subscription } from 'rxjs';
 import {CardModule} from 'primeng/card'
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../../../../environments/environment.development';
 import { DatePipe } from '@angular/common';
 @Component({
@@ -22,7 +22,7 @@ import { DatePipe } from '@angular/common';
 export class InfoEventoComponent implements OnInit, OnDestroy{
 
   public evento?:IInfoEvento;
-  public idEvento?:string;
+  public idEvento?:string ="";
   public srcEventoMap:string ="";
   public urlTwitter:string="";
   public urlYT : string= "";
@@ -31,13 +31,17 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
   public urlInstagram : string ="";
   private subIdEvento:Subscription = new Subscription;
   private subParam:Subscription = new Subscription;
+
+  public urlMap:SafeResourceUrl ="";
+
   /**
    *
    */
   constructor(private activatedRoute:ActivatedRoute,
               private primengConfig:PrimeNGConfig,
               private restSvc : RestNodeService,
-              private sanitazer :DomSanitizer
+              private sanitazer :DomSanitizer,
+              private changeDetector: ChangeDetectorRef
 
 
   ) {
@@ -46,7 +50,7 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     this.subIdEvento.unsubscribe()
     this.subParam.unsubscribe();
-
+    this.changeDetector.detectChanges();
 
   }
 
@@ -58,8 +62,9 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
         this.idEvento = param.get('idEvento') as string
         this.ObtenerEventoById();
         this.ActualizarRedesSociales();
+        this.urlMap =  this.GetMapEvento()
       }
-    )
+    );
 
   }
 
@@ -85,6 +90,7 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
 
       public GetMapEvento(){
         const API_KEYGOOGLE = environment.googleAPIKEY;
+
         let url = `https://www.google.com/maps/embed/v1/place?key=${API_KEYGOOGLE}&q=${this.evento?._embedded.venues[0].location.latitude},${this.evento?._embedded.venues[0].location.longitude}`
         return this.sanitazer.bypassSecurityTrustResourceUrl(url)
       }

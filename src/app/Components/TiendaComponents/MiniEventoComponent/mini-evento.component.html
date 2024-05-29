@@ -1,0 +1,15 @@
+<a class="transition-all duration-700 flex relative p-3 overflow-hidden items-center gap-5
+       rounded-md shadow-lg hover:shadow-xl w-56 flex-col hover:bg-[#5d0b41] border-2 max-h-[330px]"
+   [routerLink]="['/InfoEvento/',this.Evento.id]" routerLinkActive="router-link-active">
+    <picture class="aspect-square w-full h-auto flex-none">
+        <img src="{{this.Evento.images[3].url}}" alt="Imagen del evento {{this.Evento.name}}"
+             class="object-cover w-full h-full rounded-md imagenEvento">
+    </picture>
+
+    <div class="flex flex-auto flex-col text-wrap text-center gap-2 p-2">
+        <h4 class="text-md text-white overflow-hidden text-ellipsis truncate text-wrap">{{this.Evento.name}}</h4>
+        <hr/>
+        <span class="text-md text-white truncate  text-ellipsis">{{this.Evento._embedded!.venues[0].name}}</span>
+        <span class="text-md text-white truncate text-ellipsis">{{this.Evento._embedded!.venues[0].city.name}}</span>
+    </div>
+</a>

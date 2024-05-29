@@ -38,23 +38,25 @@
               <div class="redes">
                 <div class="menuRedes">
                   <ul>
-                    @if(this.evento!._embedded.attractions[0].externalLinks.twitter != null){
-                      <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.twitter[0].url" target="_blank" class="x"><img src="../../../../../assets/images/icons/icons8-twitterx-30.png" alt="X Icon" /><i class="fab fa-x"></i></a></li>
+                 @if(evento!._embedded.attractions[0].externalLinks != undefined){
+                  @if(this.evento!._embedded.attractions[0].externalLinks.twitter != undefined){
+                    <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.twitter[0].url" target="_blank" class="x"><img src="../../../../../assets/images/icons/icons8-twitterx-30.png" alt="X Icon" /><i class="fab fa-x"></i></a></li>
+                  }
+                  @if(this.evento!._embedded.attractions[0].externalLinks.spotify != undefined){
+                    <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.spotify[0].url" target="_blank" class="spotify"><img src="../../../../../assets/images/icons/icons8-spotify-24.png" alt="Spotify Icon" /><i class="fab fa-spotify"></i></a></li>
+                  }
+                  @if(this.evento!._embedded.attractions[0].externalLinks.youtube != undefined){
+                    <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.youtube[0].url" target="_blank" class="youtube"><img src="../../../../../assets/images/icons/icons8-youtube-30.png" alt="YouTube Icon" /><i class="fab fa-youtube"></i></a></li>
+                  }
+                    @if(this.evento!._embedded.attractions[0].externalLinks.instagram != undefined){
+                      <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.instagram[0].url" target="_blank" class="instagram"><img src="../../../../../assets/images/icons/icons8-instagram-30.png" alt="Instagram Icon" /><i class="fab fa-instagram"></i></a></li>
                     }
-                    @if(this.evento!._embedded.attractions[0].externalLinks.spotify != null){
-                      <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.spotify[0].url" target="_blank" class="spotify"><img src="../../../../../assets/images/icons/icons8-spotify-24.png" alt="Spotify Icon" /><i class="fab fa-spotify"></i></a></li>
-                    }
-                    @if(this.evento!._embedded.attractions[0].externalLinks.youtube != null){
-                      <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.youtube[0].url" target="_blank" class="youtube"><img src="../../../../../assets/images/icons/icons8-youtube-30.png" alt="YouTube Icon" /><i class="fab fa-youtube"></i></a></li>
-                    }
-                      @if(this.evento!._embedded.attractions[0].externalLinks.instagram != null){
-                        <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.instagram[0].url" target="_blank" class="instagram"><img src="../../../../../assets/images/icons/icons8-instagram-30.png" alt="Instagram Icon" /><i class="fab fa-instagram"></i></a></li>
-                      }
 
-                      @if (this.evento!._embedded.attractions[0].externalLinks.itunes != null) {
+                    @if (this.evento!._embedded.attractions[0].externalLinks.itunes != undefined) {
 
-                        <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.itunes[0].url" target="_blank" class="itunes"><img src="../../../../../assets/images/icons/icons8-itunes-30.png" alt="iTunes Icon" /><i class="fab fa-itunes"></i></a></li>
-                      }
+                      <li><a [href]="this.evento!._embedded.attractions[0].externalLinks.itunes[0].url" target="_blank" class="itunes"><img src="../../../../../assets/images/icons/icons8-itunes-30.png" alt="iTunes Icon" /><i class="fab fa-itunes"></i></a></li>
+                    }
+                 }
 
 
                   </ul>
@@ -79,20 +81,22 @@
         <p class="m-0 ">
             Este evento tendrá lugar en:
           </p>
-          <div class=" m-0">
-            <h3 class="text-white text-lg font-bold underline">{{this.evento?._embedded!.venues[0].name}}</h3>
-            <p class="mt-2">{{this.evento?._embedded!.venues[0].address.line1}},{{this.evento?._embedded!.venues[0].city.name}}</p>
-            <p class="mt-2">Día y hora de comienzo: {{ this.evento?.dates?.start?.dateTime| date:'dd-MM-yyyy, HH:mm'}}  </p>
-            <iframe
-            width="400"
-            height="350"
-            style="border:0; border-radius: 10px; margin-top: 20px;"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade"
-            [src]="GetMapEvento()">
-          </iframe>
-          </div>
+          @if (evento!._embedded.venues[0].location != undefined) {
+            <div class=" m-0">
+              <h3 class="text-white text-lg font-bold underline">{{this.evento?._embedded!.venues[0].name}}</h3>
+              <p class="mt-2">{{this.evento?._embedded!.venues[0].address.line1}},{{this.evento?._embedded!.venues[0].city.name}}</p>
+              <p class="mt-2">Día y hora de comienzo: {{ this.evento?.dates?.start?.dateTime| date:'dd-MM-yyyy, HH:mm'}}  </p>
+              <iframe
+              width="400"
+              height="350"
+              style="border:0; border-radius: 10px; margin-top: 20px;"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              [src]="this.urlMap">
+            </iframe>
+            </div>
+          }
     </p-card>
 
     </div>

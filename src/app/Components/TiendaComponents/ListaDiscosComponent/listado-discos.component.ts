@@ -54,7 +54,7 @@ async ObtenerDiscos(){
 
   if(resp.codigo == 0){
     this.Discos = resp.otrosdatos;
-    this.discosBusqueda = this.Discos.slice(1,this.cantidadDiscosRenderizar)
+    this.discosBusqueda = this.Discos.slice(0,this.cantidadDiscosRenderizar)
     this.cantidadAñadida = this.cantidadDiscosRenderizar;
 
 
@@ -77,6 +77,7 @@ BuscarDiscos(){
     }, 500);
 
   }else{
+    this.busqueda = false;
     this.discosBusqueda = this.Discos;
   }
 
