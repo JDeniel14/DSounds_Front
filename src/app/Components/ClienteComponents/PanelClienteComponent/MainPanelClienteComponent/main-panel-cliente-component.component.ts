@@ -7,7 +7,9 @@ import { IPedido } from '../../../../Models/Pedido';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { formatDate } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { AuthorizationSpotify } from '../../../../Models/SpotifyModels/authorizationSpotify';
+import { ISpotifyProfile } from '../../../../Models/SpotifyModels/SpotifyProfile';
 
 @Component({
   selector: 'app-main-panel-cliente-component',
@@ -21,12 +23,18 @@ export class MainPanelClienteComponentComponent implements OnInit, OnDestroy {
   public datosCliente?:ICliente ;
   public ultimoPedido?:IPedido;
   public fechaPedidoFormateada?:string;
+  public authorizationSpotify?: AuthorizationSpotify;
+  public perfilSpotifyUser?:ISpotifyProfile;
+
 
   private subCliente :Subscription = new Subscription;
+  private subParams: Subscription = new Subscription;
   /**
    *
    */
-  constructor(@Inject(TOKEN_STORAGE_SERVICE) private storageSvc:IStorageService) {
+  constructor(@Inject(TOKEN_STORAGE_SERVICE) private storageSvc:IStorageService,
+              private activatedRoute: ActivatedRoute
+) {
 
 
   }
@@ -43,11 +51,36 @@ export class MainPanelClienteComponentComponent implements OnInit, OnDestroy {
       }
     )
 
-    console.log('datos del cliente recuperados...', this.datosCliente)
-    console.log('ultimo pedido...', this.ultimoPedido)
+        console.log('datos del cliente recuperados...', this.datosCliente)
+        console.log('ultimo pedido...', this.ultimoPedido)
+
+
+        this.subParams = this.activatedRoute.queryParams.subscribe(
+          params => {
+            let accessToken = params['access_token']
+            let refreshToken = params['refresh_token']
+
+            if(accessToken && refreshToken){
+              this.authorizationSpotify!.access_token = accessToken;
+              this.authorizationSpotify!.refresh_token = refreshToken;
+              //Todo: Guardar en memoria estos datos
+
+              console.log('parametros spotify..', this.authorizationSpotify?.access_token, this.authorizationSpotify?.refresh_token)
+            }
+          }
+        )
+
+
   }
+
+  LoguearSpotify(){
+    window.location.href="http://localhost:3003/api/DsoundsSpotify/LoginSpotify"
+  }
+
+
   ngOnDestroy(): void {
     this.subCliente.unsubscribe();
+    this.subParams.unsubscribe();
   }
 
 }
