@@ -148,5 +148,11 @@ export class RestNodeService {
     )
   }
 
+  ObtenerPerfilUsuarioSpotify(access_token:string){
+    return lastValueFrom(
+      this._httpClient.get(`http://localhost:3003/api/DsoundsSpotify/ObtenerUsuarioSpotify?access_token=${access_token}`)
+    )
+  }
+
    //#endregion
 }

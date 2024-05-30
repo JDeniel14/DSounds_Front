@@ -23,7 +23,7 @@ export class MainPanelClienteComponentComponent implements OnInit, OnDestroy {
   public datosCliente?:ICliente ;
   public ultimoPedido?:IPedido;
   public fechaPedidoFormateada?:string;
-  public authorizationSpotify?: AuthorizationSpotify;
+  public authorizationSpotify: AuthorizationSpotify  = {access_token:'',refresh_token:''};
   public perfilSpotifyUser?:ISpotifyProfile;
 
 
@@ -61,8 +61,8 @@ export class MainPanelClienteComponentComponent implements OnInit, OnDestroy {
             let refreshToken = params['refresh_token']
 
             if(accessToken && refreshToken){
-              this.authorizationSpotify!.access_token = accessToken;
-              this.authorizationSpotify!.refresh_token = refreshToken;
+              this.authorizationSpotify.access_token = accessToken;
+              this.authorizationSpotify.refresh_token = refreshToken;
               //Todo: Guardar en memoria estos datos
 
               console.log('parametros spotify..', this.authorizationSpotify?.access_token, this.authorizationSpotify?.refresh_token)
