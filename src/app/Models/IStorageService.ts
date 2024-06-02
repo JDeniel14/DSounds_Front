@@ -1,6 +1,9 @@
 import { Observable } from "rxjs";
 import ICliente from "./ICliente";
 import IDisco from "./Disco";
+import { AuthorizationSpotify } from "./SpotifyModels/authorizationSpotify";
+import { ISpotifyProfile } from "./SpotifyModels/SpotifyProfile";
+import { IUserPlaylistSpotify } from "./SpotifyModels/UserPlaylistSpotify";
 
 export interface IStorageService{
 
@@ -12,4 +15,7 @@ export interface IStorageService{
   RecuperarItemsPedidoCliente():Observable<{disco:IDisco, cantidadElemento:number}[]>;
   EliminarDatosClienteStorage():void;
   LimpiarCarrito():void;
+  AlmacenarDatosUsuarioSpotify(authorizationSpotify?:AuthorizationSpotify, perfilSpotifyUser?: ISpotifyProfile,playlistSpotifyUser?: IUserPlaylistSpotify):void;
+  RecuperarDatosUsuarioSpotify():Observable<{authorizationSpotify?:AuthorizationSpotify, perfilSpotifyUser?: ISpotifyProfile,playlistSpotifyUser?: IUserPlaylistSpotify} | null>;
+
 }

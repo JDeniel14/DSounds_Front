@@ -5,6 +5,9 @@ import IDisco from '../Models/Disco';
 import ICliente from '../Models/ICliente';
 import { CookieService } from 'ngx-cookie-service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthorizationSpotify } from '../Models/SpotifyModels/authorizationSpotify';
+import { ISpotifyProfile } from '../Models/SpotifyModels/SpotifyProfile';
+import { IUserPlaylistSpotify } from '../Models/SpotifyModels/UserPlaylistSpotify';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +17,8 @@ export class SubjectStorageService implements IStorageService {
   private _clienteSubject$ : BehaviorSubject<ICliente| null> = new BehaviorSubject<ICliente|null>(null);
   private _jwtSubject$ : BehaviorSubject<string>=new BehaviorSubject<string>('');
   private _discosPedidoSubject$ : BehaviorSubject<{disco:IDisco, cantidadElemento:number}[]> = new BehaviorSubject<{disco:IDisco, cantidadElemento:number}[]>([]);
+  private _datosUsuarioSpotify$ : BehaviorSubject<{authorizationSpotify?:AuthorizationSpotify, perfilSpotifyUser?: ISpotifyProfile,playlistSpotifyUser?: IUserPlaylistSpotify}|null> =
+                                  new BehaviorSubject<{authorizationSpotify?:AuthorizationSpotify, perfilSpotifyUser?: ISpotifyProfile,playlistSpotifyUser?: IUserPlaylistSpotify} | null>(null);
 
 
 
@@ -138,6 +143,29 @@ export class SubjectStorageService implements IStorageService {
   RecuperarItemsPedidoCliente(): Observable<{ disco: IDisco, cantidadElemento: number; }[]> {
     return this._discosPedidoSubject$.asObservable();
   }
+
+
+
+  AlmacenarDatosUsuarioSpotify(authorizationSpotify?: AuthorizationSpotify,  perfilSpotifyUser?: ISpotifyProfile,playlistSpotifyUser?: IUserPlaylistSpotify): void {
+
+    const datosUsuarioSpotify = this._datosUsuarioSpotify$.value || null;
+
+    const datosUsuarioSpotifyActualizados = {
+      ...datosUsuarioSpotify,
+      ...(authorizationSpotify && {authorizationSpotify}),
+      ...(perfilSpotifyUser && {perfilSpotifyUser}),
+      ...(playlistSpotifyUser && {playlistSpotifyUser}),
+    }
+
+    this._datosUsuarioSpotify$.next(datosUsuarioSpotifyActualizados);
+
+}
+RecuperarDatosUsuarioSpotify(): Observable<{ authorizationSpotify?: AuthorizationSpotify; perfilSpotifyUser?: ISpotifyProfile,playlistSpotifyUser?: IUserPlaylistSpotify } | null> {
+  return this._datosUsuarioSpotify$.asObservable();
+}
+
+
+
   EliminarDatosClienteStorage(): void {
     this.cookieService.delete('cookieDatosCliente');
     this.cookieService.delete('cookieJWT');
@@ -145,6 +173,7 @@ export class SubjectStorageService implements IStorageService {
     this._clienteSubject$.next(null);
     this._jwtSubject$.next('');
     this._discosPedidoSubject$.next([]);
+    this._datosUsuarioSpotify$.next(null);
 
     //Reemplazamos en el historial la ruta anterior por la principal para que no recargue la página a la anterior al cerrar sesión
     history.replaceState(null, '', '/');

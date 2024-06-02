@@ -36,3 +36,78 @@
   }
 
 }
+.flex-row.items-center {
+  display: flex;
+  align-items: center;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+:host ::ng-deep .playlist-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Dialog Background and Text Color */
+:host ::ng-deep .p-dialog {
+  background-color: #131313;
+  color: white;
+}
+:host ::ng-deep .p-dialog-content {
+  background-color: #131313;
+  color: white;
+}
+:host ::ng-deep .p-dialog-header {
+  background-color: #131313;
+  color: white;
+}
+
+/* List Background Color */
+:host ::ng-deep .p-listbox .p-listbox-list {
+  background-color: #131313;
+}
+
+/* Remove background on hover */
+:host ::ng-deep .p-listbox .p-listbox-item:hover {
+  background-color: #131313;
+  color: white;
+}
+
+/* List Item Text Color */
+:host ::ng-deep .p-listbox .p-listbox-item {
+  color: white;
+  background-color: #131313; /* Ensure background color is the same */
+}
+:host ::ng-deep .p-listbox .p-listbox-item:active {
+  color: white;
+  background-color: #131313;
+}
+
+/* Button Background and Text Color */
+:host ::ng-deep .p-button.p-component {
+  background-color: #5d0b41;
+  color: white;
+}
+
+/* Button Hover Effect */
+:host ::ng-deep .p-button.p-component:hover {
+  background-color: #480a30;
+}
+
+/* Remove background color for highlighted items */
+:host ::ng-deep .p-listbox .p-listbox-item.p-highlight {
+  background-color: transparent;
+  border: none;
+  color: white;
+}

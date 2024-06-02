@@ -6,8 +6,22 @@
     <h1 class="text-white  text-lg textocab">Bienvenido a tu cuenta DSounds, {{datosCliente?.nombre}}</h1>
 
    </div>
-    <div class="flex flex-row flex-wrap justify-center m-3">
-      <p-button type="button" class="bg-[#1db954] p-2 rounded-xl" label="Iniciar sesión con Spotify" (click)="LoguearSpotify()"></p-button>
+    <div class="flex flex-row flex-wrap justify-center m-1">
+      @if(this.perfilSpotifyUser == null){
+        <p-button icon="fab fa-spotify" type="button" class="bg-[#1db954] m-2 p-2 rounded-xl hover:scale-105 transition-transform duration-300" label="Iniciar sesión con Spotify" (click)="LoguearSpotify()"></p-button>
+      }@else{
+        <div class="flex flex-col items-center gap-4">
+          <span class="font-bold text-lg">Tu perfil de spotify</span>
+          <div class="flex flex-row gap-4 justify-center flex-wrap">
+            <p-avatar [shape]="'circle'" [image]="this.perfilSpotifyUser.images[0].url" size="xlarge"></p-avatar>
+            <div class="flex flex-col justify-center gap-2 flex-wrap items-center">
+              <p class="text-white text-lg">{{this.perfilSpotifyUser.display_name}}</p>
+              <p class="text-white text-sm">{{this.perfilSpotifyUser.email}}</p>
+            </div>
+          </div>
+        </div>
+
+      }
     </div>
   </div>
   <div class="flex flex-row justify-around text-center m-4 flex-wrap gap-20">

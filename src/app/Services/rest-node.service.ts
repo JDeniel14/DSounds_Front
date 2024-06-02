@@ -7,6 +7,7 @@ import { IProvincia } from '../Models/Provincia';
 import { IMunicipio } from '../Models/Municipio';
 import { IPedido } from '../Models/Pedido';
 import { IDireccion } from '../Models/Direccion';
+import { IRespuestaSpotify } from '../Models/SpotifyModels/RespuestaSpotify';
 
 @Injectable({
   providedIn: 'root'
@@ -148,11 +149,32 @@ export class RestNodeService {
     )
   }
 
-  ObtenerPerfilUsuarioSpotify(access_token:string){
+  ObtenerPerfilUsuarioSpotify(access_token:string):Promise<IRespuestaSpotify>{
     return lastValueFrom(
-      this._httpClient.get(`http://localhost:3003/api/DsoundsSpotify/ObtenerUsuarioSpotify?access_token=${access_token}`)
+      this._httpClient.get<IRespuestaSpotify>(`http://localhost:3003/api/DsoundsSpotify/ObtenerPerfilSpotify?access_token=${access_token}`)
     )
   }
+
+  ObtenerPlaylistUsuarioSpotify(access_token:string):Promise<IRespuestaSpotify>{
+    return lastValueFrom(
+      this._httpClient.get<IRespuestaSpotify>(`http://localhost:3003/api/DsoundsSpotify/ObtenerPlaylistUsuario?access_token=${access_token}`)
+    )
+  }
+
+  BuscarAlbumSpotify(access_token:string, nombreDisco:string):Promise<IRespuestaSpotify>{
+
+    return lastValueFrom(
+      this._httpClient.post<IRespuestaSpotify>('http://localhost:3003/api/DsoundsSpotify/BuscarAlbumSpotify',{access_token,nombreDisco})
+    )
+  }
+
+  AddDiscoToPlaylist(idPlaylist:string, idAlbum:string, access_token:string):Promise<IRespuestaSpotify>{
+
+    return lastValueFrom(
+      this._httpClient.post<IRespuestaSpotify>('http://localhost:3003/api/DsoundsSpotify/AddDiscoToPlaylist',{idPlaylist,idAlbum,access_token})
+    )
+  }
+
 
    //#endregion
 }
