@@ -78,7 +78,9 @@ BuscarDiscos(){
 
   }else{
     this.busqueda = false;
-    this.discosBusqueda = this.Discos;
+    this.cantidadDiscosRenderizar = 15
+    this.discosBusqueda = this.Discos.slice(0,this.cantidadDiscosRenderizar)
+    this.cantidadAñadida = this.cantidadDiscosRenderizar;
   }
 
 

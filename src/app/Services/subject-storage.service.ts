@@ -73,7 +73,7 @@ export class SubjectStorageService implements IStorageService {
     }
 
     const clienteActualizado = {...clienteExistente, ...datoscliente} as ICliente
-
+    
 
     this.cookieService.set('cookieDatosCliente',JSON.stringify(clienteActualizado));
     this._clienteSubject$.next(clienteActualizado);
@@ -125,9 +125,8 @@ export class SubjectStorageService implements IStorageService {
 
         case 'MODIFICAR':
         if(_posItemPedido != -1){
-          if(this._discosPedidoSubject$.value[_posItemPedido].cantidadElemento != 0){
-            this._discosPedidoSubject$.value[_posItemPedido].cantidadElemento = cantidad
-          }else{
+          this._discosPedidoSubject$.value[_posItemPedido].cantidadElemento = cantidad
+          if(this._discosPedidoSubject$.value[_posItemPedido].cantidadElemento == 0){
             this._discosPedidoSubject$.value.splice(_posItemPedido,1);
           }
         }
@@ -175,10 +174,12 @@ RecuperarDatosUsuarioSpotify(): Observable<{ authorizationSpotify?: Authorizatio
     this._discosPedidoSubject$.next([]);
     this._datosUsuarioSpotify$.next(null);
 
-    //Reemplazamos en el historial la ruta anterior por la principal para que no recargue la página a la anterior al cerrar sesión
-    history.replaceState(null, '', '/');
-    //navegamos a la ruta raiz
-    this.router.navigate(['/']);
+    setTimeout(() => {
+      //Reemplazamos en el historial la ruta anterior por la principal para que no recargue la página a la anterior al cerrar sesión
+      history.replaceState(null, '', '/');
+      //navegamos a la ruta raiz
+      this.router.navigate(['/']);
+    }, 1000);
 
   }
 
