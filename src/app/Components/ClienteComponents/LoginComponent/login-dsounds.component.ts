@@ -25,6 +25,7 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
   private subParams:Subscription;
   private mensajeServer?:string;
   private errorServer?:string;
+  private subLogin$:Subscription = new Subscription;
 
   public formLogin : FormGroup = new FormGroup(
     {
@@ -96,10 +97,10 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
       if(this.formLogin.valid){
         console.log(this.formLogin.value)
 
-        this.restSvc.LoginCliente(this.formLogin.value).subscribe(
+     this.subLogin$ =   this.restSvc.LoginCliente(this.formLogin.value).subscribe(
           (resp:IRestMessage)=>{
+            console.log(resp)
             if(resp.codigo == 0){
-
              let _datosCliente = resp.datosCliente as ICliente;
 
               this.jwt = resp.token;
@@ -118,8 +119,18 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
                 this.router.navigateByUrl('/Home');
               },2000)
             }else{
-              this.mensajeServer=resp.mensaje;
+
+              this.messageService.add({ severity: 'warn', summary: 'Login', detail: `${resp.error}}` });
             }
+          },
+          (error) => {
+            let errorMsg = error.error?.mensaje || 'Error en la solicitud al servidor';
+            let errorDetail = error.error?.error || 'No se pudo conectar con el servidor';
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Login',
+              detail: `${errorMsg}: ${errorDetail}`
+            });
           }
         );
 
@@ -135,5 +146,6 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
     if(this.subParams){
       this.subParams.unsubscribe();
     }
+    this.subLogin$.unsubscribe();
   }
 }
