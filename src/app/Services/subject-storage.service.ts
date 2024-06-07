@@ -28,10 +28,10 @@ export class SubjectStorageService implements IStorageService {
               private router : Router
     ) {
 
-    const cookieClienteExists: boolean = this.cookieService.check('cookieDatosCliente');
+    //const cookieClienteExists: boolean = this.cookieService.check('cookieDatosCliente');
     const cookieJWTExists: boolean = this.cookieService.check('cookieJWT');
 
-    if(cookieClienteExists){
+   /* if(cookieClienteExists){
 
       const stringDatosCliente = this.cookieService.get('cookieDatosCliente');
       let datosClienteCookie:ICliente|null = null;
@@ -40,9 +40,15 @@ export class SubjectStorageService implements IStorageService {
         datosClienteCookie = JSON.parse(stringDatosCliente);
       }
 
+
       this._clienteSubject$.next(datosClienteCookie);
 
-    }
+    }*/
+   let datosClienteCookie: ICliente;
+      if (typeof window !== 'undefined' && window.localStorage) {
+        datosClienteCookie = JSON.parse(localStorage.getItem('cookieDatosCliente')!) as ICliente;
+      this._clienteSubject$.next(datosClienteCookie);
+      }
 
     if(cookieJWTExists){
       const stringCookieJWT = this.cookieService.get('cookieJWT');
@@ -66,16 +72,17 @@ export class SubjectStorageService implements IStorageService {
 
    AlmacenarDatosCliente(datoscliente: ICliente): void {
 
-    const cookieDatosClienteString = this.cookieService.get('cookieDatosCliente');
+    /*const cookieDatosClienteString = this.cookieService.get('cookieDatosCliente');
     let clienteExistente : ICliente|null = null;
     if(cookieDatosClienteString){
       clienteExistente = JSON.parse(cookieDatosClienteString);
-    }
-
+    }*/
+    let clienteExistente : ICliente = (JSON.parse(localStorage.getItem('cookieDatosCliente')! )) as ICliente;
     const clienteActualizado = {...clienteExistente, ...datoscliente} as ICliente
-    
 
-    this.cookieService.set('cookieDatosCliente',JSON.stringify(clienteActualizado));
+
+    //this.cookieService.set('cookieDatosCliente',JSON.stringify(clienteActualizado));
+    localStorage.setItem('cookieDatosCliente',JSON.stringify(clienteActualizado));
     this._clienteSubject$.next(clienteActualizado);
   }
 
@@ -166,7 +173,8 @@ RecuperarDatosUsuarioSpotify(): Observable<{ authorizationSpotify?: Authorizatio
 
 
   EliminarDatosClienteStorage(): void {
-    this.cookieService.delete('cookieDatosCliente');
+    //this.cookieService.delete('cookieDatosCliente');
+    localStorage.removeItem('cookieDatosCliente')
     this.cookieService.delete('cookieJWT');
 
     this._clienteSubject$.next(null);
