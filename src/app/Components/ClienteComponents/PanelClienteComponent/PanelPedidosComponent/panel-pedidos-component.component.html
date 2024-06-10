@@ -48,7 +48,7 @@
                       <div class="flex justify-around align-items-center mt-5">
                           <div class="">
 
-                              <span class="font-semibold text-xl ">{{ pedido.totalPedido + '€' }}</span>
+                              <span class="font-semibold text-xl ">{{ pedido.totalPedido.toFixed(2) + '€' }}</span>
                           </div>
                          @if (pedido.estadoPedido !== 'Cancelado') {
 

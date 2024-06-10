@@ -36,7 +36,7 @@
       </div>
       <div class="mb-4">
         <p class="text-white text-lg">Total a pagar:</p>
-        <p class=" text-xl font-bold  italic">{{ (this.subtotal$ | async)! + this.gastosEnvio }} €</p>
+        <p class=" text-xl font-bold  italic">{{ ((this.subtotal$ | async)! + this.gastosEnvio).toFixed(2) }} €</p>
       </div>
 
     </div>

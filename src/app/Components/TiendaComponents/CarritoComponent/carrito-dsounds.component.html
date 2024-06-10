@@ -39,7 +39,7 @@
       </div>
       <div class="mb-4">
         <p class="text-white text-lg">Total a pagar:</p>
-        <p class=" text-xl font-bold  italic">{{ (this.subtotal$ | async)! + this.gastosEnvio }} €</p>
+        <p class=" text-xl font-bold  italic">{{ ((this.subtotal$ | async)! + this.gastosEnvio).toFixed(2) }} €</p>
       </div>
       <button [routerLink]="['/RealizarPago']" routerLinkActive="router-link-active"  class="bg-[#131313] hover:bg-[#722c5b] text-white font-bold py-2 px-4 rounded shadow-lg">Ir a Pagar</button>
     </div>
