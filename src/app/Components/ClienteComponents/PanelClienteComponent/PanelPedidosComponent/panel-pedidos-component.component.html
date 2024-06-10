@@ -35,15 +35,27 @@
                       </div>
                       <div class="mb-3 font-medium text-gray-200 flex flex-col justify-center flex-wrap">
                           <span>Nº Pedido: {{ pedido._id }}</span>
-                          <span>{{ pedido.fechaPedido |date: 'dd/MM/yyyy' }}</span>
+                          <span class="border-b">{{ pedido.fechaPedido |date: 'dd/MM/yyyy' }}</span>
+                          <ul>
+                            @for (item of pedido.elementosPedido; track $index) {
+                              <li class="text-wrap">
+                                {{item.disco.Nombre}} ---- {{item.disco.Precio}}
+                              </li>
+                            }
+
+                          </ul>
                       </div>
                       <div class="flex justify-around align-items-center mt-5">
                           <div class="">
+
                               <span class="font-semibold text-xl ">{{ pedido.totalPedido + '€' }}</span>
                           </div>
-                          <span>
-                              <p-button  styleClass=" botonBorrar bg-black px-4 py-2 rounded-lg  shadow-xl text-red" (onClick)="CancelarPedido(pedido._id)">Cancelar</p-button>
-                          </span>
+                         @if (pedido.estadoPedido !== 'Cancelado') {
+
+                           <span>
+                               <p-button  styleClass=" botonBorrar bg-black px-4 py-2 rounded-lg  shadow-xl text-red" (onClick)="CancelarPedido(pedido._id)">Cancelar</p-button>
+                           </span>
+                         }
                       </div>
                   </div>
               </ng-template>

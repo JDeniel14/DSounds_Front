@@ -81,7 +81,7 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
 
                                 let mensajeAlerta = this.errorServer ? this.mensajeServer+', '+this.errorServer : this.mensajeServer;
 
-                                this.messageService.add({ severity: 'info', summary: 'Login', detail: `${mensajeAlerta}}` });
+                                this.messageService.add({ severity: 'success', summary: 'Login', detail: `${mensajeAlerta}}` });
                                 this.router.navigateByUrl('/Home');
                               }else{
                                 this.messageService.add({ severity: 'warn', summary: 'Login', detail: `${resp.mensaje}}` });
@@ -114,7 +114,7 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
                 ? this.mensajeServer + ', ' + this.errorServer
                 : this.mensajeServer;
 
-              this.messageService.add({ severity: 'info', summary: 'Login', detail: `${mensajeAlerta}, redirigiendo a inicio` });
+              this.messageService.add({ severity: 'success', summary: 'Login', detail: `${mensajeAlerta}, redirigiendo a inicio` });
               setTimeout(()=>{
                 this.router.navigateByUrl('/Home');
               },2000)
