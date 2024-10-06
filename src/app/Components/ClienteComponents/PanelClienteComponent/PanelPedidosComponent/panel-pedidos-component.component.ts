@@ -59,18 +59,23 @@ export class PanelPedidosComponentComponent implements OnInit, OnDestroy {
         case "EN PREPARACIÓN":
            return "info"
 
-
          case "ENVIADO":
                return "warning";
 
         case "CANCELADO":
             return "danger";
 
+        case "SEC":
+          return "secondary"
+
+        case "CONTR":
+          return "contrast"
+
            default:
-           return "";
+           return undefined;
        }
     }else{
-      return;
+      return undefined;
     }
   }
 
@@ -82,7 +87,7 @@ export class PanelPedidosComponentComponent implements OnInit, OnDestroy {
 
       this.storageSvc.AlmacenarDatosCliente(resp.datosCliente as ICliente);
 
-      
+
     }
   }
 
