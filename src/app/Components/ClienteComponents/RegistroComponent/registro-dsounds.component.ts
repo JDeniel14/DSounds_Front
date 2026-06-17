@@ -77,10 +77,12 @@ constructor(private restSvc:RestNodeService,
       if(resp.codigo == 0){
         console.log('registro realizado correctamente..')
         this.messageService.add({ severity: 'info', summary: 'Registro', detail: `Se te ha enviado un correo de activación` });
+      }else{
+        this.messageService.add({ severity: 'warn', summary: 'Registro', detail: `Ha ocurrido un error al realizar el registo.` });
       }
 
     }else{
-      console.log(this.formRegistro)
+      this.messageService.add({ severity: 'warn', summary: 'Registro', detail: `Datos de registro incorrecto, revise los datos.` });
     }
   }
 }

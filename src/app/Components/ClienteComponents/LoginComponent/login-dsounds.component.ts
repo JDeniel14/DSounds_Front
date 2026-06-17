@@ -34,7 +34,7 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
       [Validators.required,
         Validators.pattern( '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$'),
       Validators.minLength(5),
-    Validators.maxLength(12)])
+    Validators.maxLength(20)])
     }
   )
 
@@ -94,6 +94,10 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
   loguearCliente(){
 
 
+    console.log(this.formLogin.controls['email'].errors);  // Muestra los errores del campo email
+    console.log(this.formLogin.controls['password'].errors);  // Muestra los errores del campo password
+
+
       if(this.formLogin.valid){
         console.log(this.formLogin.value)
 
@@ -114,12 +118,11 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
                 ? this.mensajeServer + ', ' + this.errorServer
                 : this.mensajeServer;
 
-              this.messageService.add({ severity: 'success', summary: 'Login', detail: `${mensajeAlerta}, redirigiendo a inicio` });
+              this.messageService.add({ severity: 'success', summary: 'Login', detail: `${mensajeAlerta}, redirigiendo a inicio...` });
               setTimeout(()=>{
                 this.router.navigateByUrl('/Home');
               },2000)
             }else{
-
               this.messageService.add({ severity: 'warn', summary: 'Login', detail: `${resp.error}}` });
             }
           },
@@ -133,11 +136,10 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
             });
           }
         );
-
-
       }else{
         console.log('no valido')
-        console.log(this.formLogin.controls['email'])
+        console.log(this.formLogin)
+        this.messageService.add({ severity: 'warn', summary: 'Login', detail: `Datos de login incorrectos, revise los datos.` });
       }
 
   }
