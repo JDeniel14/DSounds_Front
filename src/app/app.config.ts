@@ -12,6 +12,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { features } from 'node:process';
 import { TOKEN_STORAGE_SERVICE } from './Services/injectionTokenStorageService';
 import { SubjectStorageService } from './Services/subject-storage.service';
+import { providePrimeNG } from 'primeng/config';
 
 registerLocaleData(es);
 
@@ -23,6 +24,7 @@ export const appConfig: ApplicationConfig = {
             importProvidersFrom(FormsModule),
             provideAnimationsAsync(),
             provideHttpClient(withFetch()),
+            providePrimeNG(),
             {provide: TOKEN_STORAGE_SERVICE, useClass: SubjectStorageService},
 
           ]

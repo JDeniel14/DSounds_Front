@@ -10,13 +10,12 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { ButtonModule } from 'primeng/button';
 @Component({
-  selector: 'app-listado-discos',
-  standalone: true,
-  imports: [DiscoComponent, RouterLink, NzSkeletonModule, ReactiveFormsModule, InputTextModule,
-    IconFieldModule,InputIconModule, ButtonModule
-  ],
-  templateUrl: './listado-discos.component.html',
-  styleUrl: './listado-discos.component.css'
+    selector: 'app-listado-discos',
+    imports: [DiscoComponent, RouterLink, NzSkeletonModule, ReactiveFormsModule, InputTextModule,
+        IconFieldModule, InputIconModule, ButtonModule
+    ],
+    templateUrl: './listado-discos.component.html',
+    styleUrl: './listado-discos.component.css'
 })
 export class ListadoDiscosComponent implements OnInit{
   public Discos:IDisco[]= [];

@@ -5,11 +5,10 @@ import { TOKEN_STORAGE_SERVICE } from '../../../Services/injectionTokenStorageSe
 import { IStorageService } from '../../../Models/IStorageService';
 import { Observable, Subscription, filter } from 'rxjs';
 @Component({
-  selector: 'app-menu-dsounds',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './menu-dsounds.component.html',
-  styleUrl: './menu-dsounds.component.css'
+    selector: 'app-menu-dsounds',
+    imports: [RouterLink],
+    templateUrl: './menu-dsounds.component.html',
+    styleUrl: './menu-dsounds.component.css'
 })
 export class MenuDsoundsComponent implements OnInit, OnDestroy{
   public datosCliente : ICliente|null = null;

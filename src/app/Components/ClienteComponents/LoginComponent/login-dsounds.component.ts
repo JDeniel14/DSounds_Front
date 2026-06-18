@@ -11,12 +11,11 @@ import { IStorageService } from '../../../Models/IStorageService';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 @Component({
-  selector: 'app-login-dsounds',
-  standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, ToastModule],
-  templateUrl: './login-dsounds.component.html',
-  styleUrl: './login-dsounds.component.css',
-  providers:[MessageService]
+    selector: 'app-login-dsounds',
+    imports: [RouterLink, ReactiveFormsModule, ToastModule],
+    templateUrl: './login-dsounds.component.html',
+    styleUrl: './login-dsounds.component.css',
+    providers: [MessageService]
 })
 export class LoginDsoundsComponent implements OnInit, OnDestroy{
 

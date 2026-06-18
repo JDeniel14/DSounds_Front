@@ -5,11 +5,10 @@ import { ButtonModule } from 'primeng/button';
 import { IDatosPago } from '../../../../Models/DatosPago';
 
 @Component({
-  selector: 'app-mini-datos-pago',
-  standalone: true,
-  imports: [CardModule,InputMaskModule,ButtonModule],
-  templateUrl: './mini-datos-pago.component.html',
-  styleUrl: './mini-datos-pago.component.css'
+    selector: 'app-mini-datos-pago',
+    imports: [CardModule, InputMaskModule, ButtonModule],
+    templateUrl: './mini-datos-pago.component.html',
+    styleUrl: './mini-datos-pago.component.css'
 })
 export class MiniDatosPagoComponent {
   @Input() tituloPago:string="2. - Datos Pago.";

@@ -14,14 +14,13 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { MessageService } from 'primeng/api';
 import {ToastModule} from 'primeng/toast'
 @Component({
-  selector: 'app-mini-datos-personales',
-  standalone: true,
-  imports: [ReactiveFormsModule, FloatLabelModule, InputTextModule, DropdownModule, ButtonModule,
-            CalendarModule,InputMaskModule, ToastModule
-  ],
-  templateUrl: './mini-datos-personales.component.html',
-  styleUrl: './mini-datos-personales.component.css',
-  providers:[ MessageService]
+    selector: 'app-mini-datos-personales',
+    imports: [ReactiveFormsModule, FloatLabelModule, InputTextModule, DropdownModule, ButtonModule,
+        CalendarModule, InputMaskModule, ToastModule
+    ],
+    templateUrl: './mini-datos-personales.component.html',
+    styleUrl: './mini-datos-personales.component.css',
+    providers: [MessageService]
 })
 export class MiniDatosPersonalesComponent implements OnInit, OnDestroy {
 

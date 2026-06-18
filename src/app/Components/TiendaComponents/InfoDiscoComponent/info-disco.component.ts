@@ -5,7 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { IRestMessage } from '../../../Models/irest-message';
 import { TOKEN_STORAGE_SERVICE } from '../../../Services/injectionTokenStorageService';
 import { IStorageService } from '../../../Models/IStorageService';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
@@ -19,14 +19,13 @@ import { DialogModule } from 'primeng/dialog';
 import {ListboxModule} from 'primeng/listbox'
 import { AvatarModule } from 'primeng/avatar';
 @Component({
-  selector: 'app-info-disco',
-  standalone: true,
-  imports: [AccordionModule, ButtonModule, ToastModule,
-    DropdownModule, DialogModule, ListboxModule, AvatarModule
-  ],
-  templateUrl: './info-disco.component.html',
-  styleUrl: './info-disco.component.css',
-  providers:[MessageService]
+    selector: 'app-info-disco',
+    imports: [AccordionModule, ButtonModule, ToastModule,
+        DropdownModule, DialogModule, ListboxModule, AvatarModule
+    ],
+    templateUrl: './info-disco.component.html',
+    styleUrl: './info-disco.component.css',
+    providers: [MessageService]
 })
 export class InfoDiscoComponent implements OnInit, OnDestroy {
   public disco?: IDisco;
@@ -43,13 +42,11 @@ export class InfoDiscoComponent implements OnInit, OnDestroy {
     private restSvc: RestNodeService,
     private activatedRoute: ActivatedRoute,
     @Inject(TOKEN_STORAGE_SERVICE) private storageSvc : IStorageService,
-    private primengConfig:PrimeNGConfig,
     private messageService: MessageService
   ) {
   }
 
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
     this.idDisco = this.activatedRoute.snapshot.paramMap.get('idDisco') as string;
 
     this.ObtenerDisco();

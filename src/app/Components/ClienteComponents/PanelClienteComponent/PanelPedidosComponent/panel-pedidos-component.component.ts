@@ -9,12 +9,13 @@ import ICliente from '../../../../Models/ICliente';
 import { IPedido } from '../../../../Models/Pedido';
 import { DatePipe } from '@angular/common';
 import { RestNodeService } from '../../../../Services/rest-node.service';
+import { NgStyle } from '@angular/common';
+
 @Component({
-  selector: 'app-panel-pedidos-component',
-  standalone: true,
-  imports: [CarouselModule, ButtonModule,TagModule, DatePipe],
-  templateUrl: './panel-pedidos-component.component.html',
-  styleUrl: './panel-pedidos-component.component.css'
+    selector: 'app-panel-pedidos-component',
+    imports: [CarouselModule, ButtonModule, TagModule, DatePipe,NgStyle],
+    templateUrl: './panel-pedidos-component.component.html',
+    styleUrl: './panel-pedidos-component.component.css'
 })
 export class PanelPedidosComponentComponent implements OnInit, OnDestroy {
 

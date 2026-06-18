@@ -12,11 +12,10 @@ import { AsyncPipe } from '@angular/common';
 
 
 @Component({
-  selector: 'app-mini-datos-envio',
-  standalone: true,
-  imports: [AsyncPipe],
-  templateUrl: './mini-datos-envio.component.html',
-  styleUrl: './mini-datos-envio.component.css'
+    selector: 'app-mini-datos-envio',
+    imports: [AsyncPipe],
+    templateUrl: './mini-datos-envio.component.html',
+    styleUrl: './mini-datos-envio.component.css'
 })
 export class MiniDatosEnvioComponent implements OnDestroy, OnChanges, OnInit {
   @Input()listaProvincias!:IProvincia[];

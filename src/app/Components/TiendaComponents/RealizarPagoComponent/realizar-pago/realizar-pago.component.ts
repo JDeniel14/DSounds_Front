@@ -17,14 +17,13 @@ import { IProvincia } from '../../../../Models/Provincia';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 @Component({
-  selector: 'app-realizar-pago',
-  standalone: true,
-  imports: [RouterLink, AsyncPipe, DropdownModule, MiniDatosEnvioComponent,
-            MiniDatosFacturacionComponent, MiniDatosPagoComponent,
-            ToastModule],
-  providers:[MessageService],
-  templateUrl: './realizar-pago.component.html',
-  styleUrl: './realizar-pago.component.css'
+    selector: 'app-realizar-pago',
+    imports: [RouterLink, AsyncPipe, DropdownModule, MiniDatosEnvioComponent,
+        MiniDatosFacturacionComponent, MiniDatosPagoComponent,
+        ToastModule],
+    providers: [MessageService],
+    templateUrl: './realizar-pago.component.html',
+    styleUrl: './realizar-pago.component.css'
 })
 export class RealizarPagoComponent implements OnInit, OnDestroy {
 

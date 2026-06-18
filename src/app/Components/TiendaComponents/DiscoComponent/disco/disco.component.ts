@@ -3,11 +3,10 @@ import IDisco from '../../../../Models/Disco';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-disco',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './disco.component.html',
-  styleUrl: './disco.component.css'
+    selector: 'app-disco',
+    imports: [RouterLink],
+    templateUrl: './disco.component.html',
+    styleUrl: './disco.component.css'
 })
 export class DiscoComponent {
 

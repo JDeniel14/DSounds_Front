@@ -7,11 +7,10 @@ import { RestNodeService } from '../../../../Services/rest-node.service';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-mini-datos-facturacion',
-  standalone: true,
-  imports: [AsyncPipe],
-  templateUrl: './mini-datos-facturacion.component.html',
-  styleUrl: './mini-datos-facturacion.component.css'
+    selector: 'app-mini-datos-facturacion',
+    imports: [AsyncPipe],
+    templateUrl: './mini-datos-facturacion.component.html',
+    styleUrl: './mini-datos-facturacion.component.css'
 })
 export class MiniDatosFacturacionComponent implements OnChanges{
   @Input()listaProvincias!:IProvincia[];

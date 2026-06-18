@@ -14,11 +14,10 @@ import {AvatarModule} from 'primeng/avatar'
 import { RestNodeService } from '../../../../Services/rest-node.service';
 import { IUserPlaylistSpotify } from '../../../../Models/SpotifyModels/UserPlaylistSpotify';
 @Component({
-  selector: 'app-main-panel-cliente-component',
-  standalone: true,
-  imports: [ CardModule, ButtonModule, RouterLink, AvatarModule ],
-  templateUrl: './main-panel-cliente-component.component.html',
-  styleUrl: './main-panel-cliente-component.component.css'
+    selector: 'app-main-panel-cliente-component',
+    imports: [CardModule, ButtonModule, RouterLink, AvatarModule],
+    templateUrl: './main-panel-cliente-component.component.html',
+    styleUrl: './main-panel-cliente-component.component.css'
 })
 export class MainPanelClienteComponentComponent implements OnInit, OnDestroy {
 

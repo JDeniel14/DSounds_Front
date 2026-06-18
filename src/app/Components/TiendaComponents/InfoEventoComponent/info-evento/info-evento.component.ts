@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, Sanitizer } from '@angular/core';
 import { IEvent } from '../../../../Models/EventsModels/IEvent';
 import { ActivatedRoute } from '@angular/router';
-import {  PrimeNGConfig } from 'primeng/api';
 import { RestNodeService } from '../../../../Services/rest-node.service';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
@@ -13,11 +12,10 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../../../../environments/environment.development';
 import { DatePipe } from '@angular/common';
 @Component({
-  selector: 'app-info-evento',
-  standalone: true,
-  imports: [ButtonModule, ToastModule,AccordionModule, CardModule, DatePipe],
-  templateUrl: './info-evento.component.html',
-  styleUrl: './info-evento.component.css',
+    selector: 'app-info-evento',
+    imports: [ButtonModule, ToastModule, AccordionModule, CardModule, DatePipe],
+    templateUrl: './info-evento.component.html',
+    styleUrl: './info-evento.component.css'
 })
 export class InfoEventoComponent implements OnInit, OnDestroy{
 
@@ -38,7 +36,6 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
    *
    */
   constructor(private activatedRoute:ActivatedRoute,
-              private primengConfig:PrimeNGConfig,
               private restSvc : RestNodeService,
               private sanitazer :DomSanitizer,
               private changeDetector: ChangeDetectorRef
@@ -55,7 +52,6 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
 
     this.subParam= this.activatedRoute.paramMap.subscribe(
       (param)=>{

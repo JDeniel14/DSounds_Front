@@ -3,11 +3,10 @@ import IDisco from '../../../../Models/Disco';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
-  selector: 'app-mini-elemento-carrito',
-  standalone: true,
-  imports: [ButtonModule],
-  templateUrl: './mini-elemento-carrito.component.html',
-  styleUrl: './mini-elemento-carrito.component.css'
+    selector: 'app-mini-elemento-carrito',
+    imports: [ButtonModule],
+    templateUrl: './mini-elemento-carrito.component.html',
+    styleUrl: './mini-elemento-carrito.component.css'
 })
 export class MiniElementoCarritoComponent {
 

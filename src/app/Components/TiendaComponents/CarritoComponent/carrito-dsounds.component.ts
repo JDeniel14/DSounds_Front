@@ -9,11 +9,10 @@ import { MiniElementoCarritoComponent } from '../MiniElementoCarritoComponent/mi
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-carrito-dsounds',
-  standalone: true,
-  imports: [AsyncPipe, MiniElementoCarritoComponent, RouterLink],
-  templateUrl: './carrito-dsounds.component.html',
-  styleUrl: './carrito-dsounds.component.css'
+    selector: 'app-carrito-dsounds',
+    imports: [AsyncPipe, MiniElementoCarritoComponent, RouterLink],
+    templateUrl: './carrito-dsounds.component.html',
+    styleUrl: './carrito-dsounds.component.css'
 })
 export class CarritoDSoundsComponent {
 

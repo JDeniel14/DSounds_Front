@@ -7,12 +7,11 @@ import { ToastModule } from 'primeng/toast';
 import { compareToValidator } from '../../../Validators/compareTo';
 import { MessageService } from 'primeng/api';
 @Component({
-  selector: 'app-registro-dsounds',
-  standalone: true,
-  imports: [ ReactiveFormsModule, RouterLink, ToastModule],
-  templateUrl: './registro-dsounds.component.html',
-  styleUrl: './registro-dsounds.component.css',
-  providers:[MessageService]
+    selector: 'app-registro-dsounds',
+    imports: [ReactiveFormsModule, RouterLink, ToastModule],
+    templateUrl: './registro-dsounds.component.html',
+    styleUrl: './registro-dsounds.component.css',
+    providers: [MessageService]
 })
 export class RegistroDsoundsComponent {
   private datosCliente?:ICliente;

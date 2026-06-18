@@ -12,12 +12,11 @@ import { MessageService } from 'primeng/api';
 import {ToastModule} from 'primeng/toast'
 import { Subscription } from 'rxjs';
 @Component({
-  selector: 'app-mini-cambiar-password-cliente',
-  standalone: true,
-  imports: [ReactiveFormsModule, PasswordModule, FloatLabelModule,ButtonModule, ToastModule],
-  templateUrl: './mini-cambiar-password-cliente.component.html',
-  styleUrl: './mini-cambiar-password-cliente.component.css',
-  providers:[MessageService]
+    selector: 'app-mini-cambiar-password-cliente',
+    imports: [ReactiveFormsModule, PasswordModule, FloatLabelModule, ButtonModule, ToastModule],
+    templateUrl: './mini-cambiar-password-cliente.component.html',
+    styleUrl: './mini-cambiar-password-cliente.component.css',
+    providers: [MessageService]
 })
 export class MiniCambiarPasswordClienteComponent implements OnInit,OnDestroy {
 

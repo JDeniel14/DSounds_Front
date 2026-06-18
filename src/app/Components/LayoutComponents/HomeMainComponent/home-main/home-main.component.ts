@@ -9,11 +9,10 @@ import { RouterLink } from '@angular/router';
 import { RestNodeService } from '../../../../Services/rest-node.service';
 
 @Component({
-  selector: 'app-home-main',
-  standalone: true,
-  imports: [NzCarouselModule, DiscoComponent, RouterLink, NzSkeletonModule],
-  templateUrl: './home-main.component.html',
-  styleUrl: './home-main.component.css'
+    selector: 'app-home-main',
+    imports: [NzCarouselModule, DiscoComponent, RouterLink, NzSkeletonModule],
+    templateUrl: './home-main.component.html',
+    styleUrl: './home-main.component.css'
 })
 export class HomeMainComponent implements OnInit {
 

@@ -19,14 +19,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 @Component({
-  selector: 'app-mini-direcciones-cliente',
-  standalone: true,
-  imports: [CardModule , CarouselModule, ButtonModule, ConfirmDialogModule,
-     ToastModule, DialogModule, ReactiveFormsModule, DropdownModule, InputTextModule,
-    FloatLabelModule],
-  templateUrl: './mini-direcciones-cliente.component.html',
-  styleUrl: './mini-direcciones-cliente.component.css',
-  providers: [ConfirmationService, MessageService ]
+    selector: 'app-mini-direcciones-cliente',
+    imports: [CardModule, CarouselModule, ButtonModule, ConfirmDialogModule,
+        ToastModule, DialogModule, ReactiveFormsModule, DropdownModule, InputTextModule,
+        FloatLabelModule],
+    templateUrl: './mini-direcciones-cliente.component.html',
+    styleUrl: './mini-direcciones-cliente.component.css',
+    providers: [ConfirmationService, MessageService]
 })
 export class MiniDireccionesClienteComponent implements OnInit,OnDestroy {
 

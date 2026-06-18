@@ -4,11 +4,10 @@ import {  NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/route
 import { Subscription, filter } from 'rxjs';
 
 @Component({
-  selector: 'app-panel-datos-cliente',
-  standalone: true,
-  imports: [RouterOutlet, RouterLink],
-  templateUrl: './panel-datos-cliente.component.html',
-  styleUrl: './panel-datos-cliente.component.css'
+    selector: 'app-panel-datos-cliente',
+    imports: [RouterOutlet, RouterLink],
+    templateUrl: './panel-datos-cliente.component.html',
+    styleUrl: './panel-datos-cliente.component.css'
 })
 export class PanelDatosClienteComponent {
 
