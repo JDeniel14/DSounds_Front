@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import ICliente from '../../../../Models/ICliente';
 import { TOKEN_STORAGE_SERVICE } from '../../../../Services/injectionTokenStorageService';
@@ -20,6 +20,10 @@ import { IUserPlaylistSpotify } from '../../../../Models/SpotifyModels/UserPlayl
     styleUrl: './main-panel-cliente-component.component.css'
 })
 export class MainPanelClienteComponentComponent implements OnInit, OnDestroy {
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private activatedRoute = inject(ActivatedRoute);
+  private restSvc = inject(RestNodeService);
+
 
   public datosCliente?:ICliente ;
   public ultimoPedido?:IPedido;
@@ -31,16 +35,6 @@ export class MainPanelClienteComponentComponent implements OnInit, OnDestroy {
   private subCliente :Subscription = new Subscription;
   private subParams: Subscription = new Subscription;
   private subUsuarioSpotify:Subscription= new Subscription;
-  /**
-   *
-   */
-  constructor(@Inject(TOKEN_STORAGE_SERVICE) private storageSvc:IStorageService,
-              private activatedRoute: ActivatedRoute,
-              private restSvc: RestNodeService
-) {
-
-
-  }
   ngOnInit(): void {
     this.subCliente = this.storageSvc.RecuperarDatosCliente().subscribe(
       (datos)=>{

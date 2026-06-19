@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import ICliente from '../../../../../Models/ICliente';
 import { TOKEN_STORAGE_SERVICE } from '../../../../../Services/injectionTokenStorageService';
@@ -23,6 +23,10 @@ import {ToastModule} from 'primeng/toast'
     providers: [MessageService]
 })
 export class MiniDatosPersonalesComponent implements OnInit, OnDestroy {
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private restSvc = inject(RestNodeService);
+  private messageService = inject(MessageService);
+
 
   private subCliente:Subscription = new Subscription;
   public generosOptions = [
@@ -46,15 +50,6 @@ export class MiniDatosPersonalesComponent implements OnInit, OnDestroy {
       fechaNacimiento : new FormControl('')
     }
   );
-
-
-
-  constructor(@Inject(TOKEN_STORAGE_SERVICE) private storageSvc:IStorageService,
-              private restSvc:RestNodeService,
-              private messageService:MessageService
-) {
-
-  }
 
 
 

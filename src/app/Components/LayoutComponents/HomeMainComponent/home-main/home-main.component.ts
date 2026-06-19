@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {NzCarouselModule } from 'ng-zorro-antd/carousel'
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
@@ -15,18 +15,13 @@ import { RestNodeService } from '../../../../Services/rest-node.service';
     styleUrl: './home-main.component.css'
 })
 export class HomeMainComponent implements OnInit {
+  private restSvc = inject(RestNodeService);
+
 
   public arrImgs : string[] = ['../../../../assets/images/43172.jpg','../../../../assets/images/justin-bieber-justice-album-promo-photo-2021-lomasrankiao.jpg']
 
 
   public Discos:IDisco[]= [];
-
-  /**
-   *
-   */
-  constructor(private restSvc : RestNodeService) {
-
-  }
 
   ngOnInit(): void {
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { IDatosPago } from '../../../../Models/DatosPago';
 import ICliente from '../../../../Models/ICliente';
 import { IDireccion } from '../../../../Models/Direccion';
@@ -18,6 +18,9 @@ import { AsyncPipe } from '@angular/common';
     styleUrl: './mini-datos-envio.component.css'
 })
 export class MiniDatosEnvioComponent implements OnDestroy, OnChanges, OnInit {
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private restSvc = inject(RestNodeService);
+
   @Input()listaProvincias!:IProvincia[];
   @Input()datosPago!:IDatosPago;
   @Output() checkDatosFacturacionEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -42,8 +45,7 @@ public checkdirppalenvio:boolean=true;
 public checkclienteloggedenvio:boolean=true;
 
 
-  constructor(@Inject(TOKEN_STORAGE_SERVICE) private storageSvc:IStorageService,
-  private restSvc: RestNodeService){
+  constructor(){
 
 
 this.datosClienteSubscriptor=(this.storageSvc

@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, RouterLink ,Router} from '@angular/router';
 import ICliente from '../../../Models/ICliente';
@@ -18,6 +18,12 @@ import { ToastModule } from 'primeng/toast';
     providers: [MessageService]
 })
 export class LoginDsoundsComponent implements OnInit, OnDestroy{
+  private restSvc = inject(RestNodeService);
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private messageService = inject(MessageService);
+
 
   private clienteRedirigidoActivo?:ICliente;
   private jwt? : string;
@@ -41,12 +47,7 @@ export class LoginDsoundsComponent implements OnInit, OnDestroy{
   /**
    *
    */
-  constructor(private restSvc:RestNodeService,
-              private router:Router,
-              private activatedRoute: ActivatedRoute,
-              @Inject(TOKEN_STORAGE_SERVICE) private storageSvc: IStorageService,
-              private messageService : MessageService
-  ) {
+  constructor() {
     this.subParams = new Subscription();
 
   }

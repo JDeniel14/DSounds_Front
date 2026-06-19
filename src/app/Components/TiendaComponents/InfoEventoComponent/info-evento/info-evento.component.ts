@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, Sanitizer } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, Sanitizer, inject } from '@angular/core';
 import { IEvent } from '../../../../Models/EventsModels/IEvent';
 import { ActivatedRoute } from '@angular/router';
 import { RestNodeService } from '../../../../Services/rest-node.service';
@@ -18,6 +18,11 @@ import { DatePipe } from '@angular/common';
     styleUrl: './info-evento.component.css'
 })
 export class InfoEventoComponent implements OnInit, OnDestroy{
+  private activatedRoute = inject(ActivatedRoute);
+  private restSvc = inject(RestNodeService);
+  private sanitazer = inject(DomSanitizer);
+  private changeDetector = inject(ChangeDetectorRef);
+
 
   public evento?:IInfoEvento;
   public idEvento?:string ="";
@@ -31,19 +36,6 @@ export class InfoEventoComponent implements OnInit, OnDestroy{
   private subParam:Subscription = new Subscription;
 
   public urlMap:SafeResourceUrl ="";
-
-  /**
-   *
-   */
-  constructor(private activatedRoute:ActivatedRoute,
-              private restSvc : RestNodeService,
-              private sanitazer :DomSanitizer,
-              private changeDetector: ChangeDetectorRef
-
-
-  ) {
-
-  }
   ngOnDestroy(): void {
     this.subIdEvento.unsubscribe()
     this.subParam.unsubscribe();

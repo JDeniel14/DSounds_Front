@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, inject } from '@angular/core';
 import { IDatosPago } from '../../../../Models/DatosPago';
 import { IProvincia } from '../../../../Models/Provincia';
 import { IMunicipio } from '../../../../Models/Municipio';
@@ -13,16 +13,14 @@ import { AsyncPipe } from '@angular/common';
     styleUrl: './mini-datos-facturacion.component.css'
 })
 export class MiniDatosFacturacionComponent implements OnChanges{
+  private restSvc = inject(RestNodeService);
+
   @Input()listaProvincias!:IProvincia[];
   @Input()datosPago!:IDatosPago;
 
 
   public listaMunicipios$!:Observable<IMunicipio[]>;
   public mismaDirFactura:boolean = true;
-
-  constructor(private restSvc:RestNodeService){
-
-   }
 
    ngOnChanges(){
     if(this.mismaDirFactura) this.datosPago.DireccionFactura=this.datosPago.DireccionEnvio;

@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import ICliente from '../../../../../Models/ICliente';
 import { IDireccion } from '../../../../../Models/Direccion';
@@ -28,6 +28,11 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     providers: [ConfirmationService, MessageService]
 })
 export class MiniDireccionesClienteComponent implements OnInit,OnDestroy {
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private restSvc = inject(RestNodeService);
+  private confirmationService = inject(ConfirmationService);
+  private messageService = inject(MessageService);
+
 
   private subCliente:Subscription = new Subscription;
   public datosCliente!:ICliente;
@@ -54,14 +59,6 @@ export class MiniDireccionesClienteComponent implements OnInit,OnDestroy {
   );
   public dialogoVisible: boolean = false;
   public operacion: string = "crear";
-
-  constructor(@Inject(TOKEN_STORAGE_SERVICE)private storageSvc:IStorageService,
-              private restSvc : RestNodeService,
-              private confirmationService: ConfirmationService,
-              private messageService: MessageService
-              ) {
-
-  }
   ngOnInit(): void {
     this.subCliente = this.storageSvc.RecuperarDatosCliente().subscribe(
       (datos)=>{

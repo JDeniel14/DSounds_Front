@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DiscoComponent } from '../DiscoComponent/disco/disco.component';
 import { RouterLink } from '@angular/router';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -18,6 +18,8 @@ import { ButtonModule } from 'primeng/button';
     styleUrl: './listado-discos.component.css'
 })
 export class ListadoDiscosComponent implements OnInit{
+  private restSvc = inject(RestNodeService);
+
   public Discos:IDisco[]= [];
   public discosBusqueda:IDisco[] = [];
   public cantidadDiscosRenderizar:number=15;
@@ -30,13 +32,6 @@ export class ListadoDiscosComponent implements OnInit{
   public busqueda:boolean = false;
   private cantidadAñadida:number = 0;
   public mensajeTope:string = "";
-
-  /**
-   *
-   */
-  constructor(private restSvc : RestNodeService) {
-
-  }
   ngOnInit(): void {
 
 

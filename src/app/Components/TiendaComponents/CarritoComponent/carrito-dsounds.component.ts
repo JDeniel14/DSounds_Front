@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RestNodeService } from '../../../Services/rest-node.service';
 import { TOKEN_STORAGE_SERVICE } from '../../../Services/injectionTokenStorageService';
 import { IStorageService } from '../../../Models/IStorageService';
@@ -15,15 +15,18 @@ import { RouterLink } from '@angular/router';
     styleUrl: './carrito-dsounds.component.css'
 })
 export class CarritoDSoundsComponent {
+  private restSvc = inject(RestNodeService);
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+
 
   public listaItemsPedido$!:Observable<{disco:IDisco, cantidadElemento:number}[]>
   public gastosEnvio:number = 2.95;
   public subtotal$!:Observable<number>;
 
 
-  constructor(private restSvc: RestNodeService,
-              @Inject(TOKEN_STORAGE_SERVICE) private storageSvc : IStorageService
-  ) {
+  constructor() {
+    const storageSvc = this.storageSvc;
+
 
     this.listaItemsPedido$ = storageSvc.RecuperarItemsPedidoCliente();
 

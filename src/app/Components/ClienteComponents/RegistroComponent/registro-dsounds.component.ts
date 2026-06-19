@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import ICliente from '../../../Models/ICliente';
@@ -14,6 +14,9 @@ import { MessageService } from 'primeng/api';
     providers: [MessageService]
 })
 export class RegistroDsoundsComponent {
+  private restSvc = inject(RestNodeService);
+  private messageService = inject(MessageService);
+
   private datosCliente?:ICliente;
   public formRegistro: FormGroup = new FormGroup(
     {
@@ -55,16 +58,6 @@ export class RegistroDsoundsComponent {
       ]),
     }
   )
-
-
-/**
- *
- */
-constructor(private restSvc:RestNodeService,
-            private messageService : MessageService
-) {
-
-}
 
   async registroCliente(){
     if(this.formRegistro.valid){

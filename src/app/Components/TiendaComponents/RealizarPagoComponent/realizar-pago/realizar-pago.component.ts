@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Observable, Subscription, map, mergeMap, tap } from 'rxjs';
 import IDisco from '../../../../Models/Disco';
@@ -26,6 +26,11 @@ import { ToastModule } from 'primeng/toast';
     styleUrl: './realizar-pago.component.css'
 })
 export class RealizarPagoComponent implements OnInit, OnDestroy {
+  private restSvc = inject(RestNodeService);
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private router = inject(Router);
+  private messageService = inject(MessageService);
+
 
   public datosCliente : ICliente | null = null;
   private subCliente : Subscription = new Subscription;
@@ -40,11 +45,10 @@ export class RealizarPagoComponent implements OnInit, OnDestroy {
 
   public datosPago : IDatosPago = {TipoDireccionEnvio : "Principal", TipoDireccionFactura:'IgualEnvio'};
 
-  constructor(private restSvc: RestNodeService,
-    @Inject(TOKEN_STORAGE_SERVICE) private storageSvc : IStorageService,
-    private router : Router,
-    private messageService : MessageService
-) {
+  constructor() {
+  const restSvc = this.restSvc;
+  const storageSvc = this.storageSvc;
+
   this.listaProvincias$=restSvc.RecuperarProvincias();
 this.listaItemsPedido$ = storageSvc.RecuperarItemsPedidoCliente();
 

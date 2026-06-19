@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
@@ -18,15 +18,16 @@ import { NgStyle } from '@angular/common';
     styleUrl: './panel-pedidos-component.component.css'
 })
 export class PanelPedidosComponentComponent implements OnInit, OnDestroy {
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private restSvc = inject(RestNodeService);
+
 
   private subCliente : Subscription = new Subscription;
   public datosCliente!:ICliente;
   public pedidosCliente?:IPedido[];
   responsiveOptions: any[] | undefined;
 
-  constructor(@Inject(TOKEN_STORAGE_SERVICE) private storageSvc:IStorageService,
-              private restSvc:RestNodeService
-  ){
+  constructor(){
     this.ObtenerDatosCliente();
   }
   ngOnInit(): void {

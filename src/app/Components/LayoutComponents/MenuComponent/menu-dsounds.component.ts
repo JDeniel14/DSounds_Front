@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router, RouterLink} from '@angular/router'
 import ICliente from '../../../Models/ICliente';
 import { TOKEN_STORAGE_SERVICE } from '../../../Services/injectionTokenStorageService';
@@ -11,22 +11,16 @@ import { Observable, Subscription, filter } from 'rxjs';
     styleUrl: './menu-dsounds.component.css'
 })
 export class MenuDsoundsComponent implements OnInit, OnDestroy{
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private router = inject(Router);
+  private activatedRouter = inject(ActivatedRoute);
+
   public datosCliente : ICliente|null = null;
   private subCliente : Subscription = new Subscription;
   private subUrl:Subscription = new Subscription;
   public urlActual : string = "";
   
   public  regex: RegExp = new RegExp("/MiCuenta/*");
-  /**
-   *
-   */
-  constructor(
-    @Inject(TOKEN_STORAGE_SERVICE) private storageSvc: IStorageService,
-    private router:Router,
-    private activatedRouter: ActivatedRoute
-  ) {
-
-  }
 
   ngOnInit(): void {
 

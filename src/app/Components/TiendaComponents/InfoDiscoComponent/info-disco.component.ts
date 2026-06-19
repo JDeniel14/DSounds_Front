@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import IDisco from '../../../Models/Disco';
 import { RestNodeService } from '../../../Services/rest-node.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -28,6 +28,11 @@ import { AvatarModule } from 'primeng/avatar';
     providers: [MessageService]
 })
 export class InfoDiscoComponent implements OnInit, OnDestroy {
+  private restSvc = inject(RestNodeService);
+  private activatedRoute = inject(ActivatedRoute);
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private messageService = inject(MessageService);
+
   public disco?: IDisco;
   private idDisco: string = '';
   private authorizationSpotify?:AuthorizationSpotify;
@@ -36,15 +41,6 @@ export class InfoDiscoComponent implements OnInit, OnDestroy {
   private searchSpotify?:ISearchSpotifyModel;
   public visible : boolean = false;
   private subUserSpotify:Subscription = new Subscription;
-
-
-  constructor(
-    private restSvc: RestNodeService,
-    private activatedRoute: ActivatedRoute,
-    @Inject(TOKEN_STORAGE_SERVICE) private storageSvc : IStorageService,
-    private messageService: MessageService
-  ) {
-  }
 
   ngOnInit(): void {
     this.idDisco = this.activatedRoute.snapshot.paramMap.get('idDisco') as string;

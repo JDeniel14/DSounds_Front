@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { IEventsRoot } from '../../../Models/EventsModels/IEventsRoot';
 import { RestNodeService } from '../../../Services/rest-node.service';
 import { EventCardComponent } from '../event-card/event-card.component';
@@ -15,16 +15,11 @@ import { RouterLink } from '@angular/router';
     styleUrl: './events-dsounds.component.css'
 })
 export class EventsDsoundsComponent implements OnInit {
+  private restSvc = inject(RestNodeService);
+
 
   public EventosSpain ?:IEventsRoot ;
   public arrLoading:Array<number> = [1,2,3,4]
-
-  /**
-   *
-   */
-  constructor(private restSvc: RestNodeService) {
-
-  }
   ngOnInit(): void {
     this.GetAllEventsSpain();
   }

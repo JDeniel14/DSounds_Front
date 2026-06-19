@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import {  NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 
 import { Subscription, filter } from 'rxjs';
@@ -10,15 +10,8 @@ import { Subscription, filter } from 'rxjs';
     styleUrl: './panel-datos-cliente.component.css'
 })
 export class PanelDatosClienteComponent {
+  private router = inject(Router);
 
-
-  /**
-   *
-   */
-  constructor(private router : Router) {
-
-
-  }
 
 
   ObtenerClassEstilo(url:string):string{

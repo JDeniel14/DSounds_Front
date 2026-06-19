@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { compareToValidator } from '../../../../../Validators/compareTo';
 import { TOKEN_STORAGE_SERVICE } from '../../../../../Services/injectionTokenStorageService';
@@ -19,6 +19,10 @@ import { Subscription } from 'rxjs';
     providers: [MessageService]
 })
 export class MiniCambiarPasswordClienteComponent implements OnInit,OnDestroy {
+  private storageSvc = inject<IStorageService>(TOKEN_STORAGE_SERVICE);
+  private restSvc = inject(RestNodeService);
+  private messageService = inject(MessageService);
+
 
   private datosCliente !: ICliente;
   private subCliente : Subscription = new Subscription;
@@ -52,15 +56,6 @@ export class MiniCambiarPasswordClienteComponent implements OnInit,OnDestroy {
       compareToValidator('nuevaPassword'),
     ]),
   });
-
-  /**
-   *
-   */
-  constructor(@Inject(TOKEN_STORAGE_SERVICE) private storageSvc: IStorageService,
-              private restSvc:RestNodeService,
-            private messageService: MessageService) {
-
-  }
 
   ngOnInit(): void {
     this.subCliente = this.storageSvc.RecuperarDatosCliente().subscribe(

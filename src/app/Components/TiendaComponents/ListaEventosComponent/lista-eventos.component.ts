@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { IEvent } from '../../../Models/EventsModels/IEvent';
 import { RestNodeService } from '../../../Services/rest-node.service';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -11,16 +11,11 @@ import { IEventsRoot } from '../../../Models/EventsModels/IEventsRoot';
     styleUrl: './lista-eventos.component.css'
 })
 export class ListaEventosComponent implements OnInit{
+  private restSvc = inject(RestNodeService);
+
 
 
   public eventos?: IEventsRoot;
-
-  /**
-   *
-   */
-  constructor(private restSvc: RestNodeService) {
-
-  }
 
   ngOnInit(): void {
     this.ObtenerEventos();
